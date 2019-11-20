@@ -296,6 +296,7 @@
 
           </div>
           
+    <div class="comments" id="gitalk-container"></div>
 
         </div>
           
@@ -433,6 +434,24 @@
   
 
   
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID: 'e0837ac9c4ea264e042c',
+      clientSecret: '24d6b78ceada06021ed0e6f8546911ff579b9a1b',
+      repo: 'skyline-123.github.io',
+      owner: 'skyline-123',
+      admin: [''],
+      id: 'dea610d0795fad082dec7160688400e8',
+        language: '',
+      distractionFreeMode: 'true'
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+</script>
 
 </body>
 </html>
