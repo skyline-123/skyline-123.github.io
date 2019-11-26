@@ -50,18 +50,18 @@
   };
 </script>
 
-  <meta name="description" content="前几个月，我买入了一台Kindle。买之前因为有比较强烈的阅读需求，所以也没有犹豫太长时间，入手了Kindle Oasis3。 Kindle这个阅读器很神奇，让我在短短几个月阅读了十多本充电用的书籍，包括技术，投资相关。近一两周因为工作的原因，我暂时搁置Kindle没有继续看。直到今天重新拿起来看了些旧书温习，我对Kindle这种方式阅读书籍有了一些思考。 纸质书有着最好的阅读体验，但是厚重这一点">
-<meta name="keywords" content="技术杂谈">
+  <meta name="description" content="写过前端项目的同学，对ESLint都应该非常熟悉。业界常用的ESLint规范，一般是以Airbnb和standard规范为主。我们今天是抛开直接在extends里面引入业界ESLint扩展，来聊聊自己项目实践中定制的ESLint规则。 我们先来看看ESLint官方的Rules， 它分为如下多个种类:  Possible Errors Best Practices Strict Mode Varia">
+<meta name="keywords" content="前端工程化,标准,ESLint">
 <meta property="og:type" content="article">
-<meta property="og:title" content="聊聊Kindle的使用感受">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;21&#x2F;%E8%81%8A%E8%81%8AKindle%E7%9A%84%E4%BD%BF%E7%94%A8%E6%84%9F%E5%8F%97&#x2F;index.html">
+<meta property="og:title" content="前端工程化实践系列--ESLint定制规则">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;26&#x2F;%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96%E5%AE%9E%E8%B7%B5%E7%B3%BB%E5%88%97-ESLint%E5%AE%9A%E5%88%B6%E8%A7%84%E5%88%99&#x2F;index.html">
 <meta property="og:site_name" content="Skyline 技术笔记">
-<meta property="og:description" content="前几个月，我买入了一台Kindle。买之前因为有比较强烈的阅读需求，所以也没有犹豫太长时间，入手了Kindle Oasis3。 Kindle这个阅读器很神奇，让我在短短几个月阅读了十多本充电用的书籍，包括技术，投资相关。近一两周因为工作的原因，我暂时搁置Kindle没有继续看。直到今天重新拿起来看了些旧书温习，我对Kindle这种方式阅读书籍有了一些思考。 纸质书有着最好的阅读体验，但是厚重这一点">
+<meta property="og:description" content="写过前端项目的同学，对ESLint都应该非常熟悉。业界常用的ESLint规范，一般是以Airbnb和standard规范为主。我们今天是抛开直接在extends里面引入业界ESLint扩展，来聊聊自己项目实践中定制的ESLint规则。 我们先来看看ESLint官方的Rules， 它分为如下多个种类:  Possible Errors Best Practices Strict Mode Varia">
 <meta property="og:locale" content="zh">
-<meta property="og:updated_time" content="2019-11-20T16:42:31.049Z">
+<meta property="og:updated_time" content="2019-11-26T07:09:55.449Z">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/2019/11/21/%E8%81%8A%E8%81%8AKindle%E7%9A%84%E4%BD%BF%E7%94%A8%E6%84%9F%E5%8F%97/">
+<link rel="canonical" href="http://yoursite.com/2019/11/26/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96%E5%AE%9E%E8%B7%B5%E7%B3%BB%E5%88%97-ESLint%E5%AE%9A%E5%88%B6%E8%A7%84%E5%88%99/">
 
 
 <script id="page-configurations">
@@ -75,7 +75,7 @@
   };
 </script>
 
-  <title>聊聊Kindle的使用感受 | Skyline 技术笔记</title>
+  <title>前端工程化实践系列--ESLint定制规则 | Skyline 技术笔记</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-152551867-1"></script>
     <script>
@@ -180,7 +180,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/21/%E8%81%8A%E8%81%8AKindle%E7%9A%84%E4%BD%BF%E7%94%A8%E6%84%9F%E5%8F%97/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/26/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96%E5%AE%9E%E8%B7%B5%E7%B3%BB%E5%88%97-ESLint%E5%AE%9A%E5%88%B6%E8%A7%84%E5%88%99/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/22638687?s=460&v=4">
@@ -193,7 +193,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          聊聊Kindle的使用感受
+          前端工程化实践系列--ESLint定制规则
         </h1>
 
         <div class="post-meta">
@@ -204,7 +204,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2019-11-21 00:15:57 / Modified: 00:42:31" itemprop="dateCreated datePublished" datetime="2019-11-21T00:15:57+08:00">2019-11-21</time>
+              <time title="Created: 2019-11-26 14:33:08 / Modified: 15:09:55" itemprop="dateCreated datePublished" datetime="2019-11-26T14:33:08+08:00">2019-11-26</time>
             </span>
 
           
@@ -218,12 +218,34 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>前几个月，我买入了一台Kindle。买之前因为有比较强烈的阅读需求，所以也没有犹豫太长时间，入手了Kindle Oasis3。</p>
-<p>Kindle这个阅读器很神奇，让我在短短几个月阅读了十多本充电用的书籍，包括技术，投资相关。近一两周因为工作的原因，我暂时搁置Kindle没有继续看。直到今天重新拿起来看了些旧书温习，我对Kindle这种方式阅读书籍有了一些思考。</p>
-<p>纸质书有着最好的阅读体验，但是厚重这一点，就让许多人在繁忙的工作之余望而却步了。退而求其次，选择用手机去看，我个人也容易被其他App吸引，导致没有很好的办法长时间专注去看。当我选择了Kindle之后，觉得找到了另一种阅读的体验，那就是方便又专注。这种感觉让我在面对五颜六色的代码编辑器之余，多了一种感受黄金屋美好的体验。它的方便携带和舒适的阅读体验，让我即使在工作之余，也放下了对阅读大部头的心理压力，因为说实话我感觉当下面对的只是Kindle的一个小屏幕，又或者说这是一个小屏幕上的一页文字。这种轻松方便的感觉反而促进我认真学习，不知不觉看多了很多书。</p>
-<p>当我们准备学习一个技能或者看完一本书的时候，如果抱着过高的期望或者过高的要求去做，可能效果会打折扣。以前为了面试或者应付一些考试，我会在短时间内看大量的书，那种为了看完而看完的过程真的太煎熬了，而且效果并没有那么理想。但是令我惊讶的一点是，当我专注去使用Kindle之后，却不知不觉消化了非常多的知识。轻松的心态反而促进了学习的动力。</p>
-<p>工作生活中，太多定性定时的任务压着我们喘不过气来。而提效的关键又偏偏是要轻松面对，专注当下而不是专注于感受压力。就像专注Kindle上面的一页文字一样简单，压力也是可以化解为专注当下的每一项小事。大脑总是在思考着一共有多少事没做，和手里捧着一本厚厚的技术书籍一样，会感受到非常大的焦虑与压力。</p>
-<p>从Kindle阅读这件小事，我思考着工作中也要借鉴这种专注和轻松的心态。举个工作中的例子，面对大量的工作，很显然就是要依赖todolist这些工具，用gtd（get things done)理念，把事情和压力分解。不过话说回来，本质上还是要自己好学，毕竟Kindle之类都是工具，真正要吸收养分，内因不可忽略。</p>
+        <p>写过前端项目的同学，对ESLint都应该非常熟悉。业界常用的ESLint规范，一般是以<a href="https://github.com/airbnb/javascript" target="_blank" rel="noopener">Airbnb</a>和<a href="https://github.com/standard/standard" target="_blank" rel="noopener">standard</a>规范为主。我们今天是抛开直接在extends里面引入业界ESLint扩展，来聊聊自己项目实践中定制的ESLint规则。</p>
+<p>我们先来看看ESLint官方的<a href="https://eslint.org/docs/rules/" target="_blank" rel="noopener">Rules</a>， 它分为如下多个种类:</p>
+<ul>
+<li>Possible Errors</li>
+<li>Best Practices</li>
+<li>Strict Mode</li>
+<li>Variables</li>
+<li>Node.js and CommonJS</li>
+<li>Stylistic Issues</li>
+<li>ECMAScript 6</li>
+<li>Deprecated</li>
+<li>Removed</li>
+</ul>
+<p>我们重点看看Stylistic Issues这个分类，这个分类的Rules是解决什么问题的呢？官方解释称这些规则是关于风格指南，而且是非常主观的。对于这样的描述，我们可能在定制规则的过程中一带而过，而其他最佳实践和一些避免潜在错误的规范，standard等规范又帮我们做了。别着急，我们看看这几个Rules。</p>
+<ul>
+<li>max-depth(强制可嵌套的块的最大深度)</li>
+<li>max-len(强制一行的最大长度)</li>
+<li>max-lines(强制最大行数)</li>
+<li>max-lines-per-function(强制函数最大代码行数)</li>
+<li>max-nested-callbacks(强制回调函数最大嵌套深度)</li>
+<li>max-params(强制函数定义中最多允许的参数数量)</li>
+<li>max-statements(强制函数块最多允许的的语句数量)</li>
+<li>max-statements-per-line(强制每一行中所允许的最大语句数量)</li>
+</ul>
+<p>这些主观性强的规则，却恰恰帮助我们为团队定制规范提供了很好的帮助。max-depth适当的嵌套数，可以避免写出难以阅读的复杂代码，max-len可以强迫开发过程中主动换行提高代码的可阅读性，max-lines相关的rules可以让开发对代码细粒度的把握有更看得见摸得着的依据，max-nested-callbacks这个可以在ESLint层面解决回调地狱的问题。</p>
+<p>为什么能发现这些比较特殊的规则呢？也是我们团队开发过程中，发现有不少同学会把一个方法或者一个函数写成几百行的情况。对于这个问题，明显不能通过code review这种后置笨重的方法去解决，所以我们找时间去阅读ESLint的官方规则，对症下药。</p>
+<p>刚刚开始前端开发的时候，我对标准这种东西的认识还是比较肤浅。曾以为业界的规范就是拿来就用即可，但是实际开发过程中，很可能和不同层次的开发合作，面对复杂的开发人员现状，势必要有更高级别的约束和提示。业内的公用标准，对于团队来说，更重要的是借鉴，并根据实际情况做灵活的调整。</p>
+<p>希望这种“个性化定制”，能给做团队标准化制定工作的朋友和未来的自己一些启发。</p>
 
     </div>
 
@@ -233,24 +255,23 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E6%8A%80%E6%9C%AF%E6%9D%82%E8%B0%88/" rel="tag"># 技术杂谈</a>
+              <a href="/tags/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96/" rel="tag"># 前端工程化</a>
+              <a href="/tags/%E6%A0%87%E5%87%86/" rel="tag"># 标准</a>
+              <a href="/tags/ESLint/" rel="tag"># ESLint</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
-                <a href="/2019/11/20/%E5%A4%9A%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8Lerna%E5%AE%9E%E8%B7%B5%E6%80%BB%E7%BB%93/" rel="next" title="多包管理器Lerna实践总结">
-                  <i class="fa fa-chevron-left"></i> 多包管理器Lerna实践总结
+                <a href="/2019/11/21/%E8%81%8A%E8%81%8AKindle%E7%9A%84%E4%BD%BF%E7%94%A8%E6%84%9F%E5%8F%97/" rel="next" title="聊聊Kindle的使用感受">
+                  <i class="fa fa-chevron-left"></i> 聊聊Kindle的使用感受
                 </a>
             </div>
 
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-                <a href="/2019/11/26/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96%E5%AE%9E%E8%B7%B5%E7%B3%BB%E5%88%97-ESLint%E5%AE%9A%E5%88%B6%E8%A7%84%E5%88%99/" rel="prev" title="前端工程化实践系列--ESLint定制规则">
-                  前端工程化实践系列--ESLint定制规则 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
       </footer>
@@ -413,7 +434,7 @@
       repo: 'skyline-123.github.io',
       owner: 'skyline-123',
       admin: ['skyline-123'],
-      id: '4c0e1ec2fd1d8512e46f62eb5759575d',
+      id: 'e2f4b5691f5a791c8e08bca7ded219be',
         language: '',
       distractionFreeMode: 'true'
     });
