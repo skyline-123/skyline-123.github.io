@@ -207,7 +207,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-12-02 00:18:35" itemprop="dateModified" datetime="2019-12-02T00:18:35+08:00">2019-12-02</time>
+                <time title="Modified: 2019-12-02 18:54:36" itemprop="dateModified" datetime="2019-12-02T18:54:36+08:00">2019-12-02</time>
               </span>
 
           
@@ -247,7 +247,7 @@
 <p>第三步在开发过程中是一个持续的过程，会不断有新的feature分支合并到develop分支。</p>
 <h2 id="第四步"><a href="#第四步" class="headerlink" title="第四步"></a>第四步</h2><p>feature开发完之后，开始准备release分支提测。类似于start一个feature分支，release分支命令如下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git flow release start v1.0</span><br><span class="line">git flow release publish v1.0</span><br></pre></td></tr></table></figure>
-<p>上面两行命令，就是基于develop分支新建一个release/v1.0分支，然后将改分支推送到远程仓库。测试回归过程中，遇到有问题，所有bugfix都在改分支进行调整。<br>类似于如下git命令：</p>
+<p>上面两行命令，就是基于develop分支新建一个release/v1.0分支，然后将该分支推送到远程仓库。测试回归过程中，遇到有问题，所有bugfix都在该分支进行调整。<br>类似于如下git命令：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git checkout develop</span><br><span class="line">git checkout -b release/v1.0</span><br><span class="line">git push -u origin release/v1.0</span><br></pre></td></tr></table></figure>
 
 <h2 id="第五步"><a href="#第五步" class="headerlink" title="第五步"></a>第五步</h2><p>release分支完成之后，完成如下命令，将所有代码回补到develop分支，最后合并到master分支。</p>
