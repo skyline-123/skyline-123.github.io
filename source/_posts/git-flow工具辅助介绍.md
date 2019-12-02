@@ -59,7 +59,7 @@ feature开发完之后，开始准备release分支提测。类似于start一个f
 git flow release start v1.0
 git flow release publish v1.0
 ```
-上面两行命令，就是基于develop分支新建一个release/v1.0分支，然后将改分支推送到远程仓库。测试回归过程中，遇到有问题，所有bugfix都在改分支进行调整。
+上面两行命令，就是基于develop分支新建一个release/v1.0分支，然后将该分支推送到远程仓库。测试回归过程中，遇到有问题，所有bugfix都在该分支进行调整。
 类似于如下git命令：
 ```bash
 git checkout develop
