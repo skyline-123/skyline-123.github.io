@@ -1,5 +1,5 @@
 ---
-title: 浅谈VurRouter实现原理
+title: 浅谈VueRouter实现原理
 date: 2019-12-02 19:03:27
 tags:
   - Vue
