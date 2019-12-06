@@ -2,9 +2,9 @@
 title: 浅谈VurRouter实现原理
 date: 2019-12-02 19:03:27
 tags:
- - Vue
- - VueRouter
- - 前端框架
+  - Vue
+  - VueRouter
+  - 前端框架
 ---
 有朋友反馈想看更“干”一点的知识分享，最近库存里面只有我之前在腾讯团队那边分享过的VueRouter原理，现把PPT整理一遍，具体讲解部分不赘述，仅供日后参考。
 
