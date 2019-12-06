@@ -54,14 +54,14 @@
 <meta name="keywords" content="Vue,VueRouter,前端框架">
 <meta property="og:type" content="article">
 <meta property="og:title" content="浅谈VueRouter实现原理">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;02&#x2F;%E6%B5%85%E8%B0%88VurRouter%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86&#x2F;index.html">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;02&#x2F;%E6%B5%85%E8%B0%88VueRouter%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86&#x2F;index.html">
 <meta property="og:site_name" content="Skyline 技术笔记">
 <meta property="og:description" content="有朋友反馈想看更“干”一点的知识分享，最近库存里面只有我之前在腾讯团队那边分享过的VueRouter原理，现把PPT整理一遍，具体讲解部分不赘述，仅供日后参考。 前端路由实现方式这部分内容算是一个基础回顾，如果已经非常熟悉了，可以跳过直接看源码分析部分。前端路由实现方式主要有两种，如下：  Hash模式 History模式  Hash模式Hash指url后面的#号和后面的所有字符。hash也称作锚">
 <meta property="og:locale" content="zh">
-<meta property="og:updated_time" content="2019-12-06T12:51:23.410Z">
+<meta property="og:updated_time" content="2019-12-06T12:53:19.861Z">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/2019/12/02/%E6%B5%85%E8%B0%88VurRouter%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
+<link rel="canonical" href="http://yoursite.com/2019/12/02/%E6%B5%85%E8%B0%88VueRouter%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
 
 
 <script id="page-configurations">
@@ -180,7 +180,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/02/%E6%B5%85%E8%B0%88VurRouter%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/02/%E6%B5%85%E8%B0%88VueRouter%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/22638687?s=460&v=4">
@@ -210,7 +210,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-12-06 20:51:23" itemprop="dateModified" datetime="2019-12-06T20:51:23+08:00">2019-12-06</time>
+                <time title="Modified: 2019-12-06 20:53:19" itemprop="dateModified" datetime="2019-12-06T20:53:19+08:00">2019-12-06</time>
               </span>
 
           
@@ -490,7 +490,7 @@
       repo: 'skyline-123.github.io',
       owner: 'skyline-123',
       admin: ['skyline-123'],
-      id: 'c4b1c932a7cae0b5540f8a8dd2c02a53',
+      id: 'd4f1db4914b32219f1ba69a3c73b41d6',
         language: '',
       distractionFreeMode: 'true'
     });
