@@ -2,6 +2,7 @@
 title: 多包管理器Lerna实践总结
 date: 2019-11-20 00:54:12
 tags:
+ - 前端工程化
 ---
 ## 简介
 什么是Lerna？截取github上面的description如下：
