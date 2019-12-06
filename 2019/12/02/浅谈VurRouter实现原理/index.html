@@ -50,14 +50,14 @@
   };
 </script>
 
-  <meta name="description" content="有朋友反馈想看更“干”一点的知识分享，最近库存里面只有我之前在腾讯团队那边分享过的VueRouter原理，现把PPT整理一遍，供参考。 前端路由实现方式这部分内容算是一个基础回顾，如果已经非常熟悉了，可以跳过直接看源码分析部分。前端路由实现方式主要有两种，如下：  Hash模式 History模式  Hash模式Hash指url后面的#号和后面的所有字符。hash也称作锚点，它可以使对应的id节点">
+  <meta name="description" content="有朋友反馈想看更“干”一点的知识分享，最近库存里面只有我之前在腾讯团队那边分享过的VueRouter原理，现把PPT整理一遍，具体讲解部分不赘述，仅供日后参考。 前端路由实现方式这部分内容算是一个基础回顾，如果已经非常熟悉了，可以跳过直接看源码分析部分。前端路由实现方式主要有两种，如下：  Hash模式 History模式  Hash模式Hash指url后面的#号和后面的所有字符。hash也称作锚">
 <meta property="og:type" content="article">
 <meta property="og:title" content="浅谈VurRouter实现原理">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;02&#x2F;%E6%B5%85%E8%B0%88VurRouter%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86&#x2F;index.html">
 <meta property="og:site_name" content="Skyline 技术笔记">
-<meta property="og:description" content="有朋友反馈想看更“干”一点的知识分享，最近库存里面只有我之前在腾讯团队那边分享过的VueRouter原理，现把PPT整理一遍，供参考。 前端路由实现方式这部分内容算是一个基础回顾，如果已经非常熟悉了，可以跳过直接看源码分析部分。前端路由实现方式主要有两种，如下：  Hash模式 History模式  Hash模式Hash指url后面的#号和后面的所有字符。hash也称作锚点，它可以使对应的id节点">
+<meta property="og:description" content="有朋友反馈想看更“干”一点的知识分享，最近库存里面只有我之前在腾讯团队那边分享过的VueRouter原理，现把PPT整理一遍，具体讲解部分不赘述，仅供日后参考。 前端路由实现方式这部分内容算是一个基础回顾，如果已经非常熟悉了，可以跳过直接看源码分析部分。前端路由实现方式主要有两种，如下：  Hash模式 History模式  Hash模式Hash指url后面的#号和后面的所有字符。hash也称作锚">
 <meta property="og:locale" content="zh">
-<meta property="og:updated_time" content="2019-12-06T12:36:54.467Z">
+<meta property="og:updated_time" content="2019-12-06T12:37:36.152Z">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://yoursite.com/2019/12/02/%E6%B5%85%E8%B0%88VurRouter%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
@@ -209,7 +209,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-12-06 20:36:54" itemprop="dateModified" datetime="2019-12-06T20:36:54+08:00">2019-12-06</time>
+                <time title="Modified: 2019-12-06 20:37:36" itemprop="dateModified" datetime="2019-12-06T20:37:36+08:00">2019-12-06</time>
               </span>
 
           
@@ -223,7 +223,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>有朋友反馈想看更“干”一点的知识分享，最近库存里面只有我之前在腾讯团队那边分享过的VueRouter原理，现把PPT整理一遍，供参考。</p>
+        <p>有朋友反馈想看更“干”一点的知识分享，最近库存里面只有我之前在腾讯团队那边分享过的VueRouter原理，现把PPT整理一遍，具体讲解部分不赘述，仅供日后参考。</p>
 <h2 id="前端路由实现方式"><a href="#前端路由实现方式" class="headerlink" title="前端路由实现方式"></a>前端路由实现方式</h2><p>这部分内容算是一个基础回顾，如果已经非常熟悉了，可以跳过直接看源码分析部分。<br>前端路由实现方式主要有两种，如下：</p>
 <ul>
 <li>Hash模式</li>
