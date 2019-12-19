@@ -50,18 +50,18 @@
   };
 </script>
 
-  <meta name="description" content="最近在工作中有做前端工程化的一些实践，现在我就把其中的思想和实践总结出来，供日后参考。 为什么需要规范化面对这个问题，可能有些同学脑子里浮现的是eslint的各种报错，可能是git commit前eslint检查不通过导致失败。 大家在开发过程中去解决这些问题，会不会觉得很恼火呢？我很恼火，至少当我在想明白这个问题之前，即，为什么需要规范化。 工作和生活中，很多事情都是trade off的结果，当">
-<meta name="keywords" content="前端工程化,标准">
+  <meta name="description" content="为了解决工作问题，我看了一些库的源码。也基于社区的实现，工作中定制了一些轮子。最近对造轮子和拆轮子有一些自己的感想，和大家分享下。 拆先说说拆轮子的心路历程，我经历了几个阶段：  听说看过xxx库的源码很牛逼，好像会涨工资呢，看一看吹吹牛吧 这个bug涉及到引入npm包的源码了，不看看不知道怎么解决，硬着头皮上吧 我想做某个工具，不知道怎么实现，要不参考下社区的xxx，看看源码吧 这个库的api设">
+<meta name="keywords" content="技术杂谈">
 <meta property="og:type" content="article">
-<meta property="og:title" content="前端工程化实践系列--规范化">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;08&#x2F;%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96%E5%AE%9E%E8%B7%B5%E7%B3%BB%E5%88%97--%E6%A0%87%E5%87%86%E5%8C%96%E5%88%B6%E5%AE%9A&#x2F;index.html">
+<meta property="og:title" content="聊聊造轮子和拆轮子">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;19&#x2F;%E8%81%8A%E8%81%8A%E9%80%A0%E8%BD%AE%E5%AD%90%E5%92%8C%E6%8B%86%E8%BD%AE%E5%AD%90&#x2F;index.html">
 <meta property="og:site_name" content="Skyline 技术笔记">
-<meta property="og:description" content="最近在工作中有做前端工程化的一些实践，现在我就把其中的思想和实践总结出来，供日后参考。 为什么需要规范化面对这个问题，可能有些同学脑子里浮现的是eslint的各种报错，可能是git commit前eslint检查不通过导致失败。 大家在开发过程中去解决这些问题，会不会觉得很恼火呢？我很恼火，至少当我在想明白这个问题之前，即，为什么需要规范化。 工作和生活中，很多事情都是trade off的结果，当">
+<meta property="og:description" content="为了解决工作问题，我看了一些库的源码。也基于社区的实现，工作中定制了一些轮子。最近对造轮子和拆轮子有一些自己的感想，和大家分享下。 拆先说说拆轮子的心路历程，我经历了几个阶段：  听说看过xxx库的源码很牛逼，好像会涨工资呢，看一看吹吹牛吧 这个bug涉及到引入npm包的源码了，不看看不知道怎么解决，硬着头皮上吧 我想做某个工具，不知道怎么实现，要不参考下社区的xxx，看看源码吧 这个库的api设">
 <meta property="og:locale" content="zh">
-<meta property="og:updated_time" content="2019-11-22T06:59:42.341Z">
+<meta property="og:updated_time" content="2019-12-19T11:21:53.501Z">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/2019/11/08/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96%E5%AE%9E%E8%B7%B5%E7%B3%BB%E5%88%97--%E6%A0%87%E5%87%86%E5%8C%96%E5%88%B6%E5%AE%9A/">
+<link rel="canonical" href="http://yoursite.com/2019/12/19/%E8%81%8A%E8%81%8A%E9%80%A0%E8%BD%AE%E5%AD%90%E5%92%8C%E6%8B%86%E8%BD%AE%E5%AD%90/">
 
 
 <script id="page-configurations">
@@ -75,7 +75,7 @@
   };
 </script>
 
-  <title>前端工程化实践系列--规范化 | Skyline 技术笔记</title>
+  <title>聊聊造轮子和拆轮子 | Skyline 技术笔记</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-152551867-1"></script>
     <script>
@@ -180,7 +180,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/08/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96%E5%AE%9E%E8%B7%B5%E7%B3%BB%E5%88%97--%E6%A0%87%E5%87%86%E5%8C%96%E5%88%B6%E5%AE%9A/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/19/%E8%81%8A%E8%81%8A%E9%80%A0%E8%BD%AE%E5%AD%90%E5%92%8C%E6%8B%86%E8%BD%AE%E5%AD%90/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/22638687?s=460&v=4">
@@ -193,7 +193,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          前端工程化实践系列--规范化
+          聊聊造轮子和拆轮子
         </h1>
 
         <div class="post-meta">
@@ -202,16 +202,10 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
+              
 
-              <time title="Created: 2019-11-08 13:25:34" itemprop="dateCreated datePublished" datetime="2019-11-08T13:25:34+08:00">2019-11-08</time>
+              <time title="Created: 2019-12-19 18:04:00 / Modified: 19:21:53" itemprop="dateCreated datePublished" datetime="2019-12-19T18:04:00+08:00">2019-12-19</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-11-22 14:59:42" itemprop="dateModified" datetime="2019-11-22T14:59:42+08:00">2019-11-22</time>
-              </span>
 
           
 
@@ -224,44 +218,23 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>最近在工作中有做前端工程化的一些实践，现在我就把其中的思想和实践总结出来，供日后参考。</p>
-<h2 id="为什么需要规范化"><a href="#为什么需要规范化" class="headerlink" title="为什么需要规范化"></a>为什么需要规范化</h2><p>面对这个问题，可能有些同学脑子里浮现的是eslint的各种报错，可能是git commit前eslint检查不通过导致失败。</p>
-<p>大家在开发过程中去解决这些问题，会不会觉得很恼火呢？我很恼火，至少当我在想明白这个问题之前，即，为什么需要规范化。</p>
-<p>工作和生活中，很多事情都是trade off的结果，当大家都忍受着麻烦努力做一件事情的时候，很大可能就是，不做这些，会更糟糕。</p>
-<p>简言之，个人觉得前端开发规范化的最重要原因就是<strong>提高团队整体开发效率</strong>。往细说，可以简单分三点。</p>
-<ul>
-<li>降低犯错的概率</li>
-<li>提高团队代码质量</li>
-<li>提高项目可维护性</li>
-</ul>
-<p>提高团队整体开发效率这一件事，值得我们去制定规范，落地规范，配套工具提高规范实践效率，并为之解决工具本身带来的新问题。因此我们不能只是看到规范化给开发带来的困扰，更要看到其本质作用。</p>
-<h2 id="规范化涉及的方面"><a href="#规范化涉及的方面" class="headerlink" title="规范化涉及的方面"></a>规范化涉及的方面</h2><p>明确了规范化的意义，现在对我在工程中实践过的规范化内容和相应的工具做一个简单的总结。</p>
-<ul>
-<li>代码格式规范化<ul>
-<li>ESLint</li>
-<li>lint-staged</li>
-<li>husky</li>
-</ul>
-</li>
-<li>commit规范化<ul>
-<li>commitizen</li>
-<li>husky</li>
-<li>commitlint</li>
-<li>conventional-changelog-cli</li>
-</ul>
-</li>
-<li>git流程规范化<ul>
-<li>git-flow</li>
-</ul>
-</li>
-</ul>
-<p>如果对上面的实践展开讲，有很多实践的细节可以说。假设各位读者都有能力根据罗列出来的点去搭建一个开发流程更规范的前端脚手架，那我们应该在搭建脚手架之外做什么思考呢？</p>
+        <p>为了解决工作问题，我看了一些库的源码。也基于社区的实现，工作中定制了一些轮子。最近对造轮子和拆轮子有一些自己的感想，和大家分享下。</p>
+<h2 id="拆"><a href="#拆" class="headerlink" title="拆"></a>拆</h2><p>先说说拆轮子的心路历程，我经历了几个阶段：</p>
 <ol>
-<li>执行</li>
-<li>执行</li>
-<li>执行</li>
+<li>听说看过xxx库的源码很牛逼，好像会涨工资呢，看一看吹吹牛吧</li>
+<li>这个bug涉及到引入npm包的源码了，不看看不知道怎么解决，硬着头皮上吧</li>
+<li>我想做某个工具，不知道怎么实现，要不参考下社区的xxx，看看源码吧</li>
+<li>这个库的api设计的真好，我也想设计类似的api，看看源码吧</li>
 </ol>
-<p>规则都是人定出来的，破坏规则的也可以是人。如果团队成员内心不认可规范化的价值，那么工具或者文档写的再好，都不能起到正面的作用。所以规范制定的过程中，尽可能参考业界规范，并在团队内部达（打）成共识。</p>
+<p>简单来说，就是从应试教育到素质教育的进化。这其中的过程，要我现在回想，还是第一步历程最重要。就像看名著一样，如果觉得大部头看着恶心，那可能一直不会去看了，总要有一个契机先克服恐惧。而涨工资这个最原始的欲望，还是有一定的助推力让我去主动学习一些社区优秀库的源码。当然啦，看源码那么有趣，后面我乐于阅读自然是水到渠成的事情。</p>
+<h2 id="造"><a href="#造" class="headerlink" title="造"></a>造</h2><p>再简单说说造轮子，这个没什么心路历程吧，就是根据业务需求自然而然要自己定制一些轮子。对我影响比较大的是Dan Abramov，没记错的话，有一次他发twitter问大家如果一个库不满足你的某些需求你会怎么办呢？他是建议直接fork一份，然后自己修改这个库的源码来满足自己的需求。其实在小白阶段，我经常会抱怨一些库不能很好满足自己的需求，但是没有想过自己也是完全可以改造它的。当我脱离埋怨和四处找更好的轮子的时候，就开始了自己改造轮子或者自己造轮子。很多事情，觉悟大于行动。可能你在四处搜索完美轮子过程中花费的时间，可以做更多有趣的事情。</p>
+<h2 id="足迹"><a href="#足迹" class="headerlink" title="足迹"></a>足迹</h2><p>开源贡献的精神同样重要，在阅读源码的过程中，我也为社区做了一点贡献：</p>
+<ul>
+<li><a href="https://github.com/vueComponent/ant-design-vue" target="_blank" rel="noopener">ant-design-vue</a></li>
+<li><a href="https://github.com/petkaantonov/bluebird" target="_blank" rel="noopener">bluebird</a></li>
+</ul>
+<p>在ant-design-vue中修复了两个样式问题，bluebird中简单复用了没有复用的函数。虽然都是非常小的事情，但是参与贡献这个事情本身就是很正面激励自己。</p>
+<p>同时还在react仓库提交了一个文档更新的<a href="https://github.com/facebook/react/pull/9354" target="_blank" rel="noopener">pr</a>，虽然最后被Dan Abramov 关闭了，但是也在和Dan交流的过程中有所收获。个人觉得，当自己没有任何成就的时候，不要也没有任何精神。热爱，就要有行动。</p>
 
     </div>
 
@@ -271,22 +244,21 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96/" rel="tag"># 前端工程化</a>
-              <a href="/tags/%E6%A0%87%E5%87%86/" rel="tag"># 标准</a>
+              <a href="/tags/%E6%8A%80%E6%9C%AF%E6%9D%82%E8%B0%88/" rel="tag"># 技术杂谈</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
+                <a href="/2019/12/13/%E7%81%B0%E8%89%B2%E7%9A%84b%E7%AB%99%E9%A6%96%E9%A1%B5/" rel="next" title="灰色的b站首页">
+                  <i class="fa fa-chevron-left"></i> 灰色的b站首页
+                </a>
             </div>
 
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-                <a href="/2019/11/20/%E5%A4%9A%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8Lerna%E5%AE%9E%E8%B7%B5%E6%80%BB%E7%BB%93/" rel="prev" title="多包管理器Lerna实践总结">
-                  多包管理器Lerna实践总结 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
       </footer>
@@ -326,7 +298,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么需要规范化"><span class="nav-number">1.</span> <span class="nav-text">为什么需要规范化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#规范化涉及的方面"><span class="nav-number">2.</span> <span class="nav-text">规范化涉及的方面</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#拆"><span class="nav-number">1.</span> <span class="nav-text">拆</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#造"><span class="nav-number">2.</span> <span class="nav-text">造</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#足迹"><span class="nav-number">3.</span> <span class="nav-text">足迹</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -450,7 +422,7 @@
       repo: 'skyline-123.github.io',
       owner: 'skyline-123',
       admin: ['skyline-123'],
-      id: '2650462df263b6229c31e7326de26bbd',
+      id: 'f85ee2678423ccd75c2e4642c7e63b4e',
         language: '',
       distractionFreeMode: 'true'
     });
