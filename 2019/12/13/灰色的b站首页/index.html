@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.0.0">
+<meta name="generator" content="Hexo 4.2.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -23,7 +23,7 @@
     scheme: 'Gemini',
     version: '7.5.0',
     exturl: false,
-    sidebar: {"position":"right"},
+    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false},
     copycode: {"enable":false,"show_result":false,"style":null},
     back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
     bookmark: {"enable":false,"color":"#222","save":"auto"},
@@ -53,15 +53,17 @@
   <meta name="description" content="今天是12.13日国家公祭日，纪念南京大屠杀30000同胞。看到灰色的b站首页我还愣了一下，随后马上反应过来。 职业习惯，我查看了下b站灰色蒙层实现原理。   很简单，filter: grayscale(100%)，这行代码就实现了首页灰色滤镜。但是这一行代码就能让访问b站的网友记起历史。或许，这个就是前端技术的温度吧，给这个行业点赞。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="灰色的b站首页">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;13&#x2F;%E7%81%B0%E8%89%B2%E7%9A%84b%E7%AB%99%E9%A6%96%E9%A1%B5&#x2F;index.html">
+<meta property="og:url" content="http://yoursite.com/2019/12/13/%E7%81%B0%E8%89%B2%E7%9A%84b%E7%AB%99%E9%A6%96%E9%A1%B5/index.html">
 <meta property="og:site_name" content="Skyline 技术笔记">
 <meta property="og:description" content="今天是12.13日国家公祭日，纪念南京大屠杀30000同胞。看到灰色的b站首页我还愣了一下，随后马上反应过来。 职业习惯，我查看了下b站灰色蒙层实现原理。   很简单，filter: grayscale(100%)，这行代码就实现了首页灰色滤镜。但是这一行代码就能让访问b站的网友记起历史。或许，这个就是前端技术的温度吧，给这个行业点赞。">
 <meta property="og:locale" content="zh">
-<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;13&#x2F;%E7%81%B0%E8%89%B2%E7%9A%84b%E7%AB%99%E9%A6%96%E9%A1%B5&#x2F;black-bilibili-index.jpg">
-<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;13&#x2F;%E7%81%B0%E8%89%B2%E7%9A%84b%E7%AB%99%E9%A6%96%E9%A1%B5&#x2F;black-bilibili-code.jpg">
-<meta property="og:updated_time" content="2019-12-13T15:21:00.341Z">
+<meta property="og:image" content="http://yoursite.com/2019/12/13/%E7%81%B0%E8%89%B2%E7%9A%84b%E7%AB%99%E9%A6%96%E9%A1%B5/black-bilibili-index.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/12/13/%E7%81%B0%E8%89%B2%E7%9A%84b%E7%AB%99%E9%A6%96%E9%A1%B5/black-bilibili-code.jpg">
+<meta property="article:published_time" content="2019-12-13T14:58:15.000Z">
+<meta property="article:modified_time" content="2019-12-13T15:21:00.341Z">
+<meta property="article:author" content="John">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;13&#x2F;%E7%81%B0%E8%89%B2%E7%9A%84b%E7%AB%99%E9%A6%96%E9%A1%B5&#x2F;black-bilibili-index.jpg">
+<meta name="twitter:image" content="http://yoursite.com/2019/12/13/%E7%81%B0%E8%89%B2%E7%9A%84b%E7%AB%99%E9%A6%96%E9%A1%B5/black-bilibili-index.jpg">
 
 <link rel="canonical" href="http://yoursite.com/2019/12/13/%E7%81%B0%E8%89%B2%E7%9A%84b%E7%AB%99%E9%A6%96%E9%A1%B5/">
 
@@ -320,7 +322,7 @@
         <a href="https://github.com/skyline-123" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;skyline-123" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
       </span>
       <span class="links-of-author-item">
-        <a href="/mailto:posthanjt@gmail.com" title="E-Mail &amp;rarr; mailto:posthanjt@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+        <a href="mailto:hjt.hjt@qq.com" title="E-Mail &amp;rarr; mailto:hjt.hjt@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
       </span>
   </div>
 
@@ -349,10 +351,15 @@
   &copy; 
   <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
-    <i class="fa fa-"></i>
+    <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">John</span>
 </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.5.0
+  </div>
 
         
 
@@ -376,9 +383,17 @@
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
+
+
 <script src="/js/next-boot.js"></script>
+
 
 
 
