@@ -200,10 +200,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2019-12-30 10:36:18 / Modified: 20:40:25" itemprop="dateCreated datePublished" datetime="2019-12-30T10:36:18+08:00">2019-12-30</time>
+              <time title="Created: 2019-12-30 10:36:18" itemprop="dateCreated datePublished" datetime="2019-12-30T10:36:18+08:00">2019-12-30</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-01-02 22:33:18" itemprop="dateModified" datetime="2020-01-02T22:33:18+08:00">2020-01-02</time>
+              </span>
 
           
 
@@ -218,7 +224,7 @@
       
           <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>近期在翻阅gulp的源码，它引用到了很多外部包，不用慌，待我抽丝剥茧逐个击破。接下来会写gulp系列的源码解析，会将gulp使用的核心库逐个介绍，最后再串起来梳理gulp的流程。</p>
 <p>选择用分总的结构讲解gulp源码，是因为总分总的意义不太大。gulp本身引用了很多第三方库，如果聚焦于其主库去说流程，实际上没有太多值得说的东西。</p>
-<p>抛开引用的诸多库，gulp最核心的还是使用了Stream。对于Stream的概念，我就不赘述了，不熟悉的同学去回顾一下node的相关文档。</p>
+<p>抛开引用的诸多库，gulp最核心的还是使用了Stream。对于Stream的概念，我就不赘述了，不熟悉的同学去回顾一下node的相关文档。这里有一篇文章值得一读 <a href="https://github.com/substack/stream-handbook" target="_blank" rel="noopener"><em>stream-handbook</em></a>。</p>
 <p>另外，源码分析的文章，我的初衷更多是总结回顾，如果同时能对读者有所帮助，也是一件好事。</p>
 <h2 id="pump简介"><a href="#pump简介" class="headerlink" title="pump简介"></a>pump简介</h2><p><a href="https://github.com/mafintosh/pump" target="_blank" rel="noopener">pump</a>是一个小node模块，它通过管道将流连接在一起，并在其中一个关闭时销毁所有流。</p>
 <p>首先分析pump，两点原因</p>
@@ -1174,7 +1180,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2019</span>
+  <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
