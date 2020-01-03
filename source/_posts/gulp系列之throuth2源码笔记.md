@@ -11,8 +11,7 @@ tags:
 ## through2用法
 具体用法直接看through2的[github](https://github.com/rvagg/through2), 另外我在阅读过程中也顺便修复了它demo中遗漏的括号。
 
-through2函数入参简单参考：
-```through2([ options, ] [ transformFunction ] [, flushFunction ])```
+through2函数：```through2([ options, ] [ transformFunction ] [, flushFunction ])```
 
 options就是和ransform stream相关的配置项。
 
