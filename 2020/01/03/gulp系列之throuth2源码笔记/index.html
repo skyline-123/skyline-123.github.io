@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="through2简介仓库简介：A tiny wrapper around Node.js streams.Transform (Streams2&#x2F;3) to avoid explicit subclassing noise. 简单来说它就是用readable-stream库创建transform stream。如果使用官方的Stream接口，还要考虑兼容性问题。 through2用法具体用法直接看">
+<meta property="og:type" content="article">
+<meta property="og:title" content="gulp系列之throuth2源码笔记">
+<meta property="og:url" content="http://yoursite.com/2020/01/03/gulp%E7%B3%BB%E5%88%97%E4%B9%8Bthrouth2%E6%BA%90%E7%A0%81%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="Skyline 技术笔记">
+<meta property="og:description" content="through2简介仓库简介：A tiny wrapper around Node.js streams.Transform (Streams2&#x2F;3) to avoid explicit subclassing noise. 简单来说它就是用readable-stream库创建transform stream。如果使用官方的Stream接口，还要考虑兼容性问题。 through2用法具体用法直接看">
+<meta property="og:locale" content="zh">
+<meta property="article:published_time" content="2020-01-03T07:41:57.000Z">
+<meta property="article:modified_time" content="2020-01-03T09:23:29.041Z">
+<meta property="article:author" content="Skyline">
+<meta property="article:tag" content="gulp">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2020/01/03/gulp%E7%B3%BB%E5%88%97%E4%B9%8Bthrouth2%E6%BA%90%E7%A0%81%E7%AC%94%E8%AE%B0/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>gulp系列之throuth2源码笔记 | Skyline 技术笔记</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-152551867-1"></script>
+    <script>
+      var host = window.location.hostname;
+      if (host !== "localhost" || !true) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-152551867-1');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Skyline 技术笔记</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives<span class="badge">11</span></a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/03/gulp%E7%B3%BB%E5%88%97%E4%B9%8Bthrouth2%E6%BA%90%E7%A0%81%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/22638687?s=460&v=4">
+      <meta itemprop="name" content="Skyline">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Skyline 技术笔记">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          gulp系列之throuth2源码笔记
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-01-03 15:41:57 / Modified: 17:23:29" itemprop="dateCreated datePublished" datetime="2020-01-03T15:41:57+08:00">2020-01-03</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="through2简介"><a href="#through2简介" class="headerlink" title="through2简介"></a>through2简介</h2><p>仓库简介：A tiny wrapper around Node.js streams.Transform (Streams2/3) to avoid explicit subclassing noise. 简单来说它就是用readable-stream库创建transform stream。如果使用官方的Stream接口，还要考虑兼容性问题。</p>
+<h2 id="through2用法"><a href="#through2用法" class="headerlink" title="through2用法"></a>through2用法</h2><p>具体用法直接看through2的<a href="https://github.com/rvagg/through2" target="_blank" rel="noopener">github</a>, 另外我在阅读过程中也顺便修复了它demo中遗漏的括号。</p>
+<p>through2函数入参简单参考：</p>
+<figure class="highlight plain"><figcaption><span>options, ] [ transformFunction ] [, flushFunction ])```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">options就是和ransform stream相关的配置项。</span><br><span class="line"></span><br><span class="line">transformFunction，简单概括，它就是连接readable stream和writable stream的桥梁，它改变可读流之后供可写流消费。这个transformFunction也是duplex stream和transform stream最大的区别。</span><br><span class="line"></span><br><span class="line">flushFunction将在所有输入流传输结束后调用，用来结束transform stream。</span><br><span class="line"></span><br><span class="line">through2一般用在pipe中，抄官方demo如下作参考：</span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96;js</span><br><span class="line">fs.createReadStream(&#39;ex.txt&#39;)</span><br><span class="line">  .pipe(through2(function (chunk, enc, callback) &#123;</span><br><span class="line">    for (var i &#x3D; 0; i &lt; chunk.length; i++)</span><br><span class="line">      if (chunk[i] &#x3D;&#x3D; 97)</span><br><span class="line">        chunk[i] &#x3D; 122 &#x2F;&#x2F; swap &#39;a&#39; for &#39;z&#39;</span><br><span class="line"></span><br><span class="line">    this.push(chunk)</span><br><span class="line"></span><br><span class="line">    callback()</span><br><span class="line">   &#125;))</span><br><span class="line">  .pipe(fs.createWriteStream(&#39;out.txt&#39;))</span><br><span class="line">  .on(&#39;finish&#39;, () &#x3D;&gt; doSomethingSpecial())</span><br></pre></td></tr></table></figure>
+
+<h2 id="源码简介"><a href="#源码简介" class="headerlink" title="源码简介"></a>源码简介</h2><p>如果你深入了解过Stream，看了through2的用法，其实已经可以猜测到它源码是如何工作的。</p>
+<p>为什么这么说呢？因为我学习这块的时候直接看through2的源码，发现自己其实是不理解pipe和through2结合起来，怎么就可以做到这种修改可读流数据的黑魔法。说白了是对pipe方法的了解很模糊，Stream的pipe方法，其实只需要传一个dest流作为参数，它内部已经实现了对dest流的data和end事件的监听。</p>
+<p>抛开源码去理解，pipe管道只是一个黑盒，传入一个transfrom / duplex / writable stream作为pipe的参数，源头的readable stream可以自动从源头流到出口writable stream，并通过执行每一个pipe方法对stream做相应的处理。</p>
+<p>回到through2，它就是帮助你快速创建一个transform stream的工具函数。</p>
+<p>看核心源码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// main export, just make me a transform stream!</span></span><br><span class="line"><span class="built_in">module</span>.exports = through2(<span class="function"><span class="keyword">function</span> (<span class="params">options, transform, flush</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> t2 = <span class="keyword">new</span> DestroyableTransform(options)</span><br><span class="line"></span><br><span class="line">  t2._transform = transform</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (flush)</span><br><span class="line">    t2._flush = flush</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> t2</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>可以看到through2确实只是返回一个DestroyableTransform流。<br>那我们看看DestroyableTransform。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Transform = <span class="built_in">require</span>(<span class="string">'readable-stream'</span>).Transform</span><br><span class="line">  , inherits  = <span class="built_in">require</span>(<span class="string">'util'</span>).inherits</span><br><span class="line">  , xtend     = <span class="built_in">require</span>(<span class="string">'xtend'</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">DestroyableTransform</span>(<span class="params">opts</span>) </span>&#123;</span><br><span class="line">  Transform.call(<span class="keyword">this</span>, opts)</span><br><span class="line">  <span class="keyword">this</span>._destroyed = <span class="literal">false</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">inherits(DestroyableTransform, Transform)</span><br><span class="line"></span><br><span class="line">DestroyableTransform.prototype.destroy = <span class="function"><span class="keyword">function</span>(<span class="params">err</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">this</span>._destroyed) <span class="keyword">return</span></span><br><span class="line">  <span class="keyword">this</span>._destroyed = <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> self = <span class="keyword">this</span></span><br><span class="line">  process.nextTick(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (err)</span><br><span class="line">      self.emit(<span class="string">'error'</span>, err)</span><br><span class="line">    self.emit(<span class="string">'close'</span>)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>继承readable-stream的Transform，然后原型链上增加一个destroy方法。非常简单。<br>核心源码部分就分析到此。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>这篇源码笔记看上去没怎么讲解through2，因为它本身确实没啥可以讲的，只是创建transform stream都会用到它处理。</p>
+<p>我在研读它之前的困惑，不在于这个库本身，而是对Stream的理解有点模糊。先将理解记录下来，供日后参考。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/gulp/" rel="tag"># gulp</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2019/12/30/gulp%E7%B3%BB%E5%88%97%E4%B9%8Bpump%E6%BA%90%E7%A0%81%E7%AC%94%E8%AE%B0/" rel="next" title="gulp系列之pump源码笔记">
+                  <i class="fa fa-chevron-left"></i> gulp系列之pump源码笔记
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#through2简介"><span class="nav-number">1.</span> <span class="nav-text">through2简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#through2用法"><span class="nav-number">2.</span> <span class="nav-text">through2用法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#源码简介"><span class="nav-number">3.</span> <span class="nav-text">源码简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">4.</span> <span class="nav-text">小结</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Skyline"
+      src="https://avatars0.githubusercontent.com/u/22638687?s=460&v=4">
+  <p class="site-author-name" itemprop="name">Skyline</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/skyline-123" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;skyline-123" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:posthanjt@gmail.com" title="E-Mail &amp;rarr; mailto:posthanjt@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Skyline</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.5.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID: 'e0837ac9c4ea264e042c',
+      clientSecret: '24d6b78ceada06021ed0e6f8546911ff579b9a1b',
+      repo: 'skyline-123.github.io',
+      owner: 'skyline-123',
+      admin: ['skyline-123'],
+      id: '5c7ccfb7b05ca07f855b571e5e89ef25',
+        language: '',
+      distractionFreeMode: 'true'
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+</script>
+
+</body>
+</html>

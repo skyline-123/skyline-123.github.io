@@ -50,36 +50,29 @@
   };
 </script>
 
-  <meta name="description" content="写过前端项目的同学，对ESLint都应该非常熟悉。业界常用的ESLint规范，一般是以Airbnb和standard规范为主。我们今天是抛开直接在extends里面引入业界ESLint扩展，来聊聊自己项目实践中定制的ESLint规则。 我们先来看看ESLint官方的Rules， 它分为如下多个种类:  Possible Errors Best Practices Strict Mode Varia">
-<meta property="og:type" content="article">
-<meta property="og:title" content="前端工程化实践系列--ESLint定制规则">
-<meta property="og:url" content="http://yoursite.com/2019/11/26/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96%E5%AE%9E%E8%B7%B5%E7%B3%BB%E5%88%97-ESLint%E5%AE%9A%E5%88%B6%E8%A7%84%E5%88%99/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Skyline 技术笔记">
+<meta property="og:url" content="http://yoursite.com/page/2/index.html">
 <meta property="og:site_name" content="Skyline 技术笔记">
-<meta property="og:description" content="写过前端项目的同学，对ESLint都应该非常熟悉。业界常用的ESLint规范，一般是以Airbnb和standard规范为主。我们今天是抛开直接在extends里面引入业界ESLint扩展，来聊聊自己项目实践中定制的ESLint规则。 我们先来看看ESLint官方的Rules， 它分为如下多个种类:  Possible Errors Best Practices Strict Mode Varia">
 <meta property="og:locale" content="zh">
-<meta property="article:published_time" content="2019-11-26T06:33:08.000Z">
-<meta property="article:modified_time" content="2019-11-26T07:09:55.449Z">
 <meta property="article:author" content="Skyline">
-<meta property="article:tag" content="前端工程化">
-<meta property="article:tag" content="标准">
-<meta property="article:tag" content="ESLint">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/2019/11/26/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96%E5%AE%9E%E8%B7%B5%E7%B3%BB%E5%88%97-ESLint%E5%AE%9A%E5%88%B6%E8%A7%84%E5%88%99/">
+<link rel="canonical" href="http://yoursite.com/page/2/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: false,
-    isPost: true,
+    isHome: true,
+    isPost: false,
     isPage: false,
     isArchive: false
   };
 </script>
 
-  <title>前端工程化实践系列--ESLint定制规则 | Skyline 技术笔记</title>
+  <title>Skyline 技术笔记</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-152551867-1"></script>
     <script>
@@ -180,11 +173,11 @@
             
 
   <div class="posts-expand">
-      
+        
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/26/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96%E5%AE%9E%E8%B7%B5%E7%B3%BB%E5%88%97-ESLint%E5%AE%9A%E5%88%B6%E8%A7%84%E5%88%99/">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/08/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96%E5%AE%9E%E8%B7%B5%E7%B3%BB%E5%88%97--%E6%A0%87%E5%87%86%E5%8C%96%E5%88%B6%E5%AE%9A/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/22638687?s=460&v=4">
@@ -197,7 +190,8 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          前端工程化实践系列--ESLint定制规则
+          
+            <a href="/2019/11/08/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96%E5%AE%9E%E8%B7%B5%E7%B3%BB%E5%88%97--%E6%A0%87%E5%87%86%E5%8C%96%E5%88%B6%E5%AE%9A/" class="post-title-link" itemprop="url">前端工程化实践系列--规范化</a>
         </h1>
 
         <div class="post-meta">
@@ -206,10 +200,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2019-11-26 14:33:08 / Modified: 15:09:55" itemprop="dateCreated datePublished" datetime="2019-11-26T14:33:08+08:00">2019-11-26</time>
+              <time title="Created: 2019-11-08 13:25:34" itemprop="dateCreated datePublished" datetime="2019-11-08T13:25:34+08:00">2019-11-08</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-11-22 14:59:42" itemprop="dateModified" datetime="2019-11-22T14:59:42+08:00">2019-11-22</time>
+              </span>
 
           
 
@@ -222,67 +222,54 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>写过前端项目的同学，对ESLint都应该非常熟悉。业界常用的ESLint规范，一般是以<a href="https://github.com/airbnb/javascript" target="_blank" rel="noopener">Airbnb</a>和<a href="https://github.com/standard/standard" target="_blank" rel="noopener">standard</a>规范为主。我们今天是抛开直接在extends里面引入业界ESLint扩展，来聊聊自己项目实践中定制的ESLint规则。</p>
-<p>我们先来看看ESLint官方的<a href="https://eslint.org/docs/rules/" target="_blank" rel="noopener">Rules</a>， 它分为如下多个种类:</p>
+          <p>最近在工作中有做前端工程化的一些实践，现在我就把其中的思想和实践总结出来，供日后参考。</p>
+<h2 id="为什么需要规范化"><a href="#为什么需要规范化" class="headerlink" title="为什么需要规范化"></a>为什么需要规范化</h2><p>面对这个问题，可能有些同学脑子里浮现的是eslint的各种报错，可能是git commit前eslint检查不通过导致失败。</p>
+<p>大家在开发过程中去解决这些问题，会不会觉得很恼火呢？我很恼火，至少当我在想明白这个问题之前，即，为什么需要规范化。</p>
+<p>工作和生活中，很多事情都是trade off的结果，当大家都忍受着麻烦努力做一件事情的时候，很大可能就是，不做这些，会更糟糕。</p>
+<p>简言之，个人觉得前端开发规范化的最重要原因就是<strong>提高团队整体开发效率</strong>。往细说，可以简单分三点。</p>
 <ul>
-<li>Possible Errors</li>
-<li>Best Practices</li>
-<li>Strict Mode</li>
-<li>Variables</li>
-<li>Node.js and CommonJS</li>
-<li>Stylistic Issues</li>
-<li>ECMAScript 6</li>
-<li>Deprecated</li>
-<li>Removed</li>
+<li>降低犯错的概率</li>
+<li>提高团队代码质量</li>
+<li>提高项目可维护性</li>
 </ul>
-<p>我们重点看看Stylistic Issues这个分类，这个分类的Rules是解决什么问题的呢？官方解释称这些规则是关于风格指南，而且是非常主观的。对于这样的描述，我们可能在定制规则的过程中一带而过，而其他最佳实践和一些避免潜在错误的规范，standard等规范又帮我们做了。别着急，我们看看这几个Rules。</p>
+<p>提高团队整体开发效率这一件事，值得我们去制定规范，落地规范，配套工具提高规范实践效率，并为之解决工具本身带来的新问题。因此我们不能只是看到规范化给开发带来的困扰，更要看到其本质作用。</p>
+<h2 id="规范化涉及的方面"><a href="#规范化涉及的方面" class="headerlink" title="规范化涉及的方面"></a>规范化涉及的方面</h2><p>明确了规范化的意义，现在对我在工程中实践过的规范化内容和相应的工具做一个简单的总结。</p>
 <ul>
-<li>max-depth(强制可嵌套的块的最大深度)</li>
-<li>max-len(强制一行的最大长度)</li>
-<li>max-lines(强制最大行数)</li>
-<li>max-lines-per-function(强制函数最大代码行数)</li>
-<li>max-nested-callbacks(强制回调函数最大嵌套深度)</li>
-<li>max-params(强制函数定义中最多允许的参数数量)</li>
-<li>max-statements(强制函数块最多允许的的语句数量)</li>
-<li>max-statements-per-line(强制每一行中所允许的最大语句数量)</li>
+<li>代码格式规范化<ul>
+<li>ESLint</li>
+<li>lint-staged</li>
+<li>husky</li>
 </ul>
-<p>这些主观性强的规则，却恰恰帮助我们为团队定制规范提供了很好的帮助。max-depth适当的嵌套数，可以避免写出难以阅读的复杂代码，max-len可以强迫开发过程中主动换行提高代码的可阅读性，max-lines相关的rules可以让开发对代码细粒度的把握有更看得见摸得着的依据，max-nested-callbacks这个可以在ESLint层面解决回调地狱的问题。</p>
-<p>为什么能发现这些比较特殊的规则呢？也是我们团队开发过程中，发现有不少同学会把一个方法或者一个函数写成几百行的情况。对于这个问题，明显不能通过code review这种后置笨重的方法去解决，所以我们找时间去阅读ESLint的官方规则，对症下药。</p>
-<p>刚刚开始前端开发的时候，我对标准这种东西的认识还是比较肤浅。曾以为业界的规范就是拿来就用即可，但是实际开发过程中，很可能和不同层次的开发合作，面对复杂的开发人员现状，势必要有更高级别的约束和提示。业内的公用标准，对于团队来说，更重要的是借鉴，并根据实际情况做灵活的调整。</p>
-<p>希望这种“个性化定制”，能给做团队标准化制定工作的朋友和未来的自己一些启发。</p>
+</li>
+<li>commit规范化<ul>
+<li>commitizen</li>
+<li>husky</li>
+<li>commitlint</li>
+<li>conventional-changelog-cli</li>
+</ul>
+</li>
+<li>git流程规范化<ul>
+<li>git-flow</li>
+</ul>
+</li>
+</ul>
+<p>如果对上面的实践展开讲，有很多实践的细节可以说。假设各位读者都有能力根据罗列出来的点去搭建一个开发流程更规范的前端脚手架，那我们应该在搭建脚手架之外做什么思考呢？</p>
+<ol>
+<li>执行</li>
+<li>执行</li>
+<li>执行</li>
+</ol>
+<p>规则都是人定出来的，破坏规则的也可以是人。如果团队成员内心不认可规范化的价值，那么工具或者文档写的再好，都不能起到正面的作用。所以规范制定的过程中，尽可能参考业界规范，并在团队内部达（打）成共识。</p>
 
+      
     </div>
 
     
     
     
-
       <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96/" rel="tag"># 前端工程化</a>
-              <a href="/tags/%E6%A0%87%E5%87%86/" rel="tag"># 标准</a>
-              <a href="/tags/ESLint/" rel="tag"># ESLint</a>
-          </div>
-
-        
-
-          <div class="post-nav">
-            <div class="post-nav-next post-nav-item">
-                <a href="/2019/11/21/%E8%81%8A%E8%81%8AKindle%E7%9A%84%E4%BD%BF%E7%94%A8%E6%84%9F%E5%8F%97/" rel="next" title="聊聊Kindle的使用感受">
-                  <i class="fa fa-chevron-left"></i> 聊聊Kindle的使用感受
-                </a>
-            </div>
-
-            <span class="post-nav-divider"></span>
-
-            <div class="post-nav-prev post-nav-item">
-                <a href="/2019/11/30/git-flow%E5%B7%A5%E5%85%B7%E8%BE%85%E5%8A%A9%E4%BB%8B%E7%BB%8D/" rel="prev" title="git-flow工具辅助介绍">
-                  git-flow工具辅助介绍 <i class="fa fa-chevron-right"></i>
-                </a>
-            </div>
-          </div>
+        <div class="post-eof"></div>
       </footer>
-    
   </article>
   
   
@@ -290,10 +277,15 @@
 
   </div>
 
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
+
+
 
           </div>
           
-    <div class="comments" id="gitalk-container"></div>
 
         </div>
           
@@ -444,23 +436,6 @@
 
   
 
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
-
-<script>
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
-    var gitalk = new Gitalk({
-      clientID: 'e0837ac9c4ea264e042c',
-      clientSecret: '24d6b78ceada06021ed0e6f8546911ff579b9a1b',
-      repo: 'skyline-123.github.io',
-      owner: 'skyline-123',
-      admin: ['skyline-123'],
-      id: 'e2f4b5691f5a791c8e08bca7ded219be',
-        language: '',
-      distractionFreeMode: 'true'
-    });
-    gitalk.render('gitalk-container');
-  }, window.Gitalk);
-</script>
 
 </body>
 </html>
