@@ -202,7 +202,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-01-03 15:41:57 / Modified: 17:29:22" itemprop="dateCreated datePublished" datetime="2020-01-03T15:41:57+08:00">2020-01-03</time>
+              <time title="Created: 2020-01-03 15:41:57 / Modified: 17:32:07" itemprop="dateCreated datePublished" datetime="2020-01-03T15:41:57+08:00">2020-01-03</time>
             </span>
 
           
@@ -217,7 +217,7 @@
 
       
           <h2 id="through2简介"><a href="#through2简介" class="headerlink" title="through2简介"></a>through2简介</h2><p>仓库简介：A tiny wrapper around Node.js streams.Transform (Streams2/3) to avoid explicit subclassing noise. 简单来说它就是用readable-stream库创建transform stream。如果使用官方的Stream接口，还要考虑兼容性问题。</p>
-<h2 id="through2用法"><a href="#through2用法" class="headerlink" title="through2用法"></a>through2用法</h2><p>具体用法直接看through2的<a href="https://github.com/rvagg/through2" target="_blank" rel="noopener">github</a>, 另外我在阅读过程中也顺便修复了它demo中遗漏的括号。</p>
+<h2 id="through2用法"><a href="#through2用法" class="headerlink" title="through2用法"></a>through2用法</h2><p>具体用法直接看through2的<a href="https://github.com/rvagg/through2" target="_blank" rel="noopener">github</a>, 另外我在阅读过程中也顺便提交PR修复了readme.md中遗漏的括号。</p>
 <p>through2函数：<code>through2([ options, ] [ transformFunction ] [, flushFunction ])</code></p>
 <p>options就是和ransform stream相关的配置项。</p>
 <p>transformFunction，简单概括，它就是连接readable stream和writable stream的桥梁，它改变可读流之后供可写流消费。这个transformFunction也是duplex stream和transform stream最大的区别。</p>
