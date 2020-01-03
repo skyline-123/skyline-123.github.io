@@ -9,7 +9,7 @@ tags:
 仓库简介：A tiny wrapper around Node.js streams.Transform (Streams2/3) to avoid explicit subclassing noise. 简单来说它就是用readable-stream库创建transform stream。如果使用官方的Stream接口，还要考虑兼容性问题。
 
 ## through2用法
-具体用法直接看through2的[github](https://github.com/rvagg/through2), 另外我在阅读过程中也顺便修复了它demo中遗漏的括号。
+具体用法直接看through2的[github](https://github.com/rvagg/through2), 另外我在阅读过程中也顺便提交PR修复了readme.md中遗漏的括号。
 
 through2函数：```through2([ options, ] [ transformFunction ] [, flushFunction ])```
 
