@@ -3,7 +3,6 @@ title: gulp系列之pump源码笔记
 date: 2019-12-30 10:36:18
 tags:
   - gulp
-  - pump
 ---
 
 ## 前言
