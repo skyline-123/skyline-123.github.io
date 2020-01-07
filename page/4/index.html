@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Skyline 技术笔记">
+<meta property="og:url" content="http://yoursite.com/page/4/index.html">
+<meta property="og:site_name" content="Skyline 技术笔记">
+<meta property="og:locale" content="zh">
+<meta property="article:author" content="Skyline">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/page/4/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: true,
+    isPost: false,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>Skyline 技术笔记</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-152551867-1"></script>
+    <script>
+      var host = window.location.hostname;
+      if (host !== "localhost" || !true) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-152551867-1');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Skyline 技术笔记</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives<span class="badge">12</span></a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/21/%E8%81%8A%E8%81%8AKindle%E7%9A%84%E4%BD%BF%E7%94%A8%E6%84%9F%E5%8F%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/22638687?s=460&v=4">
+      <meta itemprop="name" content="Skyline">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Skyline 技术笔记">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/11/21/%E8%81%8A%E8%81%8AKindle%E7%9A%84%E4%BD%BF%E7%94%A8%E6%84%9F%E5%8F%97/" class="post-title-link" itemprop="url">聊聊Kindle的使用感受</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-11-21 00:15:57 / Modified: 00:42:31" itemprop="dateCreated datePublished" datetime="2019-11-21T00:15:57+08:00">2019-11-21</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>前几个月，我买入了一台Kindle。买之前因为有比较强烈的阅读需求，所以也没有犹豫太长时间，入手了Kindle Oasis3。</p>
+<p>Kindle这个阅读器很神奇，让我在短短几个月阅读了十多本充电用的书籍，包括技术，投资相关。近一两周因为工作的原因，我暂时搁置Kindle没有继续看。直到今天重新拿起来看了些旧书温习，我对Kindle这种方式阅读书籍有了一些思考。</p>
+<p>纸质书有着最好的阅读体验，但是厚重这一点，就让许多人在繁忙的工作之余望而却步了。退而求其次，选择用手机去看，我个人也容易被其他App吸引，导致没有很好的办法长时间专注去看。当我选择了Kindle之后，觉得找到了另一种阅读的体验，那就是方便又专注。这种感觉让我在面对五颜六色的代码编辑器之余，多了一种感受黄金屋美好的体验。它的方便携带和舒适的阅读体验，让我即使在工作之余，也放下了对阅读大部头的心理压力，因为说实话我感觉当下面对的只是Kindle的一个小屏幕，又或者说这是一个小屏幕上的一页文字。这种轻松方便的感觉反而促进我认真学习，不知不觉看多了很多书。</p>
+<p>当我们准备学习一个技能或者看完一本书的时候，如果抱着过高的期望或者过高的要求去做，可能效果会打折扣。以前为了面试或者应付一些考试，我会在短时间内看大量的书，那种为了看完而看完的过程真的太煎熬了，而且效果并没有那么理想。但是令我惊讶的一点是，当我专注去使用Kindle之后，却不知不觉消化了非常多的知识。轻松的心态反而促进了学习的动力。</p>
+<p>工作生活中，太多定性定时的任务压着我们喘不过气来。而提效的关键又偏偏是要轻松面对，专注当下而不是专注于感受压力。就像专注Kindle上面的一页文字一样简单，压力也是可以化解为专注当下的每一项小事。大脑总是在思考着一共有多少事没做，和手里捧着一本厚厚的技术书籍一样，会感受到非常大的焦虑与压力。</p>
+<p>从Kindle阅读这件小事，我思考着工作中也要借鉴这种专注和轻松的心态。举个工作中的例子，面对大量的工作，很显然就是要依赖todolist这些工具，用gtd（get things done)理念，把事情和压力分解。不过话说回来，本质上还是要自己好学，毕竟Kindle之类都是工具，真正要吸收养分，内因不可忽略。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/20/%E5%A4%9A%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8Lerna%E5%AE%9E%E8%B7%B5%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/22638687?s=460&v=4">
+      <meta itemprop="name" content="Skyline">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Skyline 技术笔记">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/11/20/%E5%A4%9A%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8Lerna%E5%AE%9E%E8%B7%B5%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">多包管理器Lerna实践总结</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-11-20 00:54:12" itemprop="dateCreated datePublished" datetime="2019-11-20T00:54:12+08:00">2019-11-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-12-06 20:42:03" itemprop="dateModified" datetime="2019-12-06T20:42:03+08:00">2019-12-06</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>什么是Lerna？截取github上面的description如下：</p>
+<blockquote>
+<p>A tool for managing JavaScript projects with multiple packages.</p>
+</blockquote>
+<h2 id="monorepo"><a href="#monorepo" class="headerlink" title="monorepo"></a>monorepo</h2><p>最近工作中维护多个项目，均用到Lerna这个多包管理器。通过使用Lerna, 感受了monorepo维护项目的好处。</p>
+<p>对于monorepo的介绍，请<a href="https://trunkbaseddevelopment.com/monorepos/" target="_blank" rel="noopener">点击此处</a></p>
+<p>目前出名的前端开源项目也有很多使用了Lerna去维护。</p>
+<ul>
+<li><a href="https://github.com/facebook/react" target="_blank" rel="noopener">React</a></li>
+<li><a href="https://github.com/babel/babel" target="_blank" rel="noopener">Babel</a></li>
+<li><a href="https://github.com/emberjs/ember.js" target="_blank" rel="noopener">Ember</a></li>
+</ul>
+<p>其中Babel仓库还专门写了monorepo的优缺点。<br>摘录如下：</p>
+<p><strong>Pros:</strong></p>
+<ul>
+<li>Single lint, build, test and release process.</li>
+<li>Easy to coordinate changes across modules.</li>
+<li>Single place to report issues.</li>
+<li>Easier to setup a development environment.</li>
+<li>Tests across modules are run together which finds bugs that touch multiple modules more easily.</li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul>
+<li>Codebase looks more intimidating.</li>
+<li>Repo is bigger in size.</li>
+<li><a href="https://github.com/npm/npm/issues/2974" target="_blank" rel="noopener">Can’t <code>npm install</code> modules directly from GitHub</a></li>
+<li>???</li>
+</ul>
+<p>Babel的文档已经把monorepo的好处总结的非常到位了，而monorepo的缺点，也是瑕不掩瑜。</p>
+<p>Codebase looks more intimidating.这一个缺点确实一开始令我头疼，但是意识到monorepo的优点（也就是它解决了其他更严重的问题）之后，我就开始慢慢接受并习惯。</p>
+<h2 id="Lerna做了什么"><a href="#Lerna做了什么" class="headerlink" title="Lerna做了什么"></a>Lerna做了什么</h2><p>聊完monorepo，我们来看看Lerna帮我们做了哪些事情。</p>
+<ul>
+<li>开发过程中：维护项目多个npm包之间的关系<ul>
+<li>减少重复安装依赖</li>
+<li>开发中直接映射依赖包最新代码</li>
+<li>维护复杂的依赖关系，即版本号关系</li>
+</ul>
+</li>
+<li>发布过程中：维护项目多个npm发布包的版本号和自动打tag</li>
+</ul>
+<p>无论是开发过程还是发布包的过程，Lerna都帮我们做了很多手动维护难以完成的工作。对于多个npm包还有版本的维护，如果手动维护，将是一个灾难。当然了，又因为这些包之间的依赖深，如果用multirepo的方式维护，会出现更多难以维护的问题。所以可以开出，Lerna对于多个npm包用monorepo的方式维护，算是提供了非常强力的辅助。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/08/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96%E5%AE%9E%E8%B7%B5%E7%B3%BB%E5%88%97--%E6%A0%87%E5%87%86%E5%8C%96%E5%88%B6%E5%AE%9A/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/22638687?s=460&v=4">
+      <meta itemprop="name" content="Skyline">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Skyline 技术笔记">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/11/08/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96%E5%AE%9E%E8%B7%B5%E7%B3%BB%E5%88%97--%E6%A0%87%E5%87%86%E5%8C%96%E5%88%B6%E5%AE%9A/" class="post-title-link" itemprop="url">前端工程化实践系列--规范化</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-11-08 13:25:34" itemprop="dateCreated datePublished" datetime="2019-11-08T13:25:34+08:00">2019-11-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-11-22 14:59:42" itemprop="dateModified" datetime="2019-11-22T14:59:42+08:00">2019-11-22</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>最近在工作中有做前端工程化的一些实践，现在我就把其中的思想和实践总结出来，供日后参考。</p>
+<h2 id="为什么需要规范化"><a href="#为什么需要规范化" class="headerlink" title="为什么需要规范化"></a>为什么需要规范化</h2><p>面对这个问题，可能有些同学脑子里浮现的是eslint的各种报错，可能是git commit前eslint检查不通过导致失败。</p>
+<p>大家在开发过程中去解决这些问题，会不会觉得很恼火呢？我很恼火，至少当我在想明白这个问题之前，即，为什么需要规范化。</p>
+<p>工作和生活中，很多事情都是trade off的结果，当大家都忍受着麻烦努力做一件事情的时候，很大可能就是，不做这些，会更糟糕。</p>
+<p>简言之，个人觉得前端开发规范化的最重要原因就是<strong>提高团队整体开发效率</strong>。往细说，可以简单分三点。</p>
+<ul>
+<li>降低犯错的概率</li>
+<li>提高团队代码质量</li>
+<li>提高项目可维护性</li>
+</ul>
+<p>提高团队整体开发效率这一件事，值得我们去制定规范，落地规范，配套工具提高规范实践效率，并为之解决工具本身带来的新问题。因此我们不能只是看到规范化给开发带来的困扰，更要看到其本质作用。</p>
+<h2 id="规范化涉及的方面"><a href="#规范化涉及的方面" class="headerlink" title="规范化涉及的方面"></a>规范化涉及的方面</h2><p>明确了规范化的意义，现在对我在工程中实践过的规范化内容和相应的工具做一个简单的总结。</p>
+<ul>
+<li>代码格式规范化<ul>
+<li>ESLint</li>
+<li>lint-staged</li>
+<li>husky</li>
+</ul>
+</li>
+<li>commit规范化<ul>
+<li>commitizen</li>
+<li>husky</li>
+<li>commitlint</li>
+<li>conventional-changelog-cli</li>
+</ul>
+</li>
+<li>git流程规范化<ul>
+<li>git-flow</li>
+</ul>
+</li>
+</ul>
+<p>如果对上面的实践展开讲，有很多实践的细节可以说。假设各位读者都有能力根据罗列出来的点去搭建一个开发流程更规范的前端脚手架，那我们应该在搭建脚手架之外做什么思考呢？</p>
+<ol>
+<li>执行</li>
+<li>执行</li>
+<li>执行</li>
+</ol>
+<p>规则都是人定出来的，破坏规则的也可以是人。如果团队成员内心不认可规范化的价值，那么工具或者文档写的再好，都不能起到正面的作用。所以规范制定的过程中，尽可能参考业界规范，并在团队内部达（打）成共识。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+  </div>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
+  </nav>
+
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Skyline"
+      src="https://avatars0.githubusercontent.com/u/22638687?s=460&v=4">
+  <p class="site-author-name" itemprop="name">Skyline</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/skyline-123" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;skyline-123" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:posthanjt@gmail.com" title="E-Mail &amp;rarr; mailto:posthanjt@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Skyline</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.5.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+</body>
+</html>

@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Skyline 技术笔记">
+<meta property="og:url" content="http://yoursite.com/page/3/index.html">
+<meta property="og:site_name" content="Skyline 技术笔记">
+<meta property="og:locale" content="zh">
+<meta property="article:author" content="Skyline">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/page/3/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: true,
+    isPost: false,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>Skyline 技术笔记</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-152551867-1"></script>
+    <script>
+      var host = window.location.hostname;
+      if (host !== "localhost" || !true) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-152551867-1');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Skyline 技术笔记</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives<span class="badge">12</span></a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/02/%E6%B5%85%E8%B0%88VueRouter%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/22638687?s=460&v=4">
+      <meta itemprop="name" content="Skyline">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Skyline 技术笔记">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/12/02/%E6%B5%85%E8%B0%88VueRouter%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/" class="post-title-link" itemprop="url">浅谈VueRouter实现原理</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-12-02 19:03:27" itemprop="dateCreated datePublished" datetime="2019-12-02T19:03:27+08:00">2019-12-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-12-06 20:53:19" itemprop="dateModified" datetime="2019-12-06T20:53:19+08:00">2019-12-06</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>有朋友反馈想看更“干”一点的知识分享，最近库存里面只有我之前在腾讯团队那边分享过的VueRouter原理，现把PPT整理一遍，具体讲解部分不赘述，仅供日后参考。</p>
+<h2 id="前端路由实现方式"><a href="#前端路由实现方式" class="headerlink" title="前端路由实现方式"></a>前端路由实现方式</h2><p>这部分内容算是一个基础回顾，如果已经非常熟悉了，可以跳过直接看源码分析部分。<br>前端路由实现方式主要有两种，如下：</p>
+<ul>
+<li>Hash模式</li>
+<li>History模式</li>
+</ul>
+<h3 id="Hash模式"><a href="#Hash模式" class="headerlink" title="Hash模式"></a>Hash模式</h3><p>Hash指url后面的#号和后面的所有字符。hash也称作锚点，它可以使对应的id节点显示在浏览器可视区域内。<br>要实现前端路由功能，主要有以下三点原因：</p>
+<ol>
+<li>hash变更，不会导致浏览器向服务端发送请求，当前页面也不会刷新</li>
+<li>hash变更，会触发hashchange事件</li>
+<li>hash变更，会在浏览器历史记录中添加记录，浏览器前进后退按键可以导航</li>
+</ol>
+<p>代码参考：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 改变hash值</span></span><br><span class="line"><span class="built_in">window</span>.location.hash = <span class="string">'home'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取hash值</span></span><br><span class="line"><span class="built_in">window</span>.location.hash <span class="comment">// '#home'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 监听hash变更</span></span><br><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">'hashchange'</span>, <span class="function"><span class="keyword">function</span> <span class="title">onHashChange</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'hash changed'</span>)</span><br><span class="line">&#125;, <span class="literal">false</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="History模式"><a href="#History模式" class="headerlink" title="History模式"></a>History模式</h3><p>简单介绍下相关的API</p>
+<ol>
+<li>HTML5引入了history.pushState()和history.replaceState()方法，它们分别可以添加和修改历史记录条目。这些方法通常与window.onpopstate配合使用。</li>
+<li>pushState() 需要三个参数 一个状态对象, 一个标题 (目前被忽略), 和 (可选的) 一个URL。</li>
+<li>history.replaceState() 的使用与 history.pushState() 非常相似，区别在于 replaceState() 是修改了当前的历史记录项而不是新建一个。 注意这并不会阻止其在全局浏览器历史记录中创建一个新的历史记录项。</li>
+</ol>
+<p>如何实现路由呢？参考下面三点原因：</p>
+<ol>
+<li>pushState新增历史记录可以实现无刷新更改地址栏链接</li>
+<li>当用户点击浏览器的前进，后退按钮，会触发popstate事件</li>
+<li>希望不添加一个新记录，而是替换当前的记录，则可以使用replaceState方法</li>
+</ol>
+<p>参考代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// state：需要保存的数据，这个数据在触发popstate事件时，可以在event.state里获取</span></span><br><span class="line"><span class="comment">// title：标题，基本没用，一般传 null</span></span><br><span class="line"><span class="comment">// url：设定新的历史记录的 url。新的 url 与当前 url 的 origin 必须是一樣的，否则会抛出错误。url可以是绝对路径，也可以是相对路径。</span></span><br><span class="line"><span class="built_in">window</span>.history.pushState(state, title, url)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 与 pushState 基本相同，但它是修改当前历史记录，而 pushState 是创建新的历史记录</span></span><br><span class="line"><span class="built_in">window</span>.history.replaceState(state, title, url)</span><br><span class="line"></span><br><span class="line"> <span class="comment">// 监听浏览器前进后退事件，pushState 与 replaceState 方法不会触发</span></span><br><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">"popstate"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="VueRouter实现原理"><a href="#VueRouter实现原理" class="headerlink" title="VueRouter实现原理"></a>VueRouter实现原理</h2><p>简单回顾完前端路由实现方式，我们来聚焦VueRouter的具体实现。我们来到了硬核的源码环节。不用担心，我看得懂的代码都比较简单。</p>
+<h3 id="VueRouter支持模式"><a href="#VueRouter支持模式" class="headerlink" title="VueRouter支持模式"></a>VueRouter支持模式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">VueRouter</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span> (options: RouterOptions = ) &#123;</span><br><span class="line">    <span class="keyword">let</span> mode = options.mode || <span class="string">'hash'</span></span><br><span class="line">    <span class="keyword">this</span>.fallback = mode === <span class="string">'history'</span></span><br><span class="line">      &amp;&amp; !supportsPushState</span><br><span class="line">      &amp;&amp; options.fallback !== <span class="literal">false</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.fallback) &#123;</span><br><span class="line">      mode = <span class="string">'hash'</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (!inBrowser) &#123;</span><br><span class="line">      mode = <span class="string">'abstract'</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">this</span>.mode = mode</span><br><span class="line">    <span class="keyword">switch</span> (mode) &#123;</span><br><span class="line">      <span class="keyword">case</span> <span class="string">'history'</span>:</span><br><span class="line">        <span class="keyword">this</span>.history = <span class="keyword">new</span> HTML5History(<span class="keyword">this</span>, options.base)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> <span class="string">'hash'</span>:</span><br><span class="line">        <span class="keyword">this</span>.history = <span class="keyword">new</span> HashHistory(</span><br><span class="line">          <span class="keyword">this</span>, options.base, <span class="keyword">this</span>.fallback</span><br><span class="line">        )</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> <span class="string">'abstract'</span>:</span><br><span class="line">        <span class="keyword">this</span>.history = <span class="keyword">new</span> AbstractHistory(<span class="keyword">this</span>, options.base)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">default</span>:</span><br><span class="line">        <span class="keyword">if</span> (process.env.NODE_ENV !== <span class="string">'production'</span>) &#123;</span><br><span class="line">          assert(<span class="literal">false</span>, <span class="string">`invalid mode: <span class="subst">$&#123;mode&#125;</span>`</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如上所示，VueRouter支持三种路由模式：</p>
+<ol>
+<li>history mode</li>
+<li>hash mode</li>
+<li>abstract mode</li>
+</ol>
+<p>VueRouter还有对history模式有降级的处理，在不支持history的浏览器环境中，如果fallback的option设置为true，VueRouter的mode会回落到hash模式。<br>abstract模式主要用在测试中，运行在非浏览器环境。我们重点关注history和hash这两种模式。\</p>
+<h3 id="History模式-1"><a href="#History模式-1" class="headerlink" title="History模式"></a>History模式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">HTML5History</span> <span class="keyword">extends</span> <span class="title">History</span> </span>&#123;</span><br><span class="line">  <span class="keyword">super</span>(router, base)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">constructor</span> (router: Router, base: ?string) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">window</span>.addEventListener(<span class="string">'popstate'</span>, e =&gt; &#123;</span><br><span class="line">      <span class="keyword">const</span> location = getLocation(<span class="keyword">this</span>.base)</span><br><span class="line">      <span class="comment">// transitionTo()方法在父类中定义，用来处理路由变化中的基础逻辑</span></span><br><span class="line">      <span class="keyword">this</span>.transitionTo(location, route =&gt; &#123;</span><br><span class="line">        <span class="keyword">if</span> (supportsScroll) &#123;</span><br><span class="line">          handleScroll(router, route, current, <span class="literal">true</span>)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如上所示，HTML5History在初始化的时候，添加popstate事件监听。</p>
+<p>如下所示，HTML5History中重要的三个方法，go(), push(), replace()。 pushState和replaceState实际上也是封装了window.history对象上的方法，Vue Router对其做了部分逻辑处理。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">HTML5History</span> <span class="keyword">extends</span> <span class="title">History</span> </span>&#123;</span><br><span class="line">  go (n: number) &#123;</span><br><span class="line">    <span class="built_in">window</span>.history.go(n)</span><br><span class="line">  &#125;</span><br><span class="line">  push (</span><br><span class="line">    location: RawLocation,</span><br><span class="line">    onComplete?: <span class="built_in">Function</span>,</span><br><span class="line">    onAbort?: <span class="built_in">Function</span></span><br><span class="line">  ) &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; <span class="attr">current</span>: fromRoute &#125; = <span class="keyword">this</span></span><br><span class="line">    <span class="comment">// transitionTo()方法在父类中定义，用来处理路由变化中的基础逻辑</span></span><br><span class="line">    <span class="keyword">this</span>.transitionTo(location, route =&gt; &#123;</span><br><span class="line">      pushState(cleanPath(<span class="keyword">this</span>.base + route.fullPath))</span><br><span class="line">      handleScroll(<span class="keyword">this</span>.router, route, fromRoute, <span class="literal">false</span>)</span><br><span class="line">      onComplete &amp;&amp; onComplete(route)</span><br><span class="line">    &#125;, onAbort)</span><br><span class="line">  &#125;</span><br><span class="line">  replace (</span><br><span class="line">    location: RawLocation,</span><br><span class="line">    onComplete?: <span class="built_in">Function</span>,</span><br><span class="line">    onAbort?: <span class="built_in">Function</span></span><br><span class="line">  ) &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; <span class="attr">current</span>: fromRoute &#125; = <span class="keyword">this</span></span><br><span class="line">    <span class="keyword">this</span>.transitionTo(location, route =&gt; &#123;</span><br><span class="line">      replaceState(cleanPath(<span class="keyword">this</span>.base + route.fullPath))</span><br><span class="line">      handleScroll(<span class="keyword">this</span>.router, route, fromRoute, <span class="literal">false</span>)</span><br><span class="line">      onComplete &amp;&amp; onComplete(route)</span><br><span class="line">    &#125;, onAbort)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Hash模式-1"><a href="#Hash模式-1" class="headerlink" title="Hash模式"></a>Hash模式</h3><p>在Vue app mounted之后添加监听：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">HashHistory</span> <span class="keyword">extends</span> <span class="title">History</span> </span>&#123;</span><br><span class="line">  <span class="comment">// this is delayed until the app mounts</span></span><br><span class="line">  <span class="comment">// to avoid the hashchange listener being fired too early</span></span><br><span class="line">  setupListeners () &#123;</span><br><span class="line">    <span class="keyword">const</span> router = <span class="keyword">this</span>.router</span><br><span class="line">    <span class="keyword">const</span> expectScroll = router.options.scrollBehavior</span><br><span class="line">    <span class="keyword">const</span> supportsScroll = supportsPushState &amp;&amp; expectScroll</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (supportsScroll) &#123;</span><br><span class="line">      setupScroll()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">window</span>.addEventListener(</span><br><span class="line">      supportsPushState ? <span class="string">'popstate'</span> : <span class="string">'hashchange'</span>,</span><br><span class="line">      () =&gt; &#123;</span><br><span class="line">        <span class="keyword">const</span> current = <span class="keyword">this</span>.current</span><br><span class="line">        <span class="keyword">if</span> (!ensureSlash()) &#123;</span><br><span class="line">          <span class="keyword">return</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">this</span>.transitionTo(getHash(), route =&gt; &#123;</span><br><span class="line">          <span class="keyword">if</span> (supportsScroll) &#123;</span><br><span class="line">            handleScroll(<span class="keyword">this</span>.router, route, current, <span class="literal">true</span>)</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="keyword">if</span> (!supportsPushState) &#123;</span><br><span class="line">            replaceHash(route.fullPath)</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如下所示，HashHistory中重要的三个方法，go(), push(), replace()。 pushState和replaceState实际上也是封装了window.history对象上的方法，Vue Router对其做了部分逻辑处理。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">HashHistory</span> <span class="keyword">extends</span> <span class="title">History</span> </span>&#123;</span><br><span class="line">  push (location: RawLocation, onComplete?: <span class="built_in">Function</span>, onAbort?: <span class="built_in">Function</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; <span class="attr">current</span>: fromRoute &#125; = <span class="keyword">this</span></span><br><span class="line">    <span class="keyword">this</span>.transitionTo(</span><br><span class="line">      location,</span><br><span class="line">      route =&gt; &#123;</span><br><span class="line">        pushHash(route.fullPath)</span><br><span class="line">        handleScroll(<span class="keyword">this</span>.router, route, fromRoute, <span class="literal">false</span>)</span><br><span class="line">        onComplete &amp;&amp; onComplete(route)</span><br><span class="line">      &#125;,</span><br><span class="line">      onAbort</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  replace (location: RawLocation, onComplete?: <span class="built_in">Function</span>, onAbort?: <span class="built_in">Function</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; <span class="attr">current</span>: fromRoute &#125; = <span class="keyword">this</span></span><br><span class="line">    <span class="keyword">this</span>.transitionTo(</span><br><span class="line">      location,</span><br><span class="line">      route =&gt; &#123;</span><br><span class="line">        replaceHash(route.fullPath)</span><br><span class="line">        handleScroll(<span class="keyword">this</span>.router, route, fromRoute, <span class="literal">false</span>)</span><br><span class="line">        onComplete &amp;&amp; onComplete(route)</span><br><span class="line">      &#125;,</span><br><span class="line">      onAbort</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  go (n: number) &#123;</span><br><span class="line">    <span class="built_in">window</span>.history.go(n)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其中有个细节，VueRouter做的非常好，就是有优先考虑pushState的方式去存hash。这个的好处就是可以存储同一个hash值的历史记录多次。如果只是更改hash值，同一个hash值访问多次不会存如历史记录栈。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">pushHash</span> (<span class="params">path</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (supportsPushState) &#123;</span><br><span class="line">    pushState(getUrl(path)) <span class="comment">// 优先考虑pushState方式去pushHash</span></span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">window</span>.location.hash = path</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">replaceHash</span> (<span class="params">path</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (supportsPushState) &#123;</span><br><span class="line">    replaceState(getUrl(path))</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">window</span>.location.replace(getUrl(path))</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="History-transitionTo"><a href="#History-transitionTo" class="headerlink" title="History.transitionTo()"></a>History.transitionTo()</h3><p>transitionTo方法是History模式实现的重要方法。主要的流程在下方，重点已经在注释中用箭头标注。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">History</span> </span>&#123;</span><br><span class="line">  transitionTo (</span><br><span class="line">    location: RawLocation,</span><br><span class="line">    onComplete?: <span class="built_in">Function</span>,</span><br><span class="line">    onAbort?: <span class="built_in">Function</span></span><br><span class="line">  ) &#123;</span><br><span class="line">    <span class="keyword">const</span> route = <span class="keyword">this</span>.router.match(location, <span class="keyword">this</span>.current)</span><br><span class="line">    <span class="keyword">this</span>.confirmTransition(</span><br><span class="line">      route,</span><br><span class="line">      () =&gt; &#123;</span><br><span class="line">        <span class="keyword">this</span>.updateRoute(route)  <span class="comment">// &lt;--更新路由</span></span><br><span class="line">        onComplete &amp;&amp; onComplete(route)</span><br><span class="line">        <span class="keyword">this</span>.ensureURL()</span><br><span class="line"></span><br><span class="line">        <span class="comment">// fire ready cbs once</span></span><br><span class="line">        <span class="keyword">if</span> (!<span class="keyword">this</span>.ready) &#123;</span><br><span class="line">          <span class="keyword">this</span>.ready = <span class="literal">true</span></span><br><span class="line">          <span class="keyword">this</span>.readyCbs.forEach(<span class="function"><span class="params">cb</span> =&gt;</span> &#123;</span><br><span class="line">            cb(route)</span><br><span class="line">          &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">      err =&gt; &#123;</span><br><span class="line">        <span class="keyword">if</span> (onAbort) &#123;</span><br><span class="line">          onAbort(err)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (err &amp;&amp; !<span class="keyword">this</span>.ready) &#123;</span><br><span class="line">          <span class="keyword">this</span>.ready = <span class="literal">true</span></span><br><span class="line">          <span class="keyword">this</span>.readyErrorCbs.forEach(<span class="function"><span class="params">cb</span> =&gt;</span> &#123;</span><br><span class="line">            cb(err)</span><br><span class="line">          &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">History</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  listen (cb: <span class="built_in">Function</span>) &#123;</span><br><span class="line">    <span class="keyword">this</span>.cb = cb</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  updateRoute (route: Route) &#123;</span><br><span class="line">    <span class="keyword">const</span> prev = <span class="keyword">this</span>.current</span><br><span class="line">    <span class="keyword">this</span>.current = route</span><br><span class="line">    <span class="keyword">this</span>.cb &amp;&amp; <span class="keyword">this</span>.cb(route) <span class="comment">// &lt;--</span></span><br><span class="line">    <span class="keyword">this</span>.router.afterHooks.forEach(<span class="function"><span class="params">hook</span> =&gt;</span> &#123;</span><br><span class="line">      hook &amp;&amp; hook(route, prev)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">VueRouter</span> </span>&#123;</span><br><span class="line">  init (app: any <span class="comment">/* Vue component instance */</span>) &#123;</span><br><span class="line">    <span class="keyword">this</span>.apps.push(app)</span><br><span class="line"></span><br><span class="line">    history.listen(<span class="function"><span class="params">route</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">this</span>.apps.forEach(<span class="function">(<span class="params">app</span>) =&gt;</span> &#123;</span><br><span class="line">        app._route = route <span class="comment">// &lt;--</span></span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">install</span> (<span class="params">Vue</span>) </span>&#123;</span><br><span class="line">  Vue.mixin(&#123;</span><br><span class="line">    beforeCreate () &#123;</span><br><span class="line">      <span class="keyword">if</span> (isDef(<span class="keyword">this</span>.$options.router)) &#123;</span><br><span class="line">        <span class="keyword">this</span>._routerRoot = <span class="keyword">this</span></span><br><span class="line">        <span class="keyword">this</span>._router = <span class="keyword">this</span>.$options.router</span><br><span class="line">        <span class="keyword">this</span>._router.init(<span class="keyword">this</span>)</span><br><span class="line">        Vue.util.defineReactive(<span class="keyword">this</span>, <span class="string">'_route'</span>, <span class="keyword">this</span>._router.history.current)</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">this</span>._routerRoot = (<span class="keyword">this</span>.$parent &amp;&amp; <span class="keyword">this</span>.$parent._routerRoot) || <span class="keyword">this</span></span><br><span class="line">      &#125;</span><br><span class="line">      registerInstance(<span class="keyword">this</span>, <span class="keyword">this</span>)</span><br><span class="line">    &#125;,</span><br><span class="line">    destroyed () &#123;</span><br><span class="line">      registerInstance(<span class="keyword">this</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="VueRouter主流程"><a href="#VueRouter主流程" class="headerlink" title="VueRouter主流程"></a>VueRouter主流程</h3><ol>
+<li>$router.push()</li>
+<li>History.push()</li>
+<li>History.transitionTo()</li>
+<li>History.updateRoute()</li>
+<li>app._route = route</li>
+<li>vm.render()</li>
+</ol>
+<h2 id="VueRouter组件简介"><a href="#VueRouter组件简介" class="headerlink" title="VueRouter组件简介"></a>VueRouter组件简介</h2><h3 id="RouterView组件"><a href="#RouterView组件" class="headerlink" title="RouterView组件"></a>RouterView组件</h3><p>主要逻辑是拿到URL匹配路由配置对应的组件进行渲染。</p>
+<h3 id="RouterLink组件"><a href="#RouterLink组件" class="headerlink" title="RouterLink组件"></a>RouterLink组件</h3><p>router-link 组件在被点击时，根据prop中的 to 的值去调用 router 的 push 或者 replace 来更新route。同时会检查自身是否和当前路由匹配来决定自身的 activeClass 是否添加。</p>
+<h2 id="VueRouter思考问题"><a href="#VueRouter思考问题" class="headerlink" title="VueRouter思考问题"></a>VueRouter思考问题</h2><p>上面只讲到了VueRouter的主流程，没提到的部分供大家阅读源码和思考。</p>
+<ol>
+<li>RouterView具体如何匹配对应Components？</li>
+<li>路由导航守卫的实现原理？</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/30/git-flow%E5%B7%A5%E5%85%B7%E8%BE%85%E5%8A%A9%E4%BB%8B%E7%BB%8D/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/22638687?s=460&v=4">
+      <meta itemprop="name" content="Skyline">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Skyline 技术笔记">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/11/30/git-flow%E5%B7%A5%E5%85%B7%E8%BE%85%E5%8A%A9%E4%BB%8B%E7%BB%8D/" class="post-title-link" itemprop="url">git-flow工具辅助介绍</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-11-30 22:47:39" itemprop="dateCreated datePublished" datetime="2019-11-30T22:47:39+08:00">2019-11-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-12-02 18:54:36" itemprop="dateModified" datetime="2019-12-02T18:54:36+08:00">2019-12-02</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>最近在实践过程中，使用了git-flow的命令行工具进行管理，对git-flow的流程更加清晰，现在总结出来供参考。</p>
+<p>我使用的是macOS，安装git flow命令行方法如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install git-flow-avh</span><br></pre></td></tr></table></figure>
+
+<h2 id="第一步"><a href="#第一步" class="headerlink" title="第一步"></a>第一步</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git flow init</span><br></pre></td></tr></table></figure>
+<p>简单来说，git flow初始化主要做了两件事:</p>
+<ol>
+<li>初始化git仓库</li>
+<li>基于master分支创建develop分支<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br><span class="line">git checkout -b develop</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2 id="第二步"><a href="#第二步" class="headerlink" title="第二步"></a>第二步</h2><p>假设我们需要进行user功能的开发</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git flow feature start user</span><br></pre></td></tr></table></figure>
+<p>这时git flow做了一件事情，就是基于develop分支，新开一个feature/user分支。类似于如下git命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b feature/user</span><br></pre></td></tr></table></figure>
+
+<h2 id="第三步"><a href="#第三步" class="headerlink" title="第三步"></a>第三步</h2><p>我们在feature/user分支把user模块的功能开发完成，此时就可以执行如下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git flow feature finisth user</span><br></pre></td></tr></table></figure>
+<p>以上命令，其实就是切换回develop分支，merge feature/user的代码，然后将feature/user的分支删除。<br>类似于如下git命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git checkout develop</span><br><span class="line">git merge feature/user</span><br><span class="line">git branch --delete feature/user</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意</strong>：实际工作中，我们的feature分支合并到develop分支，是全部在线上完成。由完成feature的同学上传对应的feature分支到远程git仓库，然后创建合并请求申请。项目负责人在code review确认后，同意合并该分支到develop分支，并删除该feature分支。</p>
+<p>第三步在开发过程中是一个持续的过程，会不断有新的feature分支合并到develop分支。</p>
+<h2 id="第四步"><a href="#第四步" class="headerlink" title="第四步"></a>第四步</h2><p>feature开发完之后，开始准备release分支提测。类似于start一个feature分支，release分支命令如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git flow release start v1.0</span><br><span class="line">git flow release publish v1.0</span><br></pre></td></tr></table></figure>
+<p>上面两行命令，就是基于develop分支新建一个release/v1.0分支，然后将该分支推送到远程仓库。测试回归过程中，遇到有问题，所有bugfix都在该分支进行调整。<br>类似于如下git命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git checkout develop</span><br><span class="line">git checkout -b release/v1.0</span><br><span class="line">git push -u origin release/v1.0</span><br></pre></td></tr></table></figure>
+
+<h2 id="第五步"><a href="#第五步" class="headerlink" title="第五步"></a>第五步</h2><p>release分支完成之后，完成如下命令，将所有代码回补到develop分支，最后合并到master分支。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git flow release finish v1.0</span><br></pre></td></tr></table></figure>
+<p><strong>注意</strong> 实际生产环境，涉及到develop分支和master分支的代码merge，一般都是在线上发起merge request来完成。git flow工具只是做一个辅助参考，不需要所有命令都使用。<br>类似于如下git命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git checkout develop</span><br><span class="line">git merge release/v1.0</span><br><span class="line">git tab v1.0</span><br><span class="line">git checkout master</span><br><span class="line">git merge develop</span><br></pre></td></tr></table></figure>
+<p>👌，经过上面的操作，一个相对完整的git-flow流程就愉快地走了一遍。由于git flow的命令非常清晰易懂，而且背后执行的git操作其实也相对简单，就不把每一步执行的结果截图演示了。</p>
+<p>git flow的命令行工具，在一定程度上辅助我们简化git flow流程的操作，但是最重要的是我们如果真的在用git flow的方法论开发，一定要对git flow本身的流程有非常清晰的认识，才能更好借助git flow命令提高工作中的效率。</p>
+<p>另外，在试用git flow命令行工具的过程中，我和公司的同事也讨论了下其限制。比如我们如果有超过一条主线，比如，多个定制版本的时候，标准的git flow就不能满足开发需求。但是要结合git flow本身的规范性去衍生一些解决方案出来也是有的，如下：</p>
+<ul>
+<li>新开仓库走git flow开发定制版</li>
+<li>增加特殊的分支，用来定制使用，平行于master分支。例如master_a, master_b等定制化分支。<br>基于git flow衍生的解决方案，也是可以相对规范地解决一些复杂的生产开发问题。</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/26/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96%E5%AE%9E%E8%B7%B5%E7%B3%BB%E5%88%97-ESLint%E5%AE%9A%E5%88%B6%E8%A7%84%E5%88%99/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/22638687?s=460&v=4">
+      <meta itemprop="name" content="Skyline">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Skyline 技术笔记">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/11/26/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96%E5%AE%9E%E8%B7%B5%E7%B3%BB%E5%88%97-ESLint%E5%AE%9A%E5%88%B6%E8%A7%84%E5%88%99/" class="post-title-link" itemprop="url">前端工程化实践系列--ESLint定制规则</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-11-26 14:33:08 / Modified: 15:09:55" itemprop="dateCreated datePublished" datetime="2019-11-26T14:33:08+08:00">2019-11-26</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>写过前端项目的同学，对ESLint都应该非常熟悉。业界常用的ESLint规范，一般是以<a href="https://github.com/airbnb/javascript" target="_blank" rel="noopener">Airbnb</a>和<a href="https://github.com/standard/standard" target="_blank" rel="noopener">standard</a>规范为主。我们今天是抛开直接在extends里面引入业界ESLint扩展，来聊聊自己项目实践中定制的ESLint规则。</p>
+<p>我们先来看看ESLint官方的<a href="https://eslint.org/docs/rules/" target="_blank" rel="noopener">Rules</a>， 它分为如下多个种类:</p>
+<ul>
+<li>Possible Errors</li>
+<li>Best Practices</li>
+<li>Strict Mode</li>
+<li>Variables</li>
+<li>Node.js and CommonJS</li>
+<li>Stylistic Issues</li>
+<li>ECMAScript 6</li>
+<li>Deprecated</li>
+<li>Removed</li>
+</ul>
+<p>我们重点看看Stylistic Issues这个分类，这个分类的Rules是解决什么问题的呢？官方解释称这些规则是关于风格指南，而且是非常主观的。对于这样的描述，我们可能在定制规则的过程中一带而过，而其他最佳实践和一些避免潜在错误的规范，standard等规范又帮我们做了。别着急，我们看看这几个Rules。</p>
+<ul>
+<li>max-depth(强制可嵌套的块的最大深度)</li>
+<li>max-len(强制一行的最大长度)</li>
+<li>max-lines(强制最大行数)</li>
+<li>max-lines-per-function(强制函数最大代码行数)</li>
+<li>max-nested-callbacks(强制回调函数最大嵌套深度)</li>
+<li>max-params(强制函数定义中最多允许的参数数量)</li>
+<li>max-statements(强制函数块最多允许的的语句数量)</li>
+<li>max-statements-per-line(强制每一行中所允许的最大语句数量)</li>
+</ul>
+<p>这些主观性强的规则，却恰恰帮助我们为团队定制规范提供了很好的帮助。max-depth适当的嵌套数，可以避免写出难以阅读的复杂代码，max-len可以强迫开发过程中主动换行提高代码的可阅读性，max-lines相关的rules可以让开发对代码细粒度的把握有更看得见摸得着的依据，max-nested-callbacks这个可以在ESLint层面解决回调地狱的问题。</p>
+<p>为什么能发现这些比较特殊的规则呢？也是我们团队开发过程中，发现有不少同学会把一个方法或者一个函数写成几百行的情况。对于这个问题，明显不能通过code review这种后置笨重的方法去解决，所以我们找时间去阅读ESLint的官方规则，对症下药。</p>
+<p>刚刚开始前端开发的时候，我对标准这种东西的认识还是比较肤浅。曾以为业界的规范就是拿来就用即可，但是实际开发过程中，很可能和不同层次的开发合作，面对复杂的开发人员现状，势必要有更高级别的约束和提示。业内的公用标准，对于团队来说，更重要的是借鉴，并根据实际情况做灵活的调整。</p>
+<p>希望这种“个性化定制”，能给做团队标准化制定工作的朋友和未来的自己一些启发。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+  </div>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Skyline"
+      src="https://avatars0.githubusercontent.com/u/22638687?s=460&v=4">
+  <p class="site-author-name" itemprop="name">Skyline</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/skyline-123" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;skyline-123" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:posthanjt@gmail.com" title="E-Mail &amp;rarr; mailto:posthanjt@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Skyline</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.5.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+</body>
+</html>
