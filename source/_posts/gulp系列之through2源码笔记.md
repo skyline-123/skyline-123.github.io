@@ -1,5 +1,5 @@
 ---
-title: gulp系列之throuth2源码笔记
+title: gulp系列之through2源码笔记
 date: 2020-01-03 15:41:57
 tags:
   - gulp
