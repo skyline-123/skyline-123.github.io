@@ -7,7 +7,7 @@ tags:
 ## 简介
 什么是Lerna？截取github上面的description如下：
 > A tool for managing JavaScript projects with multiple packages.
-
+<!-- more -->
 ## monorepo
 最近工作中维护多个项目，均用到Lerna这个多包管理器。通过使用Lerna, 感受了monorepo维护项目的好处。
 

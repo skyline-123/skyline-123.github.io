@@ -7,6 +7,7 @@ tags:
   - ESLint
 ---
 写过前端项目的同学，对ESLint都应该非常熟悉。业界常用的ESLint规范，一般是以[Airbnb](https://github.com/airbnb/javascript)和[standard](https://github.com/standard/standard)规范为主。我们今天是抛开直接在extends里面引入业界ESLint扩展，来聊聊自己项目实践中定制的ESLint规则。
+<!-- more -->
 
 我们先来看看ESLint官方的[Rules](https://eslint.org/docs/rules/)， 它分为如下多个种类:
   - Possible Errors

@@ -25,7 +25,7 @@ git flow init
 git init
 git checkout -b develop
 ```
-
+<!-- more -->
 ## 第二步
 假设我们需要进行user功能的开发
 ```bash
