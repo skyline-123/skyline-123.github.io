@@ -50,15 +50,15 @@
   };
 </script>
 
-  <meta name="description" content="最近在学习Koa的源码，除了middleware的思想，我发现其中用到的委托模式也是非常值得学习。说实话，源码学习分享的文章更适合自己看，因为有时候真的觉得好代码胜过千言万语分析，自己写写阅读体会供参考的价值倒还有一点，只是更推荐大家主动阅读源码，学习自己好奇的黑魔法。 使用12345678910111213141516171819202122232425262728293031323334353">
+  <meta name="description" content="最近在学习Koa的源码，除了middleware的思想，我发现其中用到的委托模式也是非常值得学习。说实话，源码学习分享的文章更适合自己看，因为有时候真的觉得好代码胜过千言万语分析，自己写写阅读体会供参考的价值倒还有一点，只是更推荐大家主动阅读源码，学习自己好奇的黑魔法。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="node-delegates学习">
 <meta property="og:url" content="http://yoursite.com/2019/12/10/node-delegates%E5%AD%A6%E4%B9%A0/index.html">
 <meta property="og:site_name" content="Skyline 技术笔记">
-<meta property="og:description" content="最近在学习Koa的源码，除了middleware的思想，我发现其中用到的委托模式也是非常值得学习。说实话，源码学习分享的文章更适合自己看，因为有时候真的觉得好代码胜过千言万语分析，自己写写阅读体会供参考的价值倒还有一点，只是更推荐大家主动阅读源码，学习自己好奇的黑魔法。 使用12345678910111213141516171819202122232425262728293031323334353">
+<meta property="og:description" content="最近在学习Koa的源码，除了middleware的思想，我发现其中用到的委托模式也是非常值得学习。说实话，源码学习分享的文章更适合自己看，因为有时候真的觉得好代码胜过千言万语分析，自己写写阅读体会供参考的价值倒还有一点，只是更推荐大家主动阅读源码，学习自己好奇的黑魔法。">
 <meta property="og:locale" content="zh">
 <meta property="article:published_time" content="2019-12-10T13:52:54.000Z">
-<meta property="article:modified_time" content="2019-12-12T07:15:34.134Z">
+<meta property="article:modified_time" content="2020-01-08T10:16:34.310Z">
 <meta property="article:author" content="Skyline">
 <meta property="article:tag" content="Koa">
 <meta property="article:tag" content="委托模式">
@@ -218,7 +218,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-12-12 15:15:34" itemprop="dateModified" datetime="2019-12-12T15:15:34+08:00">2019-12-12</time>
+                <time title="Modified: 2020-01-08 18:16:34" itemprop="dateModified" datetime="2020-01-08T18:16:34+08:00">2020-01-08</time>
               </span>
 
           
@@ -233,6 +233,8 @@
 
       
         <p>最近在学习Koa的源码，除了middleware的思想，我发现其中用到的委托模式也是非常值得学习。说实话，源码学习分享的文章更适合自己看，因为有时候真的觉得好代码胜过千言万语分析，自己写写阅读体会供参考的价值倒还有一点，只是更推荐大家主动阅读源码，学习自己好奇的黑魔法。</p>
+<a id="more"></a>
+
 <h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> delegate = <span class="built_in">require</span>(<span class="string">'delegates'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> innerObject = &#123;</span><br><span class="line">  a: <span class="string">'a'</span>,</span><br><span class="line">  methodB: <span class="function"><span class="keyword">function</span> (<span class="params">val</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(val)</span><br><span class="line">  &#125;,</span><br><span class="line">  c: <span class="string">'c'</span>,</span><br><span class="line">  d: <span class="string">'d'</span>,</span><br><span class="line">  e: <span class="string">'e'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> proto = &#123;</span><br><span class="line">  innerObject</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">delegate(proto, <span class="string">'innerObject'</span>)</span><br><span class="line">  .access(<span class="string">'a'</span>)          <span class="comment">// 把a属性的getter和setter都委托到proto对象上面</span></span><br><span class="line">  .method(<span class="string">'methodB'</span>)    <span class="comment">// 把methodB方法委托倒proto对象上面</span></span><br><span class="line">  .getter(<span class="string">'c'</span>)          <span class="comment">// 把c属性的getterproto对象上面</span></span><br><span class="line">  .setter(<span class="string">'d'</span>)          <span class="comment">// 把d属性的setter都委托倒proto对象上面</span></span><br><span class="line">  .fluent(<span class="string">'e'</span>)          <span class="comment">// 把设置e或者读取e的方法委托到proto对象上面</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> q = proto.e()</span><br><span class="line"></span><br><span class="line">proto.e(<span class="number">1</span>)</span><br><span class="line">  .e(<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(proto)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 打印信息如下</span></span><br><span class="line"><span class="comment">// &#123;</span></span><br><span class="line"><span class="comment">//   innerObject: &#123; a: 'a', methodB: [Function: methodB], c: 'c', d: 'd', e: 2 &#125;,</span></span><br><span class="line"><span class="comment">//   a: [Getter/Setter],</span></span><br><span class="line"><span class="comment">//   methodB: [Function],</span></span><br><span class="line"><span class="comment">//   c: [Getter],</span></span><br><span class="line"><span class="comment">//   d: [Setter],</span></span><br><span class="line"><span class="comment">//   e: [Function]</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br></pre></td></tr></table></figure>
 
 <p>其实看了使用方法就知道delegates库是做什么的了，说白了就是将对象内部其他对象的属性或者方法委托到对象上，在未来使用这个对象的过程可以更加方便而不用关注对象内部的对象。</p>

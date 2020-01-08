@@ -58,7 +58,7 @@
 <meta property="og:description" content="最近在实践过程中，使用了git-flow的命令行工具进行管理，对git-flow的流程更加清晰，现在总结出来供参考。 我使用的是macOS，安装git flow命令行方法如下： 1brew install git-flow-avh  第一步1git flow init 简单来说，git flow初始化主要做了两件事:  初始化git仓库 基于master分支创建develop分支12git ini">
 <meta property="og:locale" content="zh">
 <meta property="article:published_time" content="2019-11-30T14:47:39.000Z">
-<meta property="article:modified_time" content="2019-12-02T10:54:36.035Z">
+<meta property="article:modified_time" content="2020-01-08T10:16:13.036Z">
 <meta property="article:author" content="Skyline">
 <meta property="article:tag" content="git">
 <meta property="article:tag" content="git-flow">
@@ -219,7 +219,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-12-02 18:54:36" itemprop="dateModified" datetime="2019-12-02T18:54:36+08:00">2019-12-02</time>
+                <time title="Modified: 2020-01-08 18:16:13" itemprop="dateModified" datetime="2020-01-08T18:16:13+08:00">2020-01-08</time>
               </span>
 
           
@@ -242,14 +242,12 @@
 <ol>
 <li>初始化git仓库</li>
 <li>基于master分支创建develop分支<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br><span class="line">git checkout -b develop</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h2 id="第二步"><a href="#第二步" class="headerlink" title="第二步"></a>第二步</h2>假设我们需要进行user功能的开发<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git flow feature start user</span><br></pre></td></tr></table></figure>
+这时git flow做了一件事情，就是基于develop分支，新开一个feature/user分支。类似于如下git命令：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b feature/user</span><br></pre></td></tr></table></figure>
 
 </li>
 </ol>
-<h2 id="第二步"><a href="#第二步" class="headerlink" title="第二步"></a>第二步</h2><p>假设我们需要进行user功能的开发</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git flow feature start user</span><br></pre></td></tr></table></figure>
-<p>这时git flow做了一件事情，就是基于develop分支，新开一个feature/user分支。类似于如下git命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b feature/user</span><br></pre></td></tr></table></figure>
-
 <h2 id="第三步"><a href="#第三步" class="headerlink" title="第三步"></a>第三步</h2><p>我们在feature/user分支把user模块的功能开发完成，此时就可以执行如下命令：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git flow feature finisth user</span><br></pre></td></tr></table></figure>
 <p>以上命令，其实就是切换回develop分支，merge feature/user的代码，然后将feature/user的分支删除。<br>类似于如下git命令：</p>
