@@ -389,6 +389,8 @@ module.exports = buildSeries;
 
 通过阅读series.js方法，发现离series串行执行的谜底还是隔着一层nowAndLater的面纱。不知道你有没有觉得要失去信心了，我反正是没有，因为还没打破沙锅问到底，不能轻易放弃。我阅读源码的过程如今在这里分享出来，带你克服内心恐惧。咬咬牙，继续看看nowAndLater是何方神圣。
 
+### now-and-later库
+
 事到如今，已经不想看nowAndLater的简介了，我只知道，他的mapSeries和series的谜底很靠近了额，让我们直接看看mapSeries.js的代码结束战斗！
 ```js
 'use strict';
