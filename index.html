@@ -152,7 +152,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives<span class="badge">12</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives<span class="badge">13</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
@@ -178,6 +178,86 @@
             
 
   <div class="posts-expand">
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/13/gulp%E7%B3%BB%E5%88%97%E4%B9%8Bundertaker%E6%BA%90%E7%A0%81%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/22638687?s=460&v=4">
+      <meta itemprop="name" content="Skyline">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Skyline 技术笔记">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/13/gulp%E7%B3%BB%E5%88%97%E4%B9%8Bundertaker%E6%BA%90%E7%A0%81%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">gulp系列之undertaker源码笔记</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-01-13 20:32:19" itemprop="dateCreated datePublished" datetime="2020-01-13T20:32:19+08:00">2020-01-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-01-14 23:40:47" itemprop="dateModified" datetime="2020-01-14T23:40:47+08:00">2020-01-14</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>undertaker部分的代码，是gulp任务管理部分的核心源码。在讲解gulp本身仓库源码之前，我着重讲讲undertaker。这个库自然也涉及到一些依赖，没关系，这次我们关注undertaker流程本身。</p>
+<p>请泡好🍵或者☕️慢慢看，这篇文章篇幅较长。算是回应某些朋友对我的博客期待吧，他们觉得我一开始写的文章太水了。</p>
+<h2 id="undertaker简介"><a href="#undertaker简介" class="headerlink" title="undertaker简介"></a>undertaker简介</h2><p>undertaker是gulp团队开发出来为解决gulp的任务执行问题的库。</p>
+<blockquote>
+<p>Task registry that allows composition through series/parallel methods.</p>
+</blockquote>
+<p>undertaker提供series和parallel两种方法解决任务流程管理。series是串行执行任务，parallel方法是并行执行任务。串行执行应该比较简单理解，就是按顺序执行，只有前面的任务完成，后面的任务才能执行。那么并行呢？很可能是通过for循环执行所有异步任务，这样就能实现并行，这个类似Promise.all方法。</p>
+<p>我非常赞叹undertaker的设计，可能是我对代码流程管理本身没有很好的思路，看了之后豁然开朗。想想javascript，异步代码从callback，写到promise，写到generator，写到async/await。异步代码的书写随着时间的推移变得越来越友好，但是比如Promise的实现思想，更加值得我们学习和思考。回到undertaker，这个任务管理的框架，其实就是非常友好地解决了处理串行或者并行任务的代码组织问题。通过undertaker书写的代码可读性和可维护性都很强。</p>
+<p>之前写到复杂业务流程的时候，串行或者并行的时候，直接用Promise，总感觉有所欠缺，现在看了undertaker，有一种亲切的感觉，那就是这种实现就是我写流程管理需要的非常好的实践模板。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/01/13/gulp%E7%B3%BB%E5%88%97%E4%B9%8Bundertaker%E6%BA%90%E7%A0%81%E7%AC%94%E8%AE%B0/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
         
   
   
@@ -322,86 +402,11 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/30/gulp%E7%B3%BB%E5%88%97%E4%B9%8Bpump%E6%BA%90%E7%A0%81%E7%AC%94%E8%AE%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/22638687?s=460&v=4">
-      <meta itemprop="name" content="Skyline">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Skyline 技术笔记">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/12/30/gulp%E7%B3%BB%E5%88%97%E4%B9%8Bpump%E6%BA%90%E7%A0%81%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">gulp系列之pump源码笔记</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-12-30 10:36:18" itemprop="dateCreated datePublished" datetime="2019-12-30T10:36:18+08:00">2019-12-30</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-01-08 18:16:19" itemprop="dateModified" datetime="2020-01-08T18:16:19+08:00">2020-01-08</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>近期在翻阅gulp的源码，它引用到了很多外部包，不用慌，待我抽丝剥茧逐个击破。接下来会写gulp系列的源码解析，会将gulp使用的核心库逐个介绍，最后再串起来梳理gulp的流程。</p>
-<p>选择用分总的结构讲解gulp源码，是因为总分总的意义不太大。gulp本身引用了很多第三方库，如果聚焦于其主库去说流程，实际上没有太多值得说的东西。</p>
-<p>抛开引用的诸多库，gulp最核心的还是使用了Stream。对于Stream的概念，我就不赘述了，不熟悉的同学去回顾一下node的相关文档。这里有一篇文章值得一读 <a href="https://github.com/substack/stream-handbook" target="_blank" rel="noopener"><em>stream-handbook</em></a>。</p>
-<p>另外，源码分析的文章，我的初衷更多是总结回顾，如果同时能对读者有所帮助，也是一件好事。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/12/30/gulp%E7%B3%BB%E5%88%97%E4%B9%8Bpump%E6%BA%90%E7%A0%81%E7%AC%94%E8%AE%B0/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -447,7 +452,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

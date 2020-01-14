@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="undertaker部分的代码，是gulp任务管理部分的核心源码。在讲解gulp本身仓库源码之前，我着重讲讲undertaker。这个库自然也涉及到一些依赖，没关系，这次我们关注undertaker流程本身。 请泡好🍵或者☕️慢慢看，这篇文章篇幅较长。算是回应某些朋友对我的博客期待吧，他们觉得我一开始写的文章太水了。 undertaker简介undertaker是gulp团队开发出来为解决gul">
+<meta property="og:type" content="article">
+<meta property="og:title" content="gulp系列之undertaker源码笔记">
+<meta property="og:url" content="http://yoursite.com/2020/01/13/gulp%E7%B3%BB%E5%88%97%E4%B9%8Bundertaker%E6%BA%90%E7%A0%81%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="Skyline 技术笔记">
+<meta property="og:description" content="undertaker部分的代码，是gulp任务管理部分的核心源码。在讲解gulp本身仓库源码之前，我着重讲讲undertaker。这个库自然也涉及到一些依赖，没关系，这次我们关注undertaker流程本身。 请泡好🍵或者☕️慢慢看，这篇文章篇幅较长。算是回应某些朋友对我的博客期待吧，他们觉得我一开始写的文章太水了。 undertaker简介undertaker是gulp团队开发出来为解决gul">
+<meta property="og:locale" content="zh">
+<meta property="article:published_time" content="2020-01-13T12:32:19.000Z">
+<meta property="article:modified_time" content="2020-01-14T15:40:47.819Z">
+<meta property="article:author" content="Skyline">
+<meta property="article:tag" content="gulp">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2020/01/13/gulp%E7%B3%BB%E5%88%97%E4%B9%8Bundertaker%E6%BA%90%E7%A0%81%E7%AC%94%E8%AE%B0/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>gulp系列之undertaker源码笔记 | Skyline 技术笔记</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-152551867-1"></script>
+    <script>
+      var host = window.location.hostname;
+      if (host !== "localhost" || !true) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-152551867-1');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Skyline 技术笔记</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives<span class="badge">13</span></a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags<span class="badge">13</span></a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/13/gulp%E7%B3%BB%E5%88%97%E4%B9%8Bundertaker%E6%BA%90%E7%A0%81%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/22638687?s=460&v=4">
+      <meta itemprop="name" content="Skyline">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Skyline 技术笔记">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          gulp系列之undertaker源码笔记
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-01-13 20:32:19" itemprop="dateCreated datePublished" datetime="2020-01-13T20:32:19+08:00">2020-01-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-01-14 23:40:47" itemprop="dateModified" datetime="2020-01-14T23:40:47+08:00">2020-01-14</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>undertaker部分的代码，是gulp任务管理部分的核心源码。在讲解gulp本身仓库源码之前，我着重讲讲undertaker。这个库自然也涉及到一些依赖，没关系，这次我们关注undertaker流程本身。</p>
+<p>请泡好🍵或者☕️慢慢看，这篇文章篇幅较长。算是回应某些朋友对我的博客期待吧，他们觉得我一开始写的文章太水了。</p>
+<h2 id="undertaker简介"><a href="#undertaker简介" class="headerlink" title="undertaker简介"></a>undertaker简介</h2><p>undertaker是gulp团队开发出来为解决gulp的任务执行问题的库。</p>
+<blockquote>
+<p>Task registry that allows composition through series/parallel methods.</p>
+</blockquote>
+<p>undertaker提供series和parallel两种方法解决任务流程管理。series是串行执行任务，parallel方法是并行执行任务。串行执行应该比较简单理解，就是按顺序执行，只有前面的任务完成，后面的任务才能执行。那么并行呢？很可能是通过for循环执行所有异步任务，这样就能实现并行，这个类似Promise.all方法。</p>
+<p>我非常赞叹undertaker的设计，可能是我对代码流程管理本身没有很好的思路，看了之后豁然开朗。想想javascript，异步代码从callback，写到promise，写到generator，写到async/await。异步代码的书写随着时间的推移变得越来越友好，但是比如Promise的实现思想，更加值得我们学习和思考。回到undertaker，这个任务管理的框架，其实就是非常友好地解决了处理串行或者并行任务的代码组织问题。通过undertaker书写的代码可读性和可维护性都很强。</p>
+<p>之前写到复杂业务流程的时候，串行或者并行的时候，直接用Promise，总感觉有所欠缺，现在看了undertaker，有一种亲切的感觉，那就是这种实现就是我写流程管理需要的非常好的实践模板。</p>
+<a id="more"></a>
+
+<h2 id="undertaker用法"><a href="#undertaker用法" class="headerlink" title="undertaker用法"></a>undertaker用法</h2><h3 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h3><p>这里就不废话了，直接复制undertaker的readme:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"><span class="keyword">var</span> Undertaker = <span class="built_in">require</span>(<span class="string">'undertaker'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> taker = <span class="keyword">new</span> Undertaker();</span><br><span class="line"></span><br><span class="line">taker.task(<span class="string">'task1'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">cb</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// do things</span></span><br><span class="line"></span><br><span class="line">  cb(); <span class="comment">// when everything is done</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">taker.task(<span class="string">'task2'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> fs.createReadStream(<span class="string">'./myFile.js'</span>)</span><br><span class="line">    .pipe(fs.createWriteStream(<span class="string">'./myFile.copy.js'</span>));</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">taker.task(<span class="string">'task3'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// do things</span></span><br><span class="line"></span><br><span class="line">    resolve(); <span class="comment">// when everything is done</span></span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">taker.task(<span class="string">'combined'</span>, taker.series(<span class="string">'task1'</span>, <span class="string">'task2'</span>));</span><br><span class="line"></span><br><span class="line">taker.task(<span class="string">'all'</span>, taker.parallel(<span class="string">'combined'</span>, <span class="string">'task3'</span>));</span><br></pre></td></tr></table></figure>
+
+<p>在分析源码之前，我简单从用法这里说说undertaker。</p>
+<p>简单总结方法如下：</p>
+<ul>
+<li>Undertaker.task</li>
+<li>Undertaker.series</li>
+<li>Undertaker.parallel</li>
+</ul>
+<p>Undertaker.task看上去是注册task，每个task name对应一个需要执行的方法。同时，Undertaker.task应该也会返回一个函数，以供其嵌套使用。Undertaker.series和Undertaker.parallel就从名字上可以看出是串行和并行执行任务的方法，同时也推断出会返回一个函数。</p>
+<h3 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h3><p>既然对于用法我做了简单的分析，也稍微扩展一下源码阅读的问题。专注undertaker源码解析的同学可以<strong>跳过</strong>这部分。</p>
+<p>有同事不久前问我，需要怎么阅读源代码。其实这个方法因人而异，每个人在探索的过程中肯定都会得出适合自己的方法。我的方法就是先根据api或者说usage去揣测这个库的可能实现，尤其关注参数和输出。</p>
+<p>通过自己的思考反推实现，是一个非常好的思维锻炼过程。你可能会发现自己能猜测出大概的实现思路，又或者毫无头绪，这个前置的思考和预习功课有着类似的功效，就是能帮你很好的衔接实际阅读源码过程中的思索。</p>
+<p>也有同事曾经问我，如果有很多依赖，要怎么阅读源码？这个其实是阅读源码过程中肯定会遇到的问题，这个很简单，直接去依赖包中看readme，了解简介知道它做什么就足够了，然后注意力集中在主流程。如果主流程的关键代码就在依赖中，那也很简单啊，看依赖的源码就完事了。如果依赖多到记不清每个依赖是做什么的，那你又想研究，就做一个表格把核心依赖的描述都登记起来用来查询就好。</p>
+<h2 id="undertaker主流程分析"><a href="#undertaker主流程分析" class="headerlink" title="undertaker主流程分析"></a>undertaker主流程分析</h2><h3 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h3><p>老办法，先看看目录结构。注：为了方便阅读，直接取node_modules里面的依赖代码，忽略test文件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">.&#x2F;node_modules&#x2F;undertaker</span><br><span class="line">├── LICENSE</span><br><span class="line">├── README.md</span><br><span class="line">├── index.js</span><br><span class="line">├── lib</span><br><span class="line">│   ├── get-task.js</span><br><span class="line">│   ├── helpers</span><br><span class="line">│   │   ├── buildTree.js</span><br><span class="line">│   │   ├── createExtensions.js</span><br><span class="line">│   │   ├── metadata.js</span><br><span class="line">│   │   ├── normalizeArgs.js</span><br><span class="line">│   │   └── validateRegistry.js</span><br><span class="line">│   ├── last-run.js</span><br><span class="line">│   ├── parallel.js</span><br><span class="line">│   ├── registry.js</span><br><span class="line">│   ├── series.js</span><br><span class="line">│   ├── set-task.js</span><br><span class="line">│   ├── task.js</span><br><span class="line">│   └── tree.js</span><br><span class="line">└── package.json</span><br><span class="line"></span><br><span class="line">2 directories, 17 files</span><br></pre></td></tr></table></figure>
+
+<p>从api出发，我就很快找到了我感兴趣的文件。</p>
+<ul>
+<li>set-task.js</li>
+<li>get-task.js</li>
+<li>task.js</li>
+<li>parallel.js</li>
+<li>series.js</li>
+</ul>
+<p>文件很多，但是我大胆猜测上面五个文件是我需要重点关注的，其他文件都是辅助参考。反正猜错了也不亏，😄。</p>
+<h3 id="入口文件-index-js"><a href="#入口文件-index-js" class="headerlink" title="入口文件(index.js)"></a>入口文件(index.js)</h3><p>猜测归猜测，学习还是得老老实实从入口文件看起。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">'use strict'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> inherits = <span class="built_in">require</span>(<span class="string">'util'</span>).inherits;</span><br><span class="line"><span class="keyword">var</span> EventEmitter = <span class="built_in">require</span>(<span class="string">'events'</span>).EventEmitter;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> DefaultRegistry = <span class="built_in">require</span>(<span class="string">'undertaker-registry'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> tree = <span class="built_in">require</span>(<span class="string">'./lib/tree'</span>);</span><br><span class="line"><span class="keyword">var</span> task = <span class="built_in">require</span>(<span class="string">'./lib/task'</span>);</span><br><span class="line"><span class="keyword">var</span> series = <span class="built_in">require</span>(<span class="string">'./lib/series'</span>);</span><br><span class="line"><span class="keyword">var</span> lastRun = <span class="built_in">require</span>(<span class="string">'./lib/last-run'</span>);</span><br><span class="line"><span class="keyword">var</span> parallel = <span class="built_in">require</span>(<span class="string">'./lib/parallel'</span>);</span><br><span class="line"><span class="keyword">var</span> registry = <span class="built_in">require</span>(<span class="string">'./lib/registry'</span>);</span><br><span class="line"><span class="keyword">var</span> _getTask = <span class="built_in">require</span>(<span class="string">'./lib/get-task'</span>);</span><br><span class="line"><span class="keyword">var</span> _setTask = <span class="built_in">require</span>(<span class="string">'./lib/set-task'</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Undertaker</span>(<span class="params">customRegistry</span>) </span>&#123;</span><br><span class="line">  EventEmitter.call(<span class="keyword">this</span>); <span class="comment">// 继承EventEmitter</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">this</span>._registry = <span class="keyword">new</span> DefaultRegistry(); <span class="comment">// 猜测是存储tasks的对象</span></span><br><span class="line">  <span class="keyword">if</span> (customRegistry) &#123; <span class="comment">// 如果有customRegistry，应用customRegistry</span></span><br><span class="line">    <span class="keyword">this</span>.registry(customRegistry);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">this</span>._settle = (process.env.UNDERTAKER_SETTLE === <span class="string">'true'</span>); <span class="comment">// 姑且看作某个叫做UNDERTAKER_SETTLE的开关，具体作用要看后面的源码</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">inherits(Undertaker, EventEmitter); <span class="comment">// 继承EventEmitter原型链方法</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Undertaker.prototype.tree = tree;</span><br><span class="line"></span><br><span class="line">Undertaker.prototype.task = task;</span><br><span class="line"></span><br><span class="line">Undertaker.prototype.series = series;</span><br><span class="line"></span><br><span class="line">Undertaker.prototype.lastRun = lastRun;</span><br><span class="line"></span><br><span class="line">Undertaker.prototype.parallel = parallel;</span><br><span class="line"></span><br><span class="line">Undertaker.prototype.registry = registry;</span><br><span class="line"></span><br><span class="line">Undertaker.prototype._getTask = _getTask;</span><br><span class="line"></span><br><span class="line">Undertaker.prototype._setTask = _setTask;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = Undertaker;</span><br></pre></td></tr></table></figure>
+
+<p>入口文件来看</p>
+<ol>
+<li>Undertaker继承自EventEmitter</li>
+<li>同时内部有一个_registry对象（可以自定义，猜测是用来存储tasks的对象)</li>
+<li>prototype上面绑定了很多方法或者属性，还是按照api倒推的方法，我挑选task, _getTask, _setTask, series, parallel重点关注</li>
+</ol>
+<h3 id="task-lib-task-js"><a href="#task-lib-task-js" class="headerlink" title="task(lib/task.js)"></a>task(lib/task.js)</h3><p>首先看看这个task，到底是如何实现的呢？</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">'use strict'</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">task</span>(<span class="params">name, fn</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> name === <span class="string">'function'</span>) &#123; <span class="comment">// 如果参数只是一个函数，自动获取Function.displayName或者Function.name作为name</span></span><br><span class="line">    fn = name;</span><br><span class="line">    name = fn.displayName || fn.name;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (!fn) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>._getTask(name); <span class="comment">// 如果参数没有传入fn，用_getTask获取name</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">this</span>._setTask(name, fn); <span class="comment">// 如果name和fn都有，那么用_setTask设置，估计是存储到registry对象</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = task;</span><br></pre></td></tr></table></figure>
+<p>总结一下，task方法其实就是封装了Undertaker.prototype._getTask和Undertaker.prototype._setTask方法。</p>
+<h3 id="get-task-lib-get-task-js"><a href="#get-task-lib-get-task-js" class="headerlink" title="get-task(lib/get-task.js)"></a>get-task(lib/get-task.js)</h3><p>继续看看这个get-task，👌，看名字，大家应该都猜得到大概了。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">'use strict'</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">get</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">this</span>._registry.get(name);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="keyword">get</span>;</span><br></pre></td></tr></table></figure>
+<p>这个就不用解释了，和猜想一致，_registry是用来存储tasks的对象。_getTask就是获取对应的task。</p>
+<h3 id="set-task-lib-set-task-js"><a href="#set-task-lib-set-task-js" class="headerlink" title="set-task(lib/set-task.js)"></a>set-task(lib/set-task.js)</h3><p>顺势看到set-task，耐心点继续看看：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">'use strict'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> assert = <span class="built_in">require</span>(<span class="string">'assert'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> metadata = <span class="built_in">require</span>(<span class="string">'./helpers/metadata'</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">set</span>(<span class="params">name, fn</span>) </span>&#123;</span><br><span class="line">  assert(name, <span class="string">'Task name must be specified'</span>); <span class="comment">// 参数检验</span></span><br><span class="line">  assert(<span class="keyword">typeof</span> name === <span class="string">'string'</span>, <span class="string">'Task name must be a string'</span>); <span class="comment">// 参数检验</span></span><br><span class="line">  assert(<span class="keyword">typeof</span> fn === <span class="string">'function'</span>, <span class="string">'Task function must be specified'</span>); <span class="comment">// 参数检验</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">taskWrapper</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> fn.apply(<span class="keyword">this</span>, <span class="built_in">arguments</span>); <span class="comment">// 执行task，绑定this, 执行taskWrapper，等于执行绑定了当前上下文的fn</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">unwrap</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> fn; <span class="comment">// 直接返回fn</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  taskWrapper.unwrap = unwrap; <span class="comment">// 把unwrap绑定到taskWrapper函数的属性</span></span><br><span class="line">  taskWrapper.displayName = name; <span class="comment">// 把name绑定到taskWrapper的displayName属性。不过现在displayName已经是非标准的属性了，https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/displayName</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> meta = metadata.get(fn) || &#123;&#125;; <span class="comment">// 咋一看不知道干啥的，不怕，我直接跳过</span></span><br><span class="line">  <span class="keyword">var</span> nodes = []; <span class="comment">// 咋一看不知道干啥的，不怕，我直接跳过</span></span><br><span class="line">  <span class="keyword">if</span> (meta.branch) &#123;</span><br><span class="line">    nodes.push(meta.tree); <span class="comment">// // 咋一看不知道干啥的，不怕，我直接跳过</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> task = <span class="keyword">this</span>._registry.set(name, taskWrapper) || taskWrapper; <span class="comment">// 通过_registry设置name属性为taskWrapper，如果返回为空，task使用taskWrapper替代</span></span><br><span class="line"></span><br><span class="line">  metadata.set(task, &#123;</span><br><span class="line">    name: name,</span><br><span class="line">    orig: fn,</span><br><span class="line">    tree: &#123;</span><br><span class="line">      label: name,</span><br><span class="line">      type: <span class="string">'task'</span>,</span><br><span class="line">      nodes: nodes,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;); <span class="comment">// 咋一看不知道干啥的，不怕，我直接跳过。但是我可以猜测metadata是保存一些元数据信息，姑且猜测是用来获取task之间的依赖关系。</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="keyword">set</span>;</span><br></pre></td></tr></table></figure>
+
+<p>_setTask方法稍微复杂一点，多了metadata相关的东西。不知道具体做什么的，没什么关系，不影响我们专注看自己感兴趣的主流程。敲黑板，看源码看到大概率是分支流程的东西，千万别慌，大概率是可以不关注也不影响主流程的内容。</p>
+<h3 id="series-lib-series-js"><a href="#series-lib-series-js" class="headerlink" title="series(lib/series.js)"></a>series(lib/series.js)</h3><p>好的，总算来到核心代码部分。话不多说，看代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">'use strict'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> bach = <span class="built_in">require</span>(<span class="string">'bach'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> metadata = <span class="built_in">require</span>(<span class="string">'./helpers/metadata'</span>);</span><br><span class="line"><span class="keyword">var</span> buildTree = <span class="built_in">require</span>(<span class="string">'./helpers/buildTree'</span>);</span><br><span class="line"><span class="keyword">var</span> normalizeArgs = <span class="built_in">require</span>(<span class="string">'./helpers/normalizeArgs'</span>);</span><br><span class="line"><span class="keyword">var</span> createExtensions = <span class="built_in">require</span>(<span class="string">'./helpers/createExtensions'</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">series</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> create = <span class="keyword">this</span>._settle ? bach.settleSeries : bach.series; <span class="comment">// 根据UNDERTAKER_SETTLE开关选择create函数，这里涉及到bach库，看上去series的核心方法和它有关，怎么办？待会直接翻出来看。</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> args = normalizeArgs(<span class="keyword">this</span>._registry, <span class="built_in">arguments</span>); <span class="comment">// 将arguments扁平化之后获取对应的task function。helpers里面的源码比较简单，不细讲。</span></span><br><span class="line">  <span class="keyword">var</span> extensions = createExtensions(<span class="keyword">this</span>); <span class="comment">// 创建扩展，包含create, before, after, error生命周期方法</span></span><br><span class="line">  <span class="keyword">var</span> fn = create(args, extensions); <span class="comment">// 待会讲解bach的时候分析create方法</span></span><br><span class="line">  <span class="keyword">var</span> name = <span class="string">'&lt;series&gt;'</span>;</span><br><span class="line"></span><br><span class="line">  metadata.set(fn, &#123; <span class="comment">// 咋一看不知道干啥的，不怕，我直接跳过。但是我可以猜测metadata是保存一些元数据信息。</span></span><br><span class="line">    name: name,</span><br><span class="line">    branch: <span class="literal">true</span>,</span><br><span class="line">    tree: &#123;</span><br><span class="line">      label: name,</span><br><span class="line">      type: <span class="string">'function'</span>,</span><br><span class="line">      branch: <span class="literal">true</span>,</span><br><span class="line">      nodes: buildTree(args),</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">return</span> fn; <span class="comment">// 返回create之后的函数</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = series;</span><br></pre></td></tr></table></figure>
+
+<h3 id="bach库"><a href="#bach库" class="headerlink" title="bach库"></a>bach库</h3><p>OK，我们看源码到series方法的时候，发现被bach库的源码阻塞了，而且显然是核心逻辑。不用犹豫，直接深入进入了解下原理。从节奏上来说，这部分分析理应拆多一篇文章。但是为了分享自己阅读源码时候的思路和细节，不妨直接贯穿下来。</p>
+<p>同样的，我们看下bach的简介和用法：</p>
+<blockquote>
+<p>Compose your async functions with elegance.</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> bach = <span class="built_in">require</span>(<span class="string">'bach'</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn1</span>(<span class="params">cb</span>) </span>&#123;</span><br><span class="line">  cb(<span class="literal">null</span>, <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn2</span>(<span class="params">cb</span>) </span>&#123;</span><br><span class="line">  cb(<span class="literal">null</span>, <span class="number">2</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn3</span>(<span class="params">cb</span>) </span>&#123;</span><br><span class="line">  cb(<span class="literal">null</span>, <span class="number">3</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> seriesFn = bach.series(fn1, fn2, fn3);</span><br><span class="line"><span class="comment">// fn1, fn2, and fn3 will be run in series</span></span><br><span class="line">seriesFn(<span class="function"><span class="keyword">function</span>(<span class="params">err, res</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (err) &#123; <span class="comment">// in this example, err is undefined</span></span><br><span class="line">    <span class="comment">// handle error</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// handle results</span></span><br><span class="line">  <span class="comment">// in this example, res is [1, 2, 3]</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> parallelFn = bach.parallel(fn1, fn2, fn3);</span><br><span class="line"><span class="comment">// fn1, fn2, and fn3 will be run in parallel</span></span><br><span class="line">parallelFn(<span class="function"><span class="keyword">function</span>(<span class="params">err, res</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (err) &#123; <span class="comment">// in this example, err is undefined</span></span><br><span class="line">    <span class="comment">// handle error</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// handle results</span></span><br><span class="line">  <span class="comment">// in this example, res is [1, 2, 3]</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>其实看了简介和用法就知道了，bach就是负责undertaker的任务串行或者并行执行的核心库。</p>
+<p>接下来看看目录结构：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">.&#x2F;node_modules&#x2F;bach</span><br><span class="line">├── LICENSE</span><br><span class="line">├── README.md</span><br><span class="line">├── index.js</span><br><span class="line">├── lib</span><br><span class="line">│   ├── helpers.js</span><br><span class="line">│   ├── parallel.js</span><br><span class="line">│   ├── series.js</span><br><span class="line">│   ├── settleParallel.js</span><br><span class="line">│   └── settleSeries.js</span><br><span class="line">└── package.json</span><br><span class="line"></span><br><span class="line">1 directory, 9 files</span><br></pre></td></tr></table></figure>
+<p>入口文件就不说了，只是暴露lib里面的函数。<br>我们先讲series.js和settleSeries.js，这个和前面的series(lib/series.js)关联最大。</p>
+<p>series.js如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">'use strict'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> initial = <span class="built_in">require</span>(<span class="string">'array-initial'</span>);</span><br><span class="line"><span class="keyword">var</span> last = <span class="built_in">require</span>(<span class="string">'array-last'</span>);</span><br><span class="line"><span class="keyword">var</span> asyncDone = <span class="built_in">require</span>(<span class="string">'async-done'</span>);</span><br><span class="line"><span class="keyword">var</span> nowAndLater = <span class="built_in">require</span>(<span class="string">'now-and-later'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> helpers = <span class="built_in">require</span>(<span class="string">'./helpers'</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">iterator</span>(<span class="params">fn, key, cb</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> asyncDone(fn, cb); <span class="comment">// 通过callback方式统一处理异步函数</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">buildSeries</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> args = helpers.verifyArguments(<span class="built_in">arguments</span>); <span class="comment">// 验证arguments</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> extensions = helpers.getExtensions(last(args)); <span class="comment">// 获取extensions参数</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (extensions) &#123;</span><br><span class="line">    args = initial(args); <span class="comment">// 如果有extensions，arguments为排除extensions的那些</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">series</span>(<span class="params">done</span>) </span>&#123;</span><br><span class="line">    nowAndLater.mapSeries(args, iterator, extensions, done); <span class="comment">// 通过nowAndLater真正实现series串行执行</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> series; <span class="comment">// 返回series供使用</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = buildSeries;</span><br></pre></td></tr></table></figure>
+
+<p>通过阅读series.js方法，发现离series串行执行的谜底还是隔着一层nowAndLater的面纱。不知道你有没有觉得要失去信心了，我反正是没有，因为还没打破沙锅问到底，不能轻易放弃。我阅读源码的过程如今在这里分享出来，带你克服内心恐惧。咬咬牙，继续看看nowAndLater是何方神圣。</p>
+<p>事到如今，已经不想看nowAndLater的简介了，我只知道，他的mapSeries和series的谜底很靠近了额，让我们直接看看mapSeries.js的代码结束战斗！</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">'use strict'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> once = <span class="built_in">require</span>(<span class="string">'once'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> helpers = <span class="built_in">require</span>(<span class="string">'./helpers'</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mapSeries</span>(<span class="params">values, iterator, extensions, done</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// Allow for extensions to not be specified</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> extensions === <span class="string">'function'</span>) &#123;</span><br><span class="line">    done = extensions;</span><br><span class="line">    extensions = &#123;&#125;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Handle no callback case</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> done !== <span class="string">'function'</span>) &#123;</span><br><span class="line">    done = helpers.noop;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  done = once(done);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Will throw if non-object</span></span><br><span class="line">  <span class="keyword">var</span> keys = <span class="built_in">Object</span>.keys(values); <span class="comment">// 获取values的key值数组</span></span><br><span class="line">  <span class="keyword">var</span> length = keys.length;</span><br><span class="line">  <span class="keyword">var</span> idx = <span class="number">0</span>;</span><br><span class="line">  <span class="comment">// Return the same type as passed in</span></span><br><span class="line">  <span class="keyword">var</span> results = helpers.initializeResults(values); <span class="comment">// 初始化result</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> exts = helpers.defaultExtensions(extensions); <span class="comment">// 获取生命周期相关的集合</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (length === <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> done(<span class="literal">null</span>, results);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> key = keys[idx]; <span class="comment">// 递归开始的key</span></span><br><span class="line">  next(key); <span class="comment">// 开始执行next</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">next</span>(<span class="params">key</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> value = values[key]; <span class="comment">// 获取当前value</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> storage = exts.create(value, key) || &#123;&#125;; <span class="comment">// 执行exts的create生命周期</span></span><br><span class="line"></span><br><span class="line">    exts.before(storage); <span class="comment">// 执行exts的before的生命周期</span></span><br><span class="line">    iterator(value, key, once(handler)); <span class="comment">//执行iterator，同时传递只执行一次的handler作为回调</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">handler</span>(<span class="params">err, result</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">if</span> (err) &#123;</span><br><span class="line">        exts.error(err, storage); <span class="comment">// 如果报错，执行error的生命周期</span></span><br><span class="line">        <span class="keyword">return</span> done(err, results); <span class="comment">// 执行done函数，同时结束递归</span></span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      exts.after(result, storage); <span class="comment">// 如果没有err，则执行生命周期的after钩子</span></span><br><span class="line">      results[key] = result; <span class="comment">// results中保存result</span></span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (++idx &gt;= length) &#123;</span><br><span class="line">        done(err, results); <span class="comment">// 如果结束了，调用done</span></span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        next(keys[idx]); <span class="comment">// 如果没有结束，调用next，继续递归操作</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = mapSeries;</span><br></pre></td></tr></table></figure>
+
+<p>呼，松了一口气，bach和nowAndLater连起来看，总算清晰串行执行的原理了。同时有一个async-done库我只是一笔带过，感兴趣可以自己看看，它把不同风格的异步代码统一成callback的方式。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">iterator</span>(<span class="params">fn, key, cb</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> asyncDone(fn, cb); <span class="comment">// 通过callback方式统一处理异步函数</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>有了这一步，iterator在执行过程中，才能保证异步函数成功之后执行下一个函数。这就是一整个串行执行的原理了。</p>
+<h3 id="接下来"><a href="#接下来" class="headerlink" title="接下来"></a>接下来</h3><p>接下来是不是轮到要讲解parallel的实现了呢？😄，都已经看我写到这里了，是不是有思路去自己阅读parallel的实现了呢？加油，相信你可以做到的。</p>
+<p>简单来说，parallel把所有需要执行的函数都改成异步执行的方式，通过for循环去执行，就做到了并行执行代码。</p>
+<p>同时如果你对最开始我没有详细讲解的metadata有兴趣，也可以自己去了解。不是偷懒，开头已经说了，我们关注undertaker流程本身，对于分支流程，有余力的同学自己探索吧。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>undertaker这个任务管理库非常优雅，可以很好的组合异步任务，通过并行或者串行的方式执行一个任务流程。我也曾经遇到相对复杂的流程控制代码，当时写完之后是一个头两个大。undertaker通过很多黑魔法，抹平多个异步任务组合的问题，让我们更加专注管理流程本身，而不是关注于怎么解决各种异步代码组合。</p>
+<p>这篇文，一半是为了总结undertaker的源码，一半是分享下我的阅读源码思路。我也一样会面对下面的问题。</p>
+<ul>
+<li>依赖非常多</li>
+<li>分支代码看不懂</li>
+<li>阅读过程忘记前面的代码</li>
+</ul>
+<p>相信这些问题的答案，认真看过本文的你都能找到一些参考和解答。希望新的一年我们永远年轻，永远乐于探索，善于学习总结！</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/gulp/" rel="tag"># gulp</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2020/01/07/gulp%E7%B3%BB%E5%88%97%E4%B9%8Bvinyl%E6%BA%90%E7%A0%81%E7%AC%94%E8%AE%B0/" rel="next" title="gulp系列之vinyl源码笔记">
+                  <i class="fa fa-chevron-left"></i> gulp系列之vinyl源码笔记
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#undertaker简介"><span class="nav-number">1.</span> <span class="nav-text">undertaker简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undertaker用法"><span class="nav-number">2.</span> <span class="nav-text">undertaker用法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#用法"><span class="nav-number">2.1.</span> <span class="nav-text">用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#扩展"><span class="nav-number">2.2.</span> <span class="nav-text">扩展</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undertaker主流程分析"><span class="nav-number">3.</span> <span class="nav-text">undertaker主流程分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#目录"><span class="nav-number">3.1.</span> <span class="nav-text">目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#入口文件-index-js"><span class="nav-number">3.2.</span> <span class="nav-text">入口文件(index.js)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#task-lib-task-js"><span class="nav-number">3.3.</span> <span class="nav-text">task(lib&#x2F;task.js)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#get-task-lib-get-task-js"><span class="nav-number">3.4.</span> <span class="nav-text">get-task(lib&#x2F;get-task.js)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#set-task-lib-set-task-js"><span class="nav-number">3.5.</span> <span class="nav-text">set-task(lib&#x2F;set-task.js)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#series-lib-series-js"><span class="nav-number">3.6.</span> <span class="nav-text">series(lib&#x2F;series.js)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bach库"><span class="nav-number">3.7.</span> <span class="nav-text">bach库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#接下来"><span class="nav-number">3.8.</span> <span class="nav-text">接下来</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Skyline"
+      src="https://avatars0.githubusercontent.com/u/22638687?s=460&v=4">
+  <p class="site-author-name" itemprop="name">Skyline</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/skyline-123" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;skyline-123" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:posthanjt@gmail.com" title="E-Mail &amp;rarr; mailto:posthanjt@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Skyline</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.5.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID: 'e0837ac9c4ea264e042c',
+      clientSecret: '24d6b78ceada06021ed0e6f8546911ff579b9a1b',
+      repo: 'skyline-123.github.io',
+      owner: 'skyline-123',
+      admin: ['skyline-123'],
+      id: 'b4f9f4322b00446f55ea928fd6c6e16c',
+        language: '',
+      distractionFreeMode: 'true'
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+</script>
+
+</body>
+</html>
