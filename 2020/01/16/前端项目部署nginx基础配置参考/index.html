@@ -50,15 +50,15 @@
   };
 </script>
 
-  <meta name="description" content="前段时间，面试一些前端同学的时候，发现大部分对开发完成之后的部署流程都不太了解。听到最多的回答，都是npm run build之后交给后端或者前端负责人就可以了。虽然部署的过程不一定有机会参与，但是一定要做到心中有数，不然怎么能做到负责一整个前端项目呢？ 趁着有空，简单写下前端部署时候用到的最基础的nginx配置参考。这里以vue的spa项目作为例子。 配置分类根据vue-router的mode，">
+  <meta name="description" content="前段时间，面试一些前端同学的时候，发现大部分对开发完成之后的部署流程都不太了解。听到最多的回答，都是npm run build之后交给后端或者前端负责人就可以了。虽然部署的过程不一定有机会参与，但是一定要做到心中有数，不然怎么能做到负责一整个前端项目呢？ 趁着有空，简单写下前端部署时候用到的最基础的nginx配置参考。这里以vue的spa项目作为例子。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="前端项目部署nginx基础配置参考">
 <meta property="og:url" content="http://yoursite.com/2020/01/16/%E5%89%8D%E7%AB%AF%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2nginx%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE%E5%8F%82%E8%80%83/index.html">
 <meta property="og:site_name" content="Skyline 技术笔记">
-<meta property="og:description" content="前段时间，面试一些前端同学的时候，发现大部分对开发完成之后的部署流程都不太了解。听到最多的回答，都是npm run build之后交给后端或者前端负责人就可以了。虽然部署的过程不一定有机会参与，但是一定要做到心中有数，不然怎么能做到负责一整个前端项目呢？ 趁着有空，简单写下前端部署时候用到的最基础的nginx配置参考。这里以vue的spa项目作为例子。 配置分类根据vue-router的mode，">
+<meta property="og:description" content="前段时间，面试一些前端同学的时候，发现大部分对开发完成之后的部署流程都不太了解。听到最多的回答，都是npm run build之后交给后端或者前端负责人就可以了。虽然部署的过程不一定有机会参与，但是一定要做到心中有数，不然怎么能做到负责一整个前端项目呢？ 趁着有空，简单写下前端部署时候用到的最基础的nginx配置参考。这里以vue的spa项目作为例子。">
 <meta property="og:locale" content="zh">
 <meta property="article:published_time" content="2020-01-16T11:46:21.000Z">
-<meta property="article:modified_time" content="2020-01-16T12:42:12.934Z">
+<meta property="article:modified_time" content="2020-01-16T12:44:20.683Z">
 <meta property="article:author" content="Skyline">
 <meta property="article:tag" content="nginx">
 <meta name="twitter:card" content="summary">
@@ -211,7 +211,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-01-16 19:46:21 / Modified: 20:42:12" itemprop="dateCreated datePublished" datetime="2020-01-16T19:46:21+08:00">2020-01-16</time>
+              <time title="Created: 2020-01-16 19:46:21 / Modified: 20:44:20" itemprop="dateCreated datePublished" datetime="2020-01-16T19:46:21+08:00">2020-01-16</time>
             </span>
 
           
@@ -227,6 +227,7 @@
       
         <p>前段时间，面试一些前端同学的时候，发现大部分对开发完成之后的部署流程都不太了解。听到最多的回答，都是npm run build之后交给后端或者前端负责人就可以了。虽然部署的过程不一定有机会参与，但是一定要做到心中有数，不然怎么能做到负责一整个前端项目呢？</p>
 <p>趁着有空，简单写下前端部署时候用到的最基础的nginx配置参考。这里以vue的spa项目作为例子。</p>
+<a id="more"></a>
 <h2 id="配置分类"><a href="#配置分类" class="headerlink" title="配置分类"></a>配置分类</h2><p>根据vue-router的mode，分成两种情况：</p>
 <ul>
 <li>hash</li>
