@@ -7,7 +7,7 @@ tags:
   - 前端框架
 ---
 有朋友反馈想看更“干”一点的知识分享，最近库存里面只有我之前在腾讯团队那边分享过的VueRouter原理，现把PPT整理一遍，具体讲解部分不赘述，仅供日后参考。
-<!-- more -->
+
 ## 前端路由实现方式
 这部分内容算是一个基础回顾，如果已经非常熟悉了，可以跳过直接看源码分析部分。
 前端路由实现方式主要有两种，如下：
@@ -35,7 +35,7 @@ window.addEventListener('hashchange', function onHashChange () {
   console.log('hash changed')
 }, false)
 ```
-
+<!-- more -->
 ### History模式
 简单介绍下相关的API
 1. HTML5引入了history.pushState()和history.replaceState()方法，它们分别可以添加和修改历史记录条目。这些方法通常与window.onpopstate配合使用。

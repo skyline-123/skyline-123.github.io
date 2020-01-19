@@ -8,8 +8,6 @@ tags:
 ## through2简介
 仓库简介：A tiny wrapper around Node.js streams.Transform (Streams2/3) to avoid explicit subclassing noise. 简单来说它就是用readable-stream库创建transform stream。如果使用官方的Stream接口，还要考虑兼容性问题。
 
-<!-- more -->
-
 ## through2用法
 具体用法直接看through2的[github](https://github.com/rvagg/through2), 另外我在阅读过程中也顺便提交PR修复了readme.md中遗漏的括号。
 
@@ -37,7 +35,7 @@ fs.createReadStream('ex.txt')
   .pipe(fs.createWriteStream('out.txt'))
   .on('finish', () => doSomethingSpecial())
 ```
-
+<!-- more -->
 ## 源码简介
 如果你深入了解过Stream，看了through2的用法，其实已经可以猜测到它源码是如何工作的。
 

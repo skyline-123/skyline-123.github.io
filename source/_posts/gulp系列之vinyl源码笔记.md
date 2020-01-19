@@ -8,8 +8,6 @@ tags:
 ## vinyl简介
 vinyl是gulp团队维护的一个虚拟文件格式库。Vinyl对象，主要包括path和contents属性，是一个描述文件的元数据对象。
 
-<!-- more -->
-
 ## vinyl用法
 ```js
 var Vinyl = require('vinyl');
@@ -21,7 +19,7 @@ var jsFile = new Vinyl({
   contents: new Buffer('var x = 123')
 });
 ```
-
+<!-- more -->
 ## vinyl源码
 总共300多行，老方法，我们先看看代码总体的结构：
 

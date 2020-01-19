@@ -7,7 +7,6 @@ tags:
   - ESLint
 ---
 写过前端项目的同学，对ESLint都应该非常熟悉。业界常用的ESLint规范，一般是以[Airbnb](https://github.com/airbnb/javascript)和[standard](https://github.com/standard/standard)规范为主。我们今天是抛开直接在extends里面引入业界ESLint扩展，来聊聊自己项目实践中定制的ESLint规则。
-<!-- more -->
 
 我们先来看看ESLint官方的[Rules](https://eslint.org/docs/rules/)， 它分为如下多个种类:
   - Possible Errors
@@ -19,7 +18,7 @@ tags:
   - ECMAScript 6
   - Deprecated
   - Removed
-
+<!-- more -->
 我们重点看看Stylistic Issues这个分类，这个分类的Rules是解决什么问题的呢？官方解释称这些规则是关于风格指南，而且是非常主观的。对于这样的描述，我们可能在定制规则的过程中一带而过，而其他最佳实践和一些避免潜在错误的规范，standard等规范又帮我们做了。别着急，我们看看这几个Rules。
 
   - max-depth(强制可嵌套的块的最大深度)
