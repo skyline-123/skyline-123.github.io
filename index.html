@@ -205,10 +205,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2020-01-16 19:46:21 / Modified: 20:44:20" itemprop="dateCreated datePublished" datetime="2020-01-16T19:46:21+08:00">2020-01-16</time>
+              <time title="Created: 2020-01-16 19:46:21" itemprop="dateCreated datePublished" datetime="2020-01-16T19:46:21+08:00">2020-01-16</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-01-19 10:57:29" itemprop="dateModified" datetime="2020-01-19T10:57:29+08:00">2020-01-19</time>
+              </span>
 
           
 
@@ -223,6 +229,17 @@
       
           <p>前段时间，面试一些前端同学的时候，发现大部分对开发完成之后的部署流程都不太了解。听到最多的回答，都是npm run build之后交给后端或者前端负责人就可以了。虽然部署的过程不一定有机会参与，但是一定要做到心中有数，不然怎么能做到负责一整个前端项目呢？</p>
 <p>趁着有空，简单写下前端部署时候用到的最基础的nginx配置参考。这里以vue的spa项目作为例子。</p>
+<h2 id="配置分类"><a href="#配置分类" class="headerlink" title="配置分类"></a>配置分类</h2><p>根据vue-router的mode，分成两种情况：</p>
+<ul>
+<li>hash</li>
+<li>history</li>
+</ul>
+<p>同时根据部署的路径，也分成两种情况：</p>
+<ul>
+<li>根路径</li>
+<li>非根路径</li>
+</ul>
+<p>我们假设dist文件夹放在/data/www/demo/dist, server_name是localhost。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2020/01/16/%E5%89%8D%E7%AB%AF%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2nginx%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE%E5%8F%82%E8%80%83/#more" rel="contents">
@@ -360,7 +377,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-01-08 18:14:35" itemprop="dateModified" datetime="2020-01-08T18:14:35+08:00">2020-01-08</time>
+                <time title="Modified: 2020-01-19 10:57:59" itemprop="dateModified" datetime="2020-01-19T10:57:59+08:00">2020-01-19</time>
               </span>
 
           
@@ -375,6 +392,7 @@
 
       
           <h2 id="vinyl简介"><a href="#vinyl简介" class="headerlink" title="vinyl简介"></a>vinyl简介</h2><p>vinyl是gulp团队维护的一个虚拟文件格式库。Vinyl对象，主要包括path和contents属性，是一个描述文件的元数据对象。</p>
+<h2 id="vinyl用法"><a href="#vinyl用法" class="headerlink" title="vinyl用法"></a>vinyl用法</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Vinyl = <span class="built_in">require</span>(<span class="string">'vinyl'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> jsFile = <span class="keyword">new</span> Vinyl(&#123;</span><br><span class="line">  cwd: <span class="string">'/'</span>, 工作目录</span><br><span class="line">  base: <span class="string">'/test/'</span>, base路径</span><br><span class="line">  path: <span class="string">'/test/file.js'</span>, <span class="comment">//</span></span><br><span class="line">  contents: <span class="keyword">new</span> Buffer(<span class="string">'var x = 123'</span>)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2020/01/07/gulp%E7%B3%BB%E5%88%97%E4%B9%8Bvinyl%E6%BA%90%E7%A0%81%E7%AC%94%E8%AE%B0/#more" rel="contents">

@@ -50,15 +50,15 @@
   };
 </script>
 
-  <meta name="description" content="为了解决工作问题，我看了一些库的源码。也基于社区的实现，工作中定制了一些轮子。最近对造轮子和拆轮子有一些自己的感想，和大家分享下。">
+  <meta name="description" content="为了解决工作问题，我看了一些库的源码。也基于社区的实现，工作中定制了一些轮子。最近对造轮子和拆轮子有一些自己的感想，和大家分享下。 拆先说说拆轮子的心路历程，我经历了几个阶段：  听说看过xxx库的源码很牛逼，好像会涨工资呢，看一看吹吹牛吧 这个bug涉及到引入npm包的源码了，不看看不知道怎么解决，硬着头皮上吧 我想做某个工具，不知道怎么实现，要不参考下社区的xxx，看看源码吧 这个库的api设">
 <meta property="og:type" content="article">
 <meta property="og:title" content="聊聊造轮子和拆轮子">
 <meta property="og:url" content="http://yoursite.com/2019/12/19/%E8%81%8A%E8%81%8A%E9%80%A0%E8%BD%AE%E5%AD%90%E5%92%8C%E6%8B%86%E8%BD%AE%E5%AD%90/index.html">
 <meta property="og:site_name" content="Skyline 技术笔记">
-<meta property="og:description" content="为了解决工作问题，我看了一些库的源码。也基于社区的实现，工作中定制了一些轮子。最近对造轮子和拆轮子有一些自己的感想，和大家分享下。">
+<meta property="og:description" content="为了解决工作问题，我看了一些库的源码。也基于社区的实现，工作中定制了一些轮子。最近对造轮子和拆轮子有一些自己的感想，和大家分享下。 拆先说说拆轮子的心路历程，我经历了几个阶段：  听说看过xxx库的源码很牛逼，好像会涨工资呢，看一看吹吹牛吧 这个bug涉及到引入npm包的源码了，不看看不知道怎么解决，硬着头皮上吧 我想做某个工具，不知道怎么实现，要不参考下社区的xxx，看看源码吧 这个库的api设">
 <meta property="og:locale" content="zh">
 <meta property="article:published_time" content="2019-12-19T10:04:00.000Z">
-<meta property="article:modified_time" content="2020-01-08T10:17:15.982Z">
+<meta property="article:modified_time" content="2020-01-19T02:59:01.519Z">
 <meta property="article:author" content="Skyline">
 <meta property="article:tag" content="技术杂谈">
 <meta name="twitter:card" content="summary">
@@ -217,7 +217,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-01-08 18:17:15" itemprop="dateModified" datetime="2020-01-08T18:17:15+08:00">2020-01-08</time>
+                <time title="Modified: 2020-01-19 10:59:01" itemprop="dateModified" datetime="2020-01-19T10:59:01+08:00">2020-01-19</time>
               </span>
 
           
@@ -232,7 +232,6 @@
 
       
         <p>为了解决工作问题，我看了一些库的源码。也基于社区的实现，工作中定制了一些轮子。最近对造轮子和拆轮子有一些自己的感想，和大家分享下。</p>
-<a id="more"></a>
 <h2 id="拆"><a href="#拆" class="headerlink" title="拆"></a>拆</h2><p>先说说拆轮子的心路历程，我经历了几个阶段：</p>
 <ol>
 <li>听说看过xxx库的源码很牛逼，好像会涨工资呢，看一看吹吹牛吧</li>
@@ -241,6 +240,7 @@
 <li>这个库的api设计的真好，我也想设计类似的api，看看源码吧</li>
 </ol>
 <p>简单来说，就是从应试教育到素质教育的进化。这其中的过程，要我现在回想，还是第一步历程最重要。就像看名著一样，如果觉得大部头看着恶心，那可能一直不会去看了，总要有一个契机先克服恐惧。而涨工资这个最原始的欲望，还是有一定的助推力让我去主动学习一些社区优秀库的源码。当然啦，看源码那么有趣，后面我乐于阅读自然是水到渠成的事情。</p>
+<a id="more"></a>
 <h2 id="造"><a href="#造" class="headerlink" title="造"></a>造</h2><p>再简单说说造轮子，这个没什么心路历程吧，就是根据业务需求自然而然要自己定制一些轮子。对我影响比较大的是Dan Abramov，没记错的话，有一次他发twitter问大家如果一个库不满足你的某些需求你会怎么办呢？他是建议直接fork一份，然后自己修改这个库的源码来满足自己的需求。其实在小白阶段，我经常会抱怨一些库不能很好满足自己的需求，但是没有想过自己也是完全可以改造它的。当我脱离埋怨和四处找更好的轮子的时候，就开始了自己改造轮子或者自己造轮子。很多事情，觉悟大于行动。可能你在四处搜索完美轮子过程中花费的时间，可以做更多有趣的事情。</p>
 <h2 id="足迹"><a href="#足迹" class="headerlink" title="足迹"></a>足迹</h2><p>开源贡献的精神同样重要，在阅读源码的过程中，我也为社区做了一点贡献：</p>
 <ul>

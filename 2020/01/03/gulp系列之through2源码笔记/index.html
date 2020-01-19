@@ -50,15 +50,15 @@
   };
 </script>
 
-  <meta name="description" content="through2简介仓库简介：A tiny wrapper around Node.js streams.Transform (Streams2&#x2F;3) to avoid explicit subclassing noise. 简单来说它就是用readable-stream库创建transform stream。如果使用官方的Stream接口，还要考虑兼容性问题。">
+  <meta name="description" content="through2简介仓库简介：A tiny wrapper around Node.js streams.Transform (Streams2&#x2F;3) to avoid explicit subclassing noise. 简单来说它就是用readable-stream库创建transform stream。如果使用官方的Stream接口，还要考虑兼容性问题。 through2用法具体用法直接看">
 <meta property="og:type" content="article">
 <meta property="og:title" content="gulp系列之through2源码笔记">
 <meta property="og:url" content="http://yoursite.com/2020/01/03/gulp%E7%B3%BB%E5%88%97%E4%B9%8Bthrough2%E6%BA%90%E7%A0%81%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="Skyline 技术笔记">
-<meta property="og:description" content="through2简介仓库简介：A tiny wrapper around Node.js streams.Transform (Streams2&#x2F;3) to avoid explicit subclassing noise. 简单来说它就是用readable-stream库创建transform stream。如果使用官方的Stream接口，还要考虑兼容性问题。">
+<meta property="og:description" content="through2简介仓库简介：A tiny wrapper around Node.js streams.Transform (Streams2&#x2F;3) to avoid explicit subclassing noise. 简单来说它就是用readable-stream库创建transform stream。如果使用官方的Stream接口，还要考虑兼容性问题。 through2用法具体用法直接看">
 <meta property="og:locale" content="zh">
 <meta property="article:published_time" content="2020-01-03T07:41:57.000Z">
-<meta property="article:modified_time" content="2020-01-08T10:16:26.332Z">
+<meta property="article:modified_time" content="2020-01-19T02:58:35.044Z">
 <meta property="article:author" content="Skyline">
 <meta property="article:tag" content="gulp">
 <meta name="twitter:card" content="summary">
@@ -217,7 +217,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-01-08 18:16:26" itemprop="dateModified" datetime="2020-01-08T18:16:26+08:00">2020-01-08</time>
+                <time title="Modified: 2020-01-19 10:58:35" itemprop="dateModified" datetime="2020-01-19T10:58:35+08:00">2020-01-19</time>
               </span>
 
           
@@ -232,8 +232,6 @@
 
       
         <h2 id="through2简介"><a href="#through2简介" class="headerlink" title="through2简介"></a>through2简介</h2><p>仓库简介：A tiny wrapper around Node.js streams.Transform (Streams2/3) to avoid explicit subclassing noise. 简单来说它就是用readable-stream库创建transform stream。如果使用官方的Stream接口，还要考虑兼容性问题。</p>
-<a id="more"></a>
-
 <h2 id="through2用法"><a href="#through2用法" class="headerlink" title="through2用法"></a>through2用法</h2><p>具体用法直接看through2的<a href="https://github.com/rvagg/through2" target="_blank" rel="noopener">github</a>, 另外我在阅读过程中也顺便提交PR修复了readme.md中遗漏的括号。</p>
 <p>through2函数：<code>through2([ options, ] [ transformFunction ] [, flushFunction ])</code></p>
 <p>options就是和ransform stream相关的配置项。</p>
@@ -241,7 +239,7 @@
 <p>flushFunction将在所有输入流传输结束后调用，用来结束transform stream。</p>
 <p>through2一般用在pipe中，抄官方demo如下作参考：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">fs.createReadStream(<span class="string">'ex.txt'</span>)</span><br><span class="line">  .pipe(through2(<span class="function"><span class="keyword">function</span> (<span class="params">chunk, enc, callback</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; chunk.length; i++)</span><br><span class="line">      <span class="keyword">if</span> (chunk[i] == <span class="number">97</span>)</span><br><span class="line">        chunk[i] = <span class="number">122</span> <span class="comment">// swap 'a' for 'z'</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">this</span>.push(chunk)</span><br><span class="line"></span><br><span class="line">    callback()</span><br><span class="line">   &#125;))</span><br><span class="line">  .pipe(fs.createWriteStream(<span class="string">'out.txt'</span>))</span><br><span class="line">  .on(<span class="string">'finish'</span>, () =&gt; doSomethingSpecial())</span><br></pre></td></tr></table></figure>
-
+<a id="more"></a>
 <h2 id="源码简介"><a href="#源码简介" class="headerlink" title="源码简介"></a>源码简介</h2><p>如果你深入了解过Stream，看了through2的用法，其实已经可以猜测到它源码是如何工作的。</p>
 <p>为什么这么说呢？因为我学习这块的时候直接看through2的源码，发现自己其实是不理解pipe和through2结合起来，怎么就可以做到这种修改可读流数据的黑魔法。说白了是对pipe方法的了解很模糊，Stream的pipe方法，其实只需要传一个dest流作为参数，它内部已经实现了对dest流的data和end事件的监听。</p>
 <p>抛开源码去理解，pipe管道只是一个黑盒，传入一个transfrom / duplex / writable stream作为pipe的参数，源头的readable stream可以自动从源头流到出口writable stream，并通过执行每一个pipe方法对stream做相应的处理。</p>

@@ -50,15 +50,15 @@
   };
 </script>
 
-  <meta name="description" content="写过前端项目的同学，对ESLint都应该非常熟悉。业界常用的ESLint规范，一般是以Airbnb和standard规范为主。我们今天是抛开直接在extends里面引入业界ESLint扩展，来聊聊自己项目实践中定制的ESLint规则。">
+  <meta name="description" content="写过前端项目的同学，对ESLint都应该非常熟悉。业界常用的ESLint规范，一般是以Airbnb和standard规范为主。我们今天是抛开直接在extends里面引入业界ESLint扩展，来聊聊自己项目实践中定制的ESLint规则。 我们先来看看ESLint官方的Rules， 它分为如下多个种类:  Possible Errors  Best Practices  Strict Mode  Va">
 <meta property="og:type" content="article">
 <meta property="og:title" content="前端工程化实践系列--ESLint定制规则">
 <meta property="og:url" content="http://yoursite.com/2019/11/26/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96%E5%AE%9E%E8%B7%B5%E7%B3%BB%E5%88%97-ESLint%E5%AE%9A%E5%88%B6%E8%A7%84%E5%88%99/index.html">
 <meta property="og:site_name" content="Skyline 技术笔记">
-<meta property="og:description" content="写过前端项目的同学，对ESLint都应该非常熟悉。业界常用的ESLint规范，一般是以Airbnb和standard规范为主。我们今天是抛开直接在extends里面引入业界ESLint扩展，来聊聊自己项目实践中定制的ESLint规则。">
+<meta property="og:description" content="写过前端项目的同学，对ESLint都应该非常熟悉。业界常用的ESLint规范，一般是以Airbnb和standard规范为主。我们今天是抛开直接在extends里面引入业界ESLint扩展，来聊聊自己项目实践中定制的ESLint规则。 我们先来看看ESLint官方的Rules， 它分为如下多个种类:  Possible Errors  Best Practices  Strict Mode  Va">
 <meta property="og:locale" content="zh">
 <meta property="article:published_time" content="2019-11-26T06:33:08.000Z">
-<meta property="article:modified_time" content="2020-01-08T10:16:50.343Z">
+<meta property="article:modified_time" content="2020-01-19T03:00:06.604Z">
 <meta property="article:author" content="Skyline">
 <meta property="article:tag" content="前端工程化">
 <meta property="article:tag" content="标准">
@@ -219,7 +219,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-01-08 18:16:50" itemprop="dateModified" datetime="2020-01-08T18:16:50+08:00">2020-01-08</time>
+                <time title="Modified: 2020-01-19 11:00:06" itemprop="dateModified" datetime="2020-01-19T11:00:06+08:00">2020-01-19</time>
               </span>
 
           
@@ -234,30 +234,44 @@
 
       
         <p>写过前端项目的同学，对ESLint都应该非常熟悉。业界常用的ESLint规范，一般是以<a href="https://github.com/airbnb/javascript" target="_blank" rel="noopener">Airbnb</a>和<a href="https://github.com/standard/standard" target="_blank" rel="noopener">standard</a>规范为主。我们今天是抛开直接在extends里面引入业界ESLint扩展，来聊聊自己项目实践中定制的ESLint规则。</p>
-<a id="more"></a>
-
 <p>我们先来看看ESLint官方的<a href="https://eslint.org/docs/rules/" target="_blank" rel="noopener">Rules</a>， 它分为如下多个种类:</p>
 <ul>
-<li>Possible Errors</li>
-<li>Best Practices</li>
-<li>Strict Mode</li>
-<li>Variables</li>
-<li>Node.js and CommonJS</li>
-<li>Stylistic Issues</li>
-<li>ECMAScript 6</li>
-<li>Deprecated</li>
-<li>Removed</li>
-</ul>
+<li><p>Possible Errors</p>
+</li>
+<li><p>Best Practices</p>
+</li>
+<li><p>Strict Mode</p>
+</li>
+<li><p>Variables</p>
+</li>
+<li><p>Node.js and CommonJS</p>
+</li>
+<li><p>Stylistic Issues</p>
+</li>
+<li><p>ECMAScript 6</p>
+</li>
+<li><p>Deprecated</p>
+</li>
+<li><p>Removed</p>
+<a id="more"></a>
 <p>我们重点看看Stylistic Issues这个分类，这个分类的Rules是解决什么问题的呢？官方解释称这些规则是关于风格指南，而且是非常主观的。对于这样的描述，我们可能在定制规则的过程中一带而过，而其他最佳实践和一些避免潜在错误的规范，standard等规范又帮我们做了。别着急，我们看看这几个Rules。</p>
-<ul>
-<li>max-depth(强制可嵌套的块的最大深度)</li>
-<li>max-len(强制一行的最大长度)</li>
-<li>max-lines(强制最大行数)</li>
-<li>max-lines-per-function(强制函数最大代码行数)</li>
-<li>max-nested-callbacks(强制回调函数最大嵌套深度)</li>
-<li>max-params(强制函数定义中最多允许的参数数量)</li>
-<li>max-statements(强制函数块最多允许的的语句数量)</li>
-<li>max-statements-per-line(强制每一行中所允许的最大语句数量)</li>
+</li>
+<li><p>max-depth(强制可嵌套的块的最大深度)</p>
+</li>
+<li><p>max-len(强制一行的最大长度)</p>
+</li>
+<li><p>max-lines(强制最大行数)</p>
+</li>
+<li><p>max-lines-per-function(强制函数最大代码行数)</p>
+</li>
+<li><p>max-nested-callbacks(强制回调函数最大嵌套深度)</p>
+</li>
+<li><p>max-params(强制函数定义中最多允许的参数数量)</p>
+</li>
+<li><p>max-statements(强制函数块最多允许的的语句数量)</p>
+</li>
+<li><p>max-statements-per-line(强制每一行中所允许的最大语句数量)</p>
+</li>
 </ul>
 <p>这些主观性强的规则，却恰恰帮助我们为团队定制规范提供了很好的帮助。max-depth适当的嵌套数，可以避免写出难以阅读的复杂代码，max-len可以强迫开发过程中主动换行提高代码的可阅读性，max-lines相关的rules可以让开发对代码细粒度的把握有更看得见摸得着的依据，max-nested-callbacks这个可以在ESLint层面解决回调地狱的问题。</p>
 <p>为什么能发现这些比较特殊的规则呢？也是我们团队开发过程中，发现有不少同学会把一个方法或者一个函数写成几百行的情况。对于这个问题，明显不能通过code review这种后置笨重的方法去解决，所以我们找时间去阅读ESLint的官方规则，对症下药。</p>
