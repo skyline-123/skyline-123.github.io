@@ -9,6 +9,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
   <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="alternate" href="/atom.xml" title="Skyline 技术笔记" type="application/atom+xml">
 
 <link rel="stylesheet" href="/css/main.css">
 
@@ -152,7 +153,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives<span class="badge">14</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives<span class="badge">15</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
@@ -178,6 +179,105 @@
             
 
   <div class="posts-expand">
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/02/%E6%B5%85%E8%B0%88VueRouter%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/22638687?s=460&v=4">
+      <meta itemprop="name" content="Skyline">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Skyline 技术笔记">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/12/02/%E6%B5%85%E8%B0%88VueRouter%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/" class="post-title-link" itemprop="url">浅谈VueRouter实现原理</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-12-02 19:03:27" itemprop="dateCreated datePublished" datetime="2019-12-02T19:03:27+08:00">2019-12-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-01-19 10:59:43" itemprop="dateModified" datetime="2020-01-19T10:59:43+08:00">2020-01-19</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>7.8k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>7 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>有朋友反馈想看更“干”一点的知识分享，最近库存里面只有我之前在腾讯团队那边分享过的VueRouter原理，现把PPT整理一遍，具体讲解部分不赘述，仅供日后参考。</p>
+<h2 id="前端路由实现方式"><a href="#前端路由实现方式" class="headerlink" title="前端路由实现方式"></a>前端路由实现方式</h2><p>这部分内容算是一个基础回顾，如果已经非常熟悉了，可以跳过直接看源码分析部分。<br>前端路由实现方式主要有两种，如下：</p>
+<ul>
+<li>Hash模式</li>
+<li>History模式</li>
+</ul>
+<h3 id="Hash模式"><a href="#Hash模式" class="headerlink" title="Hash模式"></a>Hash模式</h3><p>Hash指url后面的#号和后面的所有字符。hash也称作锚点，它可以使对应的id节点显示在浏览器可视区域内。<br>要实现前端路由功能，主要有以下三点原因：</p>
+<ol>
+<li>hash变更，不会导致浏览器向服务端发送请求，当前页面也不会刷新</li>
+<li>hash变更，会触发hashchange事件</li>
+<li>hash变更，会在浏览器历史记录中添加记录，浏览器前进后退按键可以导航</li>
+</ol>
+<p>代码参考：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 改变hash值</span></span><br><span class="line"><span class="built_in">window</span>.location.hash = <span class="string">'home'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取hash值</span></span><br><span class="line"><span class="built_in">window</span>.location.hash <span class="comment">// '#home'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 监听hash变更</span></span><br><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">'hashchange'</span>, <span class="function"><span class="keyword">function</span> <span class="title">onHashChange</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'hash changed'</span>)</span><br><span class="line">&#125;, <span class="literal">false</span>)</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/12/02/%E6%B5%85%E8%B0%88VueRouter%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
         
   
   
@@ -377,94 +477,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/21/%E8%81%8A%E8%81%8AKindle%E7%9A%84%E4%BD%BF%E7%94%A8%E6%84%9F%E5%8F%97/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/22638687?s=460&v=4">
-      <meta itemprop="name" content="Skyline">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Skyline 技术笔记">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/11/21/%E8%81%8A%E8%81%8AKindle%E7%9A%84%E4%BD%BF%E7%94%A8%E6%84%9F%E5%8F%97/" class="post-title-link" itemprop="url">聊聊Kindle的使用感受</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-11-21 00:15:57" itemprop="dateCreated datePublished" datetime="2019-11-21T00:15:57+08:00">2019-11-21</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-01-19 11:00:18" itemprop="dateModified" datetime="2020-01-19T11:00:18+08:00">2020-01-19</time>
-              </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>920</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>前几个月，我买入了一台Kindle。买之前因为有比较强烈的阅读需求，所以也没有犹豫太长时间，入手了Kindle Oasis3。</p>
-<p>Kindle这个阅读器很神奇，让我在短短几个月阅读了十多本充电用的书籍，包括技术，投资相关。近一两周因为工作的原因，我暂时搁置Kindle没有继续看。直到今天重新拿起来看了些旧书温习，我对Kindle这种方式阅读书籍有了一些思考。</p>
-<p>纸质书有着最好的阅读体验，但是厚重这一点，就让许多人在繁忙的工作之余望而却步了。退而求其次，选择用手机去看，我个人也容易被其他App吸引，导致没有很好的办法长时间专注去看。当我选择了Kindle之后，觉得找到了另一种阅读的体验，那就是方便又专注。这种感觉让我在面对五颜六色的代码编辑器之余，多了一种感受黄金屋美好的体验。它的方便携带和舒适的阅读体验，让我即使在工作之余，也放下了对阅读大部头的心理压力，因为说实话我感觉当下面对的只是Kindle的一个小屏幕，又或者说这是一个小屏幕上的一页文字。这种轻松方便的感觉反而促进我认真学习，不知不觉看多了很多书。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/11/21/%E8%81%8A%E8%81%8AKindle%E7%9A%84%E4%BD%BF%E7%94%A8%E6%84%9F%E5%8F%97/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -515,7 +527,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-count">15</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -527,6 +539,11 @@
       </div>
   </nav>
 </div>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
         <a href="https://github.com/skyline-123" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;skyline-123" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
@@ -573,7 +590,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">34 mins.</span>
+    <span title="Reading time total">35 mins.</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0
   </div>
