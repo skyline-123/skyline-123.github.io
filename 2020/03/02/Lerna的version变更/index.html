@@ -50,21 +50,21 @@
   };
 </script>
 
-  <meta name="description" content="最近在工作中有做前端工程化的一些实践，现在我就把其中的思想和实践总结出来，供日后参考。 为什么需要规范化面对这个问题，可能有些同学脑子里浮现的是eslint的各种报错，可能是git commit前eslint检查不通过导致失败。 大家在开发过程中去解决这些问题，会不会觉得很恼火呢？我很恼火，至少当我在想明白这个问题之前，即，为什么需要规范化。 工作和生活中，很多事情都是trade off的结果，当">
+  <meta name="description" content="之前写了Lerna的使用感受文章，分享了Lerna的整体使用感受。而今天我处理了一个因为不熟悉Lerna导致的小问题，那我再来分享一下这个具体的使用案例。 起因我们都知道（不知道你也假装现在知道了），Lerna会自动维护各个package的package.json文件的version变更。这里看上去非常智能，但是如果你的需求是要在其他地方（非package.json）同步这个version变更要如">
 <meta property="og:type" content="article">
-<meta property="og:title" content="前端工程化实践系列--规范化">
-<meta property="og:url" content="http://yoursite.com/2019/11/08/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96%E5%AE%9E%E8%B7%B5%E7%B3%BB%E5%88%97--%E6%A0%87%E5%87%86%E5%8C%96%E5%88%B6%E5%AE%9A/index.html">
+<meta property="og:title" content="Lerna的version变更">
+<meta property="og:url" content="http://yoursite.com/2020/03/02/Lerna%E7%9A%84version%E5%8F%98%E6%9B%B4/index.html">
 <meta property="og:site_name" content="Skyline 技术笔记">
-<meta property="og:description" content="最近在工作中有做前端工程化的一些实践，现在我就把其中的思想和实践总结出来，供日后参考。 为什么需要规范化面对这个问题，可能有些同学脑子里浮现的是eslint的各种报错，可能是git commit前eslint检查不通过导致失败。 大家在开发过程中去解决这些问题，会不会觉得很恼火呢？我很恼火，至少当我在想明白这个问题之前，即，为什么需要规范化。 工作和生活中，很多事情都是trade off的结果，当">
+<meta property="og:description" content="之前写了Lerna的使用感受文章，分享了Lerna的整体使用感受。而今天我处理了一个因为不熟悉Lerna导致的小问题，那我再来分享一下这个具体的使用案例。 起因我们都知道（不知道你也假装现在知道了），Lerna会自动维护各个package的package.json文件的version变更。这里看上去非常智能，但是如果你的需求是要在其他地方（非package.json）同步这个version变更要如">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2019-11-08T05:25:34.000Z">
-<meta property="article:modified_time" content="2020-01-29T10:59:34.340Z">
+<meta property="article:published_time" content="2020-03-01T17:17:57.000Z">
+<meta property="article:modified_time" content="2020-03-01T17:35:57.831Z">
 <meta property="article:author" content="John">
 <meta property="article:tag" content="前端工程化">
-<meta property="article:tag" content="标准">
+<meta property="article:tag" content="Lerna">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/2019/11/08/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96%E5%AE%9E%E8%B7%B5%E7%B3%BB%E5%88%97--%E6%A0%87%E5%87%86%E5%8C%96%E5%88%B6%E5%AE%9A/">
+<link rel="canonical" href="http://yoursite.com/2020/03/02/Lerna%E7%9A%84version%E5%8F%98%E6%9B%B4/">
 
 
 <script id="page-configurations">
@@ -78,7 +78,7 @@
   };
 </script>
 
-  <title>前端工程化实践系列--规范化 | Skyline 技术笔记</title>
+  <title>Lerna的version变更 | Skyline 技术笔记</title>
   
 
 
@@ -174,7 +174,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/08/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96%E5%AE%9E%E8%B7%B5%E7%B3%BB%E5%88%97--%E6%A0%87%E5%87%86%E5%8C%96%E5%88%B6%E5%AE%9A/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/02/Lerna%E7%9A%84version%E5%8F%98%E6%9B%B4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://cdn.jsdelivr.net/gh/skyline-123/images/img/avatar.png">
@@ -187,7 +187,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          前端工程化实践系列--规范化
+          Lerna的version变更
         </h1>
 
         <div class="post-meta">
@@ -196,16 +196,10 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2019-11-08 13:25:34" itemprop="dateCreated datePublished" datetime="2019-11-08T13:25:34+08:00">2019-11-08</time>
+              <time title="创建时间：2020-03-02 01:17:57 / 修改时间：01:35:57" itemprop="dateCreated datePublished" datetime="2020-03-02T01:17:57+08:00">2020-03-02</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-29 18:59:34" itemprop="dateModified" datetime="2020-01-29T18:59:34+08:00">2020-01-29</time>
-              </span>
 
           <br>
             <span class="post-meta-item" title="本文字数">
@@ -213,7 +207,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>731</span>
+              <span>660</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -232,45 +226,12 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>最近在工作中有做前端工程化的一些实践，现在我就把其中的思想和实践总结出来，供日后参考。</p>
-<h2 id="为什么需要规范化"><a href="#为什么需要规范化" class="headerlink" title="为什么需要规范化"></a>为什么需要规范化</h2><p>面对这个问题，可能有些同学脑子里浮现的是eslint的各种报错，可能是git commit前eslint检查不通过导致失败。</p>
-<p>大家在开发过程中去解决这些问题，会不会觉得很恼火呢？我很恼火，至少当我在想明白这个问题之前，即，为什么需要规范化。</p>
-<p>工作和生活中，很多事情都是trade off的结果，当大家都忍受着麻烦努力做一件事情的时候，很大可能就是，不做这些，会更糟糕。</p>
-<p>简言之，个人觉得前端开发规范化的最重要原因就是<strong>提高团队整体开发效率</strong>。往细说，可以简单分三点。</p>
-<ul>
-<li>降低犯错的概率</li>
-<li>提高团队代码质量</li>
-<li>提高项目可维护性</li>
-</ul>
-<p>提高团队整体开发效率这一件事，值得我们去制定规范，落地规范，配套工具提高规范实践效率，并为之解决工具本身带来的新问题。因此我们不能只是看到规范化给开发带来的困扰，更要看到其本质作用。</p>
-<a id="more"></a>
-<h2 id="规范化涉及的方面"><a href="#规范化涉及的方面" class="headerlink" title="规范化涉及的方面"></a>规范化涉及的方面</h2><p>明确了规范化的意义，现在对我在工程中实践过的规范化内容和相应的工具做一个简单的总结。</p>
-<ul>
-<li>代码格式规范化<ul>
-<li>ESLint</li>
-<li>lint-staged</li>
-<li>husky</li>
-</ul>
-</li>
-<li>commit规范化<ul>
-<li>commitizen</li>
-<li>husky</li>
-<li>commitlint</li>
-<li>conventional-changelog-cli</li>
-</ul>
-</li>
-<li>git流程规范化<ul>
-<li>git-flow</li>
-</ul>
-</li>
-</ul>
-<p>如果对上面的实践展开讲，有很多实践的细节可以说。假设各位读者都有能力根据罗列出来的点去搭建一个开发流程更规范的前端脚手架，那我们应该在搭建脚手架之外做什么思考呢？</p>
-<ol>
-<li>执行</li>
-<li>执行</li>
-<li>执行</li>
-</ol>
-<p>规则都是人定出来的，破坏规则的也可以是人。如果团队成员内心不认可规范化的价值，那么工具或者文档写的再好，都不能起到正面的作用。所以规范制定的过程中，尽可能参考业界规范，并在团队内部达（打）成共识。</p>
+        <p>之前写了Lerna的使用感受文章，分享了Lerna的整体使用感受。而今天我处理了一个因为不熟悉Lerna导致的小问题，那我再来分享一下这个具体的使用案例。</p>
+<h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><p>我们都知道（不知道你也假装现在知道了），Lerna会自动维护各个package的package.json文件的version变更。这里看上去非常智能，但是如果你的需求是要在其他地方（非package.json）同步这个version变更要如何处理呢？刚好工作中也遇到了这个问题，我们的模版文件的使用了ejs, 而package.json.ejs文件中的依赖版本号，是需要同步Lerna发布之后的版本号的。</p>
+<h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><p>我们手动修改package.json.ejs依赖的版本号很长一段时间，但是这个动作明显不合理，所有能够交给代码去处理的事情不能手工完成。这个不仅仅是效率问题，更涉及到可靠性和稳定性。</p>
+<p>不过事情的推进往往是出现问题之后，直到一次我们忘记手动更改这个依赖版本号之后，我就着手去处理这个问题。</p>
+<p>这个归功于我之前有阅读过npm的部分源码，对preversion和version等npm自己的生命周期钩子有模糊的印象。我顺藤摸瓜，找到lerna version的文档，在最下面果然找到了lifecycle相关文档。lerna根目录的version script可以在lerna更改了packages文件之后执行。那思路就有了，只要我们写一个version.js的脚本，去替换package.json.ejs的版本号就行了。</p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>再简单的事情，都要重视，能自动化的都要交给机器。</p>
 
     </div>
 
@@ -281,21 +242,21 @@
       <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96/" rel="tag"># 前端工程化</a>
-              <a href="/tags/%E6%A0%87%E5%87%86/" rel="tag"># 标准</a>
+              <a href="/tags/Lerna/" rel="tag"># Lerna</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
+                <a href="/2020/01/21/%E5%A2%9E%E5%8A%A0RSS%E8%AE%A2%E9%98%85%E5%8A%9F%E8%83%BD/" rel="next" title="增加RSS订阅功能">
+                  <i class="fa fa-chevron-left"></i> 增加RSS订阅功能
+                </a>
             </div>
 
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-                <a href="/2019/11/20/%E5%A4%9A%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8Lerna%E5%AE%9E%E8%B7%B5%E6%80%BB%E7%BB%93/" rel="prev" title="多包管理器Lerna实践总结">
-                  多包管理器Lerna实践总结 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
       </footer>
@@ -334,7 +295,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么需要规范化"><span class="nav-number">1.</span> <span class="nav-text">为什么需要规范化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#规范化涉及的方面"><span class="nav-number">2.</span> <span class="nav-text">规范化涉及的方面</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#起因"><span class="nav-number">1.</span> <span class="nav-text">起因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决"><span class="nav-number">2.</span> <span class="nav-text">解决</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结语"><span class="nav-number">3.</span> <span class="nav-text">结语</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-01-29T10:59:34.341Z</updated>
+  <updated>2020-03-01T17:35:57.831Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Lerna的version变更</title>
+    <link href="http://yoursite.com/2020/03/02/Lerna%E7%9A%84version%E5%8F%98%E6%9B%B4/"/>
+    <id>http://yoursite.com/2020/03/02/Lerna%E7%9A%84version%E5%8F%98%E6%9B%B4/</id>
+    <published>2020-03-01T17:17:57.000Z</published>
+    <updated>2020-03-01T17:35:57.831Z</updated>
+    
+    <content type="html"><![CDATA[<p>之前写了Lerna的使用感受文章，分享了Lerna的整体使用感受。而今天我处理了一个因为不熟悉Lerna导致的小问题，那我再来分享一下这个具体的使用案例。</p><h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><p>我们都知道（不知道你也假装现在知道了），Lerna会自动维护各个package的package.json文件的version变更。这里看上去非常智能，但是如果你的需求是要在其他地方（非package.json）同步这个version变更要如何处理呢？刚好工作中也遇到了这个问题，我们的模版文件的使用了ejs, 而package.json.ejs文件中的依赖版本号，是需要同步Lerna发布之后的版本号的。</p><h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><p>我们手动修改package.json.ejs依赖的版本号很长一段时间，但是这个动作明显不合理，所有能够交给代码去处理的事情不能手工完成。这个不仅仅是效率问题，更涉及到可靠性和稳定性。</p><p>不过事情的推进往往是出现问题之后，直到一次我们忘记手动更改这个依赖版本号之后，我就着手去处理这个问题。</p><p>这个归功于我之前有阅读过npm的部分源码，对preversion和version等npm自己的生命周期钩子有模糊的印象。我顺藤摸瓜，找到lerna version的文档，在最下面果然找到了lifecycle相关文档。lerna根目录的version script可以在lerna更改了packages文件之后执行。那思路就有了，只要我们写一个version.js的脚本，去替换package.json.ejs的版本号就行了。</p><h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>再简单的事情，都要重视，能自动化的都要交给机器。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;之前写了Lerna的使用感受文章，分享了Lerna的整体使用感受。而今天我处理了一个因为不熟悉Lerna导致的小问题，那我再来分享一下这个具体的使用案例。&lt;/p&gt;
+&lt;h2 id=&quot;起因&quot;&gt;&lt;a href=&quot;#起因&quot; class=&quot;headerlink&quot; title=&quot;起因&quot;
+      
+    
+    </summary>
+    
+    
+    
+      <category term="前端工程化" scheme="http://yoursite.com/tags/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96/"/>
+    
+      <category term="Lerna" scheme="http://yoursite.com/tags/Lerna/"/>
+    
+  </entry>
   
   <entry>
     <title>增加RSS订阅功能</title>
