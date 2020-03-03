@@ -50,22 +50,20 @@
   };
 </script>
 
-  <meta name="description" content="写过前端项目的同学，对ESLint都应该非常熟悉。业界常用的ESLint规范，一般是以Airbnb和standard规范为主。我们今天是抛开直接在extends里面引入业界ESLint扩展，来聊聊自己项目实践中定制的ESLint规则。 我们先来看看ESLint官方的Rules， 它分为如下多个种类:  Possible Errors  Best Practices  Strict Mode  Va">
+  <meta name="description" content="为了增加评论区我花了一点时间找了hexo next主题支持的插件，但是现在我放弃之前花费的时间，选择关闭评论区。 可能阅读我博客的你还没发现这个功能已经下线了，那我下线评论区的作用也就达到了。我在乎的不是这个博客看起来要有血有肉像是一个博客，要有评论，要有访问量统计，要挂上buy me a coffee之类的二维码。当然，我也不是说这些功能不好，也不是想显得自己多么特立独行。我只是觉得时间宝贵，我">
 <meta property="og:type" content="article">
-<meta property="og:title" content="前端工程化实践系列--ESLint定制规则">
-<meta property="og:url" content="http://yoursite.com/2019/11/26/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96%E5%AE%9E%E8%B7%B5%E7%B3%BB%E5%88%97-ESLint%E5%AE%9A%E5%88%B6%E8%A7%84%E5%88%99/index.html">
+<meta property="og:title" content="关于去掉博客评论区">
+<meta property="og:url" content="http://yoursite.com/2020/03/03/%E5%85%B3%E4%BA%8E%E5%8E%BB%E6%8E%89%E5%8D%9A%E5%AE%A2%E8%AF%84%E8%AE%BA%E5%8C%BA/index.html">
 <meta property="og:site_name" content="Skyline 技术笔记">
-<meta property="og:description" content="写过前端项目的同学，对ESLint都应该非常熟悉。业界常用的ESLint规范，一般是以Airbnb和standard规范为主。我们今天是抛开直接在extends里面引入业界ESLint扩展，来聊聊自己项目实践中定制的ESLint规则。 我们先来看看ESLint官方的Rules， 它分为如下多个种类:  Possible Errors  Best Practices  Strict Mode  Va">
+<meta property="og:description" content="为了增加评论区我花了一点时间找了hexo next主题支持的插件，但是现在我放弃之前花费的时间，选择关闭评论区。 可能阅读我博客的你还没发现这个功能已经下线了，那我下线评论区的作用也就达到了。我在乎的不是这个博客看起来要有血有肉像是一个博客，要有评论，要有访问量统计，要挂上buy me a coffee之类的二维码。当然，我也不是说这些功能不好，也不是想显得自己多么特立独行。我只是觉得时间宝贵，我">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2019-11-26T06:33:08.000Z">
-<meta property="article:modified_time" content="2020-01-29T10:59:34.340Z">
+<meta property="article:published_time" content="2020-03-03T12:10:55.000Z">
+<meta property="article:modified_time" content="2020-03-03T12:17:20.048Z">
 <meta property="article:author" content="Skyline">
-<meta property="article:tag" content="前端工程化">
-<meta property="article:tag" content="标准">
-<meta property="article:tag" content="ESLint">
+<meta property="article:tag" content="技术杂谈">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/2019/11/26/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96%E5%AE%9E%E8%B7%B5%E7%B3%BB%E5%88%97-ESLint%E5%AE%9A%E5%88%B6%E8%A7%84%E5%88%99/">
+<link rel="canonical" href="http://yoursite.com/2020/03/03/%E5%85%B3%E4%BA%8E%E5%8E%BB%E6%8E%89%E5%8D%9A%E5%AE%A2%E8%AF%84%E8%AE%BA%E5%8C%BA/">
 
 
 <script id="page-configurations">
@@ -79,7 +77,7 @@
   };
 </script>
 
-  <title>前端工程化实践系列--ESLint定制规则 | Skyline 技术笔记</title>
+  <title>关于去掉博客评论区 | Skyline 技术笔记</title>
   
 
 
@@ -175,7 +173,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/26/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96%E5%AE%9E%E8%B7%B5%E7%B3%BB%E5%88%97-ESLint%E5%AE%9A%E5%88%B6%E8%A7%84%E5%88%99/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/03/%E5%85%B3%E4%BA%8E%E5%8E%BB%E6%8E%89%E5%8D%9A%E5%AE%A2%E8%AF%84%E8%AE%BA%E5%8C%BA/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://cdn.jsdelivr.net/gh/skyline-123/images/img/avatar.png">
@@ -188,7 +186,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          前端工程化实践系列--ESLint定制规则
+          关于去掉博客评论区
         </h1>
 
         <div class="post-meta">
@@ -197,16 +195,10 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2019-11-26 14:33:08" itemprop="dateCreated datePublished" datetime="2019-11-26T14:33:08+08:00">2019-11-26</time>
+              <time title="创建时间：2020-03-03 20:10:55 / 修改时间：20:17:20" itemprop="dateCreated datePublished" datetime="2020-03-03T20:10:55+08:00">2020-03-03</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-29 18:59:34" itemprop="dateModified" datetime="2020-01-29T18:59:34+08:00">2020-01-29</time>
-              </span>
 
           <br>
             <span class="post-meta-item" title="本文字数">
@@ -214,7 +206,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.1k</span>
+              <span>254</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -233,50 +225,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>写过前端项目的同学，对ESLint都应该非常熟悉。业界常用的ESLint规范，一般是以<a href="https://github.com/airbnb/javascript" target="_blank" rel="noopener">Airbnb</a>和<a href="https://github.com/standard/standard" target="_blank" rel="noopener">standard</a>规范为主。我们今天是抛开直接在extends里面引入业界ESLint扩展，来聊聊自己项目实践中定制的ESLint规则。</p>
-<p>我们先来看看ESLint官方的<a href="https://eslint.org/docs/rules/" target="_blank" rel="noopener">Rules</a>， 它分为如下多个种类:</p>
-<ul>
-<li><p>Possible Errors</p>
-</li>
-<li><p>Best Practices</p>
-</li>
-<li><p>Strict Mode</p>
-</li>
-<li><p>Variables</p>
-</li>
-<li><p>Node.js and CommonJS</p>
-</li>
-<li><p>Stylistic Issues</p>
-</li>
-<li><p>ECMAScript 6</p>
-</li>
-<li><p>Deprecated</p>
-</li>
-<li><p>Removed</p>
-<a id="more"></a>
-<p>我们重点看看Stylistic Issues这个分类，这个分类的Rules是解决什么问题的呢？官方解释称这些规则是关于风格指南，而且是非常主观的。对于这样的描述，我们可能在定制规则的过程中一带而过，而其他最佳实践和一些避免潜在错误的规范，standard等规范又帮我们做了。别着急，我们看看这几个Rules。</p>
-</li>
-<li><p>max-depth(强制可嵌套的块的最大深度)</p>
-</li>
-<li><p>max-len(强制一行的最大长度)</p>
-</li>
-<li><p>max-lines(强制最大行数)</p>
-</li>
-<li><p>max-lines-per-function(强制函数最大代码行数)</p>
-</li>
-<li><p>max-nested-callbacks(强制回调函数最大嵌套深度)</p>
-</li>
-<li><p>max-params(强制函数定义中最多允许的参数数量)</p>
-</li>
-<li><p>max-statements(强制函数块最多允许的的语句数量)</p>
-</li>
-<li><p>max-statements-per-line(强制每一行中所允许的最大语句数量)</p>
-</li>
-</ul>
-<p>这些主观性强的规则，却恰恰帮助我们为团队定制规范提供了很好的帮助。max-depth适当的嵌套数，可以避免写出难以阅读的复杂代码，max-len可以强迫开发过程中主动换行提高代码的可阅读性，max-lines相关的rules可以让开发对代码细粒度的把握有更看得见摸得着的依据，max-nested-callbacks这个可以在ESLint层面解决回调地狱的问题。</p>
-<p>为什么能发现这些比较特殊的规则呢？也是我们团队开发过程中，发现有不少同学会把一个方法或者一个函数写成几百行的情况。对于这个问题，明显不能通过code review这种后置笨重的方法去解决，所以我们找时间去阅读ESLint的官方规则，对症下药。</p>
-<p>刚刚开始前端开发的时候，我对标准这种东西的认识还是比较肤浅。曾以为业界的规范就是拿来就用即可，但是实际开发过程中，很可能和不同层次的开发合作，面对复杂的开发人员现状，势必要有更高级别的约束和提示。业内的公用标准，对于团队来说，更重要的是借鉴，并根据实际情况做灵活的调整。</p>
-<p>希望这种“个性化定制”，能给做团队标准化制定工作的朋友和未来的自己一些启发。</p>
+        <p>为了增加评论区我花了一点时间找了hexo next主题支持的插件，但是现在我放弃之前花费的时间，选择关闭评论区。</p>
+<p>可能阅读我博客的你还没发现这个功能已经下线了，那我下线评论区的作用也就达到了。我在乎的不是这个博客看起来要有血有肉像是一个博客，要有评论，要有访问量统计，要挂上buy me a coffee之类的二维码。当然，我也不是说这些功能不好，也不是想显得自己多么特立独行。我只是觉得时间宝贵，我更在乎的是我在记录，我在思考，我在前进。</p>
+<p>真心想讨论问题，我相信也不会因为关闭评论而结束。再次谢谢老友们之前的评论支持～</p>
 
     </div>
 
@@ -286,26 +237,21 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96/" rel="tag"># 前端工程化</a>
-              <a href="/tags/%E6%A0%87%E5%87%86/" rel="tag"># 标准</a>
-              <a href="/tags/ESLint/" rel="tag"># ESLint</a>
+              <a href="/tags/%E6%8A%80%E6%9C%AF%E6%9D%82%E8%B0%88/" rel="tag"># 技术杂谈</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
-                <a href="/2019/11/21/%E8%81%8A%E8%81%8AKindle%E7%9A%84%E4%BD%BF%E7%94%A8%E6%84%9F%E5%8F%97/" rel="next" title="聊聊Kindle的使用感受">
-                  <i class="fa fa-chevron-left"></i> 聊聊Kindle的使用感受
+                <a href="/2020/03/02/Lerna%E7%9A%84version%E5%8F%98%E6%9B%B4/" rel="next" title="Lerna的version变更">
+                  <i class="fa fa-chevron-left"></i> Lerna的version变更
                 </a>
             </div>
 
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-                <a href="/2019/11/30/git-flow%E5%B7%A5%E5%85%B7%E8%BE%85%E5%8A%A9%E4%BB%8B%E7%BB%8D/" rel="prev" title="git-flow工具辅助介绍">
-                  git-flow工具辅助介绍 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
       </footer>
