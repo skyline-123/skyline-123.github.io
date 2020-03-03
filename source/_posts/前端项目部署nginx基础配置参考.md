@@ -30,7 +30,7 @@ http {
     listen 80;
     server_name localhost;
     location / {
-      root /data/www/demo/dist/;
+      root /data/www/demo/dist;
       index index.html;
     }
   }
@@ -45,7 +45,7 @@ http {
     listen 80;
     server_name localhost;
     location ^~ /demo {
-      alias /data/www/demo/dist/;
+      alias /data/www/demo/dist;
       index index.html;
     }
   }
@@ -66,7 +66,7 @@ http {
     listen 80;
     server_name localhost;
     location / {
-      root  /data/www/demo/dist/;
+      root  /data/www/demo/dist;
       index index.html;
       try_files $uri $uri/ /index.html;
     }
@@ -82,7 +82,7 @@ http {
     listen 80;
     server_name localhost;
     location ^~ /demo {
-      alias /data/www/demo/dist/;
+      alias /data/www/demo/dist;
       index index.html;
       try_files $uri $uri/ /demo/index.html;
     }
