@@ -143,7 +143,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">17</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">18</span></a>
 
   </li>
   </ul>
@@ -164,6 +164,100 @@
             
 
   <div class="posts-expand">
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/13/gulp%E7%B3%BB%E5%88%97%E4%B9%8Bundertaker%E6%BA%90%E7%A0%81%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cdn.jsdelivr.net/gh/skyline-123/images/img/avatar.png">
+      <meta itemprop="name" content="Skyline">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Skyline 技术笔记">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/13/gulp%E7%B3%BB%E5%88%97%E4%B9%8Bundertaker%E6%BA%90%E7%A0%81%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">gulp系列之undertaker源码笔记</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-01-13 20:32:19" itemprop="dateCreated datePublished" datetime="2020-01-13T20:32:19+08:00">2020-01-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-01-29 18:59:34" itemprop="dateModified" datetime="2020-01-29T18:59:34+08:00">2020-01-29</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>11k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>10 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>undertaker部分的代码，是gulp任务管理部分的核心源码。在讲解gulp本身仓库源码之前，我着重讲讲undertaker。这个库自然也涉及到一些依赖，没关系，这次我们关注undertaker流程本身。</p>
+<p>请泡好🍵或者☕️慢慢看，这篇文章篇幅较长。算是回应某些朋友对我的博客期待吧，他们觉得我一开始写的文章太水了。</p>
+<h2 id="undertaker简介"><a href="#undertaker简介" class="headerlink" title="undertaker简介"></a>undertaker简介</h2><p>undertaker是gulp团队开发出来为解决gulp的任务执行问题的库。</p>
+<blockquote>
+<p>Task registry that allows composition through series/parallel methods.</p>
+</blockquote>
+<p>undertaker提供series和parallel两种方法解决任务流程管理。series是串行执行任务，parallel方法是并行执行任务。串行执行应该比较简单理解，就是按顺序执行，只有前面的任务完成，后面的任务才能执行。那么并行呢？很可能是通过for循环执行所有异步任务，这样就能实现并行，这个类似Promise.all方法。</p>
+<p>我非常赞叹undertaker的设计，可能是我对代码流程管理本身没有很好的思路，看了之后豁然开朗。想想javascript，异步代码从callback，写到promise，写到generator，写到async/await。异步代码的书写随着时间的推移变得越来越友好，但是比如Promise的实现思想，更加值得我们学习和思考。回到undertaker，这个任务管理的框架，其实就是非常友好地解决了处理串行或者并行任务的代码组织问题。通过undertaker书写的代码可读性和可维护性都很强。</p>
+<p>之前写到复杂业务流程的时候，串行或者并行的时候，直接用Promise，总感觉有所欠缺，现在看了undertaker，有一种亲切的感觉，那就是这种实现就是我写流程管理需要的非常好的实践模板。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/01/13/gulp%E7%B3%BB%E5%88%97%E4%B9%8Bundertaker%E6%BA%90%E7%A0%81%E7%AC%94%E8%AE%B0/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
         
   
   
@@ -533,91 +627,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/13/%E7%81%B0%E8%89%B2%E7%9A%84b%E7%AB%99%E9%A6%96%E9%A1%B5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://cdn.jsdelivr.net/gh/skyline-123/images/img/avatar.png">
-      <meta itemprop="name" content="Skyline">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Skyline 技术笔记">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/12/13/%E7%81%B0%E8%89%B2%E7%9A%84b%E7%AB%99%E9%A6%96%E9%A1%B5/" class="post-title-link" itemprop="url">灰色的b站首页</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-12-13 22:58:15" itemprop="dateCreated datePublished" datetime="2019-12-13T22:58:15+08:00">2019-12-13</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-29 18:59:34" itemprop="dateModified" datetime="2020-01-29T18:59:34+08:00">2020-01-29</time>
-              </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>164</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <img src="/2019/12/13/%E7%81%B0%E8%89%B2%E7%9A%84b%E7%AB%99%E9%A6%96%E9%A1%B5/black-bilibili-index.jpg" class="" title="灰色的b站首页">
-
-<p>今天是12.13日国家公祭日，纪念南京大屠杀30000同胞。看到灰色的b站首页我还愣了一下，随后马上反应过来。</p>
-<p>职业习惯，我查看了下b站灰色蒙层实现原理。</p>
-<img src="/2019/12/13/%E7%81%B0%E8%89%B2%E7%9A%84b%E7%AB%99%E9%A6%96%E9%A1%B5/black-bilibili-code.jpg" class="" title="实现原理">
-
-<p>很简单，<code>filter: grayscale(100%)</code>，这行代码就实现了首页灰色滤镜。但是这一行代码就能让访问b站的网友记起历史。或许，这个就是前端技术的温度吧，给这个行业点赞。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -668,7 +677,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-count">18</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -720,7 +729,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">39k</span>
+    <span title="站点总字数">40k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-03-03T12:17:20.048Z</updated>
+  <updated>2020-03-05T11:14:32.075Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>完全符合需求的轮子</title>
+    <link href="http://yoursite.com/2020/03/05/%E4%B8%8D%E8%A6%81%E5%BF%99%E7%A2%8C%E4%BA%8E%E6%89%BE%E5%88%B0%E5%AE%8C%E5%85%A8%E5%90%88%E9%80%82%E7%9A%84%E8%BD%AE%E5%AD%90/"/>
+    <id>http://yoursite.com/2020/03/05/%E4%B8%8D%E8%A6%81%E5%BF%99%E7%A2%8C%E4%BA%8E%E6%89%BE%E5%88%B0%E5%AE%8C%E5%85%A8%E5%90%88%E9%80%82%E7%9A%84%E8%BD%AE%E5%AD%90/</id>
+    <published>2020-03-05T09:30:45.000Z</published>
+    <updated>2020-03-05T11:14:32.075Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>找不到完全合适的轮子要怎么办？如果发现一个开源依赖非常靠近你的需求，但是仅仅有一些地方不满足，无法使用，你会怎么选择？先说结论，我们可以大胆fork一份代码，然后根据自己的需求改造之后发布一个增强包给自己使用。</p><h2 id="理由"><a href="#理由" class="headerlink" title="理由"></a>理由</h2><ul><li>工作中难免遇到轮子差一点就能满足需求的情况</li><li>完全重新造轮子成本过高</li><li>修改原来的轮子的成本只是阅读源码和新功能测试</li><li>通过在社区提建议的方式难以快速响应业务需求</li></ul><h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><p>之前我做一个cli工具优化的时候，需要使用yeoman的update-notifier包的功能进行依赖升级终端提醒，但是这个包有个缺点，就是只支持默认使用npm官方的registry。但是我的生产环境用到的registry又恰恰是基于cnpm搭建的私有registry。</p><p>很自然，摆在我面前有两个方案</p><ol><li>参考update-notifier思路自己写一个新轮子</li><li>给update-notifier加一个option，支持registry传参</li></ol><p>碰巧我当时发现团队内也有同学遇到这个需求，他是直接手写方法实现了这个需求。只是我知道有update-notifier这个包，基于这个情况一看便知道，肯定是第二个方案成本最低。那为什么会有第一个方案的出现呢？有时候难免在社区轮子不满足需求的情况下，会放弃搜索而选择自己实现，有时候这是一个不错的选择，因为很有可能你的需求是多个依赖东拼西凑才能解决的。而我眼前的需求很清晰，只是增加一个registry参数的问题，那就要果断去用第二个方案解决问题。</p><p>定下方案之后，我付出的时间也很少。只是聚焦于update-notifier的retistry参数如何传递，而不用关心它核心原理（比较版本号并做出升级提示的主流程）。现在看来也是在工作中性价比很高的操作。</p><p>我已经将改动的代码上传到<a href="https://github.com/skyline-123/update-notifier/blob/master/index.js" target="_blank" rel="noopener">github</a>, 其实只要你想，总是可以让工作变得相对而言更轻松。</p><h2 id="归纳"><a href="#归纳" class="headerlink" title="归纳"></a>归纳</h2><p>遇到需求的时候，除了一把梭自己全部实现之外，我按解决问题的顺序排序了如下方案：</p><ol><li>找到合适的轮子，用它</li><li>找到部分合适的轮子，改它</li><li>找不到一个轮子能满足需求，造它</li></ol><p>我这篇文章的核心其实就是第二点，找到部分合适的轮子，改它。也就是上传一个增强包到自己的npm服务端的事情，开心去改造吧，没必要浪费时间去找所谓完美合适的轮子。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;思路&quot;&gt;&lt;a href=&quot;#思路&quot; class=&quot;headerlink&quot; title=&quot;思路&quot;&gt;&lt;/a&gt;思路&lt;/h2&gt;&lt;p&gt;找不到完全合适的轮子要怎么办？如果发现一个开源依赖非常靠近你的需求，但是仅仅有一些地方不满足，无法使用，你会怎么选择？先说结论，我们可以大胆
+      
+    
+    </summary>
+    
+    
+    
+      <category term="技术杂谈" scheme="http://yoursite.com/tags/%E6%8A%80%E6%9C%AF%E6%9D%82%E8%B0%88/"/>
+    
+  </entry>
   
   <entry>
     <title>关于去掉博客评论区</title>
