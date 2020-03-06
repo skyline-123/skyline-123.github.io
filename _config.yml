@@ -99,7 +99,7 @@ theme_config:
   menu_settings:
     icons: true
     badges: true
-  rss: false
+  rss: /atom.xml
   sidebar:
     position: right
   avatar:
