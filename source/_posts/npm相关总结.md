@@ -54,7 +54,7 @@ version往往也是工作中经常出现问题的地方。解决报错一定要�
 - 使用verdaccio
 
 ### npm缓存
-注意npm v5以后不需要通过npm cache clean --force解决缓存导致的问题。npm的缓存基于pacote实现，https://www.npmjs.com/package/pacote，具体内容我还没看。总之官网的指引就是排查问题不要再把焦点放在npm缓存上。缓存路径可以通过`npm config get cache`获取。
+注意npm v5以后不需要通过npm cache clean --force解决缓存导致的问题。npm的缓存基于[pacote](https://www.npmjs.com/package/pacote )实现，具体内容我还没看。总之官网的指引就是排查问题不要再把焦点放在npm缓存上。缓存路径可以通过`npm config get cache`获取。
 
 ### publish
 如果你到2020年还没有发布过npm包，尝试发一个。稍微要留意的是，如果发包到私有库，包名需要加上你公司的命名空间@scope。
