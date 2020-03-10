@@ -51,20 +51,20 @@
   };
 </script>
 
-  <meta name="description" content="前几个月，我买入了一台Kindle。买之前因为有比较强烈的阅读需求，所以也没有犹豫太长时间，入手了Kindle Oasis3。 Kindle这个阅读器很神奇，让我在短短几个月阅读了十多本充电用的书籍，包括技术，投资相关。近一两周因为工作的原因，我暂时搁置Kindle没有继续看。直到今天重新拿起来看了些旧书温习，我对Kindle这种方式阅读书籍有了一些思考。 纸质书有着最好的阅读体验，但是厚重这一点">
+  <meta name="description" content="正常来讲，npm是所有前端工程师或者JS工程师都默认熟悉的包管理工具。随着长时间工作的积累，知识逐渐积累，我简单梳理总结一下重点。 准备希望舒适使用npm或者node，下面两个全局依赖应该是默认都要安装：  nrm 用于切换registry nvm node版本管理  梳理package.json对于package.json，或许有一些同学会有盲点。  peerDependencies 提示宿主环">
 <meta property="og:type" content="article">
-<meta property="og:title" content="聊聊Kindle的使用感受">
-<meta property="og:url" content="http://yoursite.com/2019/11/21/%E8%81%8A%E8%81%8AKindle%E7%9A%84%E4%BD%BF%E7%94%A8%E6%84%9F%E5%8F%97/index.html">
+<meta property="og:title" content="npm知识总结">
+<meta property="og:url" content="http://yoursite.com/2020/03/10/npm%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/index.html">
 <meta property="og:site_name" content="Skyline 技术笔记">
-<meta property="og:description" content="前几个月，我买入了一台Kindle。买之前因为有比较强烈的阅读需求，所以也没有犹豫太长时间，入手了Kindle Oasis3。 Kindle这个阅读器很神奇，让我在短短几个月阅读了十多本充电用的书籍，包括技术，投资相关。近一两周因为工作的原因，我暂时搁置Kindle没有继续看。直到今天重新拿起来看了些旧书温习，我对Kindle这种方式阅读书籍有了一些思考。 纸质书有着最好的阅读体验，但是厚重这一点">
+<meta property="og:description" content="正常来讲，npm是所有前端工程师或者JS工程师都默认熟悉的包管理工具。随着长时间工作的积累，知识逐渐积累，我简单梳理总结一下重点。 准备希望舒适使用npm或者node，下面两个全局依赖应该是默认都要安装：  nrm 用于切换registry nvm node版本管理  梳理package.json对于package.json，或许有一些同学会有盲点。  peerDependencies 提示宿主环">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2019-11-20T16:15:57.000Z">
-<meta property="article:modified_time" content="2020-01-29T10:59:34.353Z">
+<meta property="article:published_time" content="2020-03-10T06:52:04.000Z">
+<meta property="article:modified_time" content="2020-03-10T08:37:07.401Z">
 <meta property="article:author" content="Skyline">
-<meta property="article:tag" content="技术杂谈">
+<meta property="article:tag" content="npm">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/2019/11/21/%E8%81%8A%E8%81%8AKindle%E7%9A%84%E4%BD%BF%E7%94%A8%E6%84%9F%E5%8F%97/">
+<link rel="canonical" href="http://yoursite.com/2020/03/10/npm%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/">
 
 
 <script id="page-configurations">
@@ -78,7 +78,7 @@
   };
 </script>
 
-  <title>聊聊Kindle的使用感受 | Skyline 技术笔记</title>
+  <title>npm知识总结 | Skyline 技术笔记</title>
   
 
 
@@ -173,7 +173,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/21/%E8%81%8A%E8%81%8AKindle%E7%9A%84%E4%BD%BF%E7%94%A8%E6%84%9F%E5%8F%97/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/10/npm%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://cdn.jsdelivr.net/gh/skyline-123/images/img/avatar.png">
@@ -186,7 +186,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          聊聊Kindle的使用感受
+          npm知识总结
         </h1>
 
         <div class="post-meta">
@@ -195,16 +195,10 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2019-11-21 00:15:57" itemprop="dateCreated datePublished" datetime="2019-11-21T00:15:57+08:00">2019-11-21</time>
+              <time title="创建时间：2020-03-10 14:52:04 / 修改时间：16:37:07" itemprop="dateCreated datePublished" datetime="2020-03-10T14:52:04+08:00">2020-03-10</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-29 18:59:34" itemprop="dateModified" datetime="2020-01-29T18:59:34+08:00">2020-01-29</time>
-              </span>
 
           <br>
             <span class="post-meta-item" title="本文字数">
@@ -212,7 +206,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>920</span>
+              <span>1.5k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -231,13 +225,68 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>前几个月，我买入了一台Kindle。买之前因为有比较强烈的阅读需求，所以也没有犹豫太长时间，入手了Kindle Oasis3。</p>
-<p>Kindle这个阅读器很神奇，让我在短短几个月阅读了十多本充电用的书籍，包括技术，投资相关。近一两周因为工作的原因，我暂时搁置Kindle没有继续看。直到今天重新拿起来看了些旧书温习，我对Kindle这种方式阅读书籍有了一些思考。</p>
-<p>纸质书有着最好的阅读体验，但是厚重这一点，就让许多人在繁忙的工作之余望而却步了。退而求其次，选择用手机去看，我个人也容易被其他App吸引，导致没有很好的办法长时间专注去看。当我选择了Kindle之后，觉得找到了另一种阅读的体验，那就是方便又专注。这种感觉让我在面对五颜六色的代码编辑器之余，多了一种感受黄金屋美好的体验。它的方便携带和舒适的阅读体验，让我即使在工作之余，也放下了对阅读大部头的心理压力，因为说实话我感觉当下面对的只是Kindle的一个小屏幕，又或者说这是一个小屏幕上的一页文字。这种轻松方便的感觉反而促进我认真学习，不知不觉看多了很多书。</p>
-<a id="more"></a>
-<p>当我们准备学习一个技能或者看完一本书的时候，如果抱着过高的期望或者过高的要求去做，可能效果会打折扣。以前为了面试或者应付一些考试，我会在短时间内看大量的书，那种为了看完而看完的过程真的太煎熬了，而且效果并没有那么理想。但是令我惊讶的一点是，当我专注去使用Kindle之后，却不知不觉消化了非常多的知识。轻松的心态反而促进了学习的动力。</p>
-<p>工作生活中，太多定性定时的任务压着我们喘不过气来。而提效的关键又偏偏是要轻松面对，专注当下而不是专注于感受压力。就像专注Kindle上面的一页文字一样简单，压力也是可以化解为专注当下的每一项小事。大脑总是在思考着一共有多少事没做，和手里捧着一本厚厚的技术书籍一样，会感受到非常大的焦虑与压力。</p>
-<p>从Kindle阅读这件小事，我思考着工作中也要借鉴这种专注和轻松的心态。举个工作中的例子，面对大量的工作，很显然就是要依赖todolist这些工具，用gtd（get things done)理念，把事情和压力分解。不过话说回来，本质上还是要自己好学，毕竟Kindle之类都是工具，真正要吸收养分，内因不可忽略。</p>
+        <p>正常来讲，npm是所有前端工程师或者JS工程师都默认熟悉的包管理工具。随着长时间工作的积累，知识逐渐积累，我简单梳理总结一下重点。</p>
+<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><p>希望舒适使用npm或者node，下面两个全局依赖应该是默认都要安装：</p>
+<ul>
+<li>nrm 用于切换registry</li>
+<li>nvm node版本管理</li>
+</ul>
+<h2 id="梳理"><a href="#梳理" class="headerlink" title="梳理"></a>梳理</h2><h3 id="package-json"><a href="#package-json" class="headerlink" title="package.json"></a>package.json</h3><p>对于package.json，或许有一些同学会有盲点。</p>
+<ul>
+<li>peerDependencies 提示宿主环境去安装满足插件peerDependencies所指定依赖的包</li>
+<li>scripts 重点关注和version相关的生命周期钩子<ul>
+<li>preversion</li>
+<li>version</li>
+<li>postversion</li>
+</ul>
+</li>
+</ul>
+<h3 id="package-lock-json"><a href="#package-lock-json" class="headerlink" title="package-lock.json"></a>package-lock.json</h3><p>这里<strong>重点关注</strong>package-lock.json文件和package.json文件对npm install的处理。<br>这里需要转载前人的总结，转载自<a href="https://www.cnblogs.com/surui/p/9038287.html" target="_blank" rel="noopener">https://www.cnblogs.com/surui/p/9038287.html</a><br>自npm 5.0版本发布以来，npm istall的规则发生了三次变化:</p>
+<ol>
+<li>npm 5.0.x版本，不管package.json怎么变，npm install时都会根据package-lock.json下载；</li>
+<li>npm 5.1.0版本后，npm install会无视package-lock.json,下载最新的版本；</li>
+<li>npm 5.4.2版本后，如果package.json与package-lock.json不一致，npm install会根据package.json去下载版本，并更新package-lock.json；如果package.json与package-lock.json一致，npm install会根据package-lock.json去下载。</li>
+</ol>
+<h3 id="version"><a href="#version" class="headerlink" title="version"></a>version</h3><p>version往往也是工作中经常出现问题的地方。解决报错一定要先排除version的问题。</p>
+<h4 id="semver"><a href="#semver" class="headerlink" title="semver"></a>semver</h4><p>详情请查看官方文档<a href="https://semver.org/lang/zh-CN/" target="_blank" rel="noopener">语义化版本号</a></p>
+<h4 id="符号注释"><a href="#符号注释" class="headerlink" title="符号注释"></a>符号注释</h4><table>
+<thead>
+<tr>
+<th>示例</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>*</td>
+<td>任意版本</td>
+</tr>
+<tr>
+<td>1.1.0</td>
+<td>指定版本</td>
+</tr>
+<tr>
+<td>~1.1.0</td>
+<td>&gt;=1.1.0 &amp;&amp; &lt; 1.2.0</td>
+</tr>
+<tr>
+<td>^1.1.0</td>
+<td>&gt;=1.1.0 &amp;&amp; &lt; 2.0.0</td>
+</tr>
+</tbody></table>
+<h3 id="npx"><a href="#npx" class="headerlink" title="npx"></a>npx</h3><p>对于npx，要么你一点都不知道，要么就应该知道它有什么作用。</p>
+<ul>
+<li>调用项目安装的模块，例如: npx lerna bootstrap，告别node-modules去执行。</li>
+<li>使用不同版本的node，例如：npx <a href="mailto:node@10.15.3">node@10.15.3</a> -v，方便临时切换node版本。</li>
+</ul>
+<h3 id="私有npm库"><a href="#私有npm库" class="headerlink" title="私有npm库"></a>私有npm库</h3><p>搭建私有npm可能是有一定前端项目规模的公司必须面对的问题。<br>我列出两种方案供参考。</p>
+<ul>
+<li>基于阿里的cnpm</li>
+<li>使用verdaccio</li>
+</ul>
+<h3 id="npm缓存"><a href="#npm缓存" class="headerlink" title="npm缓存"></a>npm缓存</h3><p>注意npm v5以后不需要通过npm cache clean –force解决缓存导致的问题。npm的缓存基于pacote实现，<a href="https://www.npmjs.com/package/pacote，具体内容我还没看。总之官网的指引就是排查问题不要再把焦点放在npm缓存上。缓存路径可以通过`npm" target="_blank" rel="noopener">https://www.npmjs.com/package/pacote，具体内容我还没看。总之官网的指引就是排查问题不要再把焦点放在npm缓存上。缓存路径可以通过`npm</a> config get cache`获取。</p>
+<h3 id="publish"><a href="#publish" class="headerlink" title="publish"></a>publish</h3><p>如果你到2020年还没有发布过npm包，尝试发一个。稍微要留意的是，如果发包到私有库，包名需要加上你公司的命名空间@scope。</p>
+<h3 id="npmrc"><a href="#npmrc" class="headerlink" title=".npmrc"></a>.npmrc</h3><p>npm自己的配置文件，通过<code>npm config edit</code>命令修改。我一般用它修改registry，proxy等。你也可以用<code>npm config get xxx</code>和<code>npm config set xxx</code>来获取或者设置config。命令设置的config优先级低于.npmrc文件。</p>
+<h2 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h2><p>大概总结就是这些，日后有踩到坑再补充。</p>
 
     </div>
 
@@ -247,24 +296,21 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E6%8A%80%E6%9C%AF%E6%9D%82%E8%B0%88/" rel="tag"># 技术杂谈</a>
+              <a href="/tags/npm/" rel="tag"># npm</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
-                <a href="/2019/11/20/%E5%A4%9A%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8Lerna%E5%AE%9E%E8%B7%B5%E6%80%BB%E7%BB%93/" rel="next" title="多包管理器Lerna实践总结">
-                  <i class="fa fa-chevron-left"></i> 多包管理器Lerna实践总结
+                <a href="/2020/03/09/%E5%85%B3%E6%B3%A8%E5%A4%B1%E8%B4%A5%E8%BF%98%E6%98%AF%E5%85%B3%E6%B3%A8%E9%94%99%E8%AF%AF/" rel="next" title="关注失败还是关注错误">
+                  <i class="fa fa-chevron-left"></i> 关注失败还是关注错误
                 </a>
             </div>
 
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-                <a href="/2019/11/26/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96%E5%AE%9E%E8%B7%B5%E7%B3%BB%E5%88%97-ESLint%E5%AE%9A%E5%88%B6%E8%A7%84%E5%88%99/" rel="prev" title="前端工程化实践系列--ESLint定制规则">
-                  前端工程化实践系列--ESLint定制规则 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
       </footer>
@@ -303,6 +349,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#准备"><span class="nav-number">1.</span> <span class="nav-text">准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#梳理"><span class="nav-number">2.</span> <span class="nav-text">梳理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#package-json"><span class="nav-number">2.1.</span> <span class="nav-text">package.json</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#package-lock-json"><span class="nav-number">2.2.</span> <span class="nav-text">package-lock.json</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#version"><span class="nav-number">2.3.</span> <span class="nav-text">version</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#semver"><span class="nav-number">2.3.1.</span> <span class="nav-text">semver</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#符号注释"><span class="nav-number">2.3.2.</span> <span class="nav-text">符号注释</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#npx"><span class="nav-number">2.4.</span> <span class="nav-text">npx</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#私有npm库"><span class="nav-number">2.5.</span> <span class="nav-text">私有npm库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#npm缓存"><span class="nav-number">2.6.</span> <span class="nav-text">npm缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#publish"><span class="nav-number">2.7.</span> <span class="nav-text">publish</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#npmrc"><span class="nav-number">2.8.</span> <span class="nav-text">.npmrc</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结束"><span class="nav-number">3.</span> <span class="nav-text">结束</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
