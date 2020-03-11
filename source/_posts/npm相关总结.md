@@ -45,6 +45,7 @@ version往往也是工作中经常出现问题的地方。解决报错一定要�
 ### npx
 对于npx，要么你一点都不知道，要么就应该知道它有什么作用。
 - 调用项目安装的模块，例如: npx lerna bootstrap，告别node-modules去执行。
+- 避免全局安装依赖，例如：npx create-react-app my-app。
 - 使用不同版本的node，例如：npx node@10.15.3 -v，方便临时切换node版本。
 
 ### 私有npm库
