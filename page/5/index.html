@@ -53,27 +53,27 @@
 
   <meta property="og:type" content="website">
 <meta property="og:title" content="Skyline 技术笔记">
-<meta property="og:url" content="http://yoursite.com/tags/npm/index.html">
+<meta property="og:url" content="http://yoursite.com/page/5/index.html">
 <meta property="og:site_name" content="Skyline 技术笔记">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="Skyline">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/tags/npm/">
+<link rel="canonical" href="http://yoursite.com/page/5/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: false,
+    isHome: true,
     isPost: false,
     isPage: false,
     isArchive: false
   };
 </script>
 
-  <title>标签: npm | Skyline 技术笔记</title>
+  <title>Skyline 技术笔记</title>
   
 
 
@@ -163,49 +163,109 @@
           <div class="content">
             
 
+  <div class="posts-expand">
+        
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <h1 class="collection-header">npm
-          <small>标签</small>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/08/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96%E5%AE%9E%E8%B7%B5%E7%B3%BB%E5%88%97--%E6%A0%87%E5%87%86%E5%8C%96%E5%88%B6%E5%AE%9A/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cdn.jsdelivr.net/gh/skyline-123/images/img/avatar.png">
+      <meta itemprop="name" content="Skyline">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Skyline 技术笔记">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/11/08/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96%E5%AE%9E%E8%B7%B5%E7%B3%BB%E5%88%97--%E6%A0%87%E5%87%86%E5%8C%96%E5%88%B6%E5%AE%9A/" class="post-title-link" itemprop="url">前端工程化实践系列--规范化</a>
         </h1>
-      </div>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-11-08 13:25:34" itemprop="dateCreated datePublished" datetime="2019-11-08T13:25:34+08:00">2019-11-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-01-29 18:59:34" itemprop="dateModified" datetime="2020-01-29T18:59:34+08:00">2020-01-29</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>731</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <h1 class="collection-header">2020</h1>
+          <p>最近在工作中有做前端工程化的一些实践，现在我就把其中的思想和实践总结出来，供日后参考。</p>
+<h2 id="为什么需要规范化"><a href="#为什么需要规范化" class="headerlink" title="为什么需要规范化"></a>为什么需要规范化</h2><p>面对这个问题，可能有些同学脑子里浮现的是eslint的各种报错，可能是git commit前eslint检查不通过导致失败。</p>
+<p>大家在开发过程中去解决这些问题，会不会觉得很恼火呢？我很恼火，至少当我在想明白这个问题之前，即，为什么需要规范化。</p>
+<p>工作和生活中，很多事情都是trade off的结果，当大家都忍受着麻烦努力做一件事情的时候，很大可能就是，不做这些，会更糟糕。</p>
+<p>简言之，个人觉得前端开发规范化的最重要原因就是<strong>提高团队整体开发效率</strong>。往细说，可以简单分三点。</p>
+<ul>
+<li>降低犯错的概率</li>
+<li>提高团队代码质量</li>
+<li>提高项目可维护性</li>
+</ul>
+<p>提高团队整体开发效率这一件事，值得我们去制定规范，落地规范，配套工具提高规范实践效率，并为之解决工具本身带来的新问题。因此我们不能只是看到规范化给开发带来的困扰，更要看到其本质作用。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/11/08/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96%E5%AE%9E%E8%B7%B5%E7%B3%BB%E5%88%97--%E6%A0%87%E5%87%86%E5%8C%96%E5%88%B6%E5%AE%9A/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-03-10T14:52:04+08:00"
-              content="2020-03-10">
-          03-10
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2020/03/10/npm%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/" itemprop="url">
-            <span itemprop="name">npm知识总结</span>
-          </a>
-      </h2>
-
-    </header>
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
   </article>
+  
+  
+  
 
-    </div>
   </div>
-  
-  
-  
 
   
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span>
+  </nav>
 
 
 

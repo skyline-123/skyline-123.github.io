@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-03-11T04:50:07.297Z</updated>
+  <updated>2020-04-15T16:26:17.617Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>删除排序数组中的重复项</title>
+    <link href="http://yoursite.com/2020/04/15/%E5%88%A0%E9%99%A4%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E9%87%8D%E5%A4%8D%E9%A1%B9/"/>
+    <id>http://yoursite.com/2020/04/15/%E5%88%A0%E9%99%A4%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E9%87%8D%E5%A4%8D%E9%A1%B9/</id>
+    <published>2020-04-15T15:40:57.000Z</published>
+    <updated>2020-04-15T16:26:17.617Z</updated>
+    
+    <content type="html"><![CDATA[<p>今天leetcode刷到这题，在题目要求下，只能原地删除。双指针这个思路去解决原地的问题，虽然有点绕，不过多看几次就能理解了。</p><blockquote><p>给定一个排序数组，你需要在 原地 删除重复出现的元素，使得每个元素只出现一次，返回移除后数组的新长度。不要使用额外的数组空间，你必须在 原地 修改输入数组 并在使用 O(1) 额外空间的条件下完成。</p></blockquote><p>如果没有原地的要求，我考虑用一个hashmap缓存已经存在的值，用一个临时数组去保存去除重复项之后的数组的思路去做。加上原地的要求，那要考虑双指针的方法去解。</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> removeDuplicates = <span class="function"><span class="keyword">function</span>(<span class="params">nums</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (!nums || !(nums <span class="keyword">instanceof</span> <span class="built_in">Array</span>))</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'nums必须为数组'</span>);</span><br><span class="line">  <span class="keyword">if</span> (nums.length === <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> i = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; nums.length; j++) &#123;</span><br><span class="line">      <span class="keyword">if</span> (nums[j] != nums[i]) &#123;</span><br><span class="line">          i++;</span><br><span class="line">          nums[i] = nums[j];</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> i + <span class="number">1</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><p>如果题目变更一下，给到的数组是乱序的数组，需要给到正序的去重数组。那只要先排序，然后用这个方法去重，最后截取i长度的数组就是答案。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;今天leetcode刷到这题，在题目要求下，只能原地删除。双指针这个思路去解决原地的问题，虽然有点绕，不过多看几次就能理解了。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;给定一个排序数组，你需要在 原地 删除重复出现的元素，使得每个元素只出现一次，返回移除后数组的新长度。不要
+      
+    
+    </summary>
+    
+    
+    
+      <category term="算法" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="双指针" scheme="http://yoursite.com/tags/%E5%8F%8C%E6%8C%87%E9%92%88/"/>
+    
+  </entry>
   
   <entry>
     <title>npm知识总结</title>
@@ -557,39 +585,6 @@
       <category term="前端工程化" scheme="http://yoursite.com/tags/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96/"/>
     
       <category term="Lerna" scheme="http://yoursite.com/tags/Lerna/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>前端工程化实践系列--规范化</title>
-    <link href="http://yoursite.com/2019/11/08/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96%E5%AE%9E%E8%B7%B5%E7%B3%BB%E5%88%97--%E6%A0%87%E5%87%86%E5%8C%96%E5%88%B6%E5%AE%9A/"/>
-    <id>http://yoursite.com/2019/11/08/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96%E5%AE%9E%E8%B7%B5%E7%B3%BB%E5%88%97--%E6%A0%87%E5%87%86%E5%8C%96%E5%88%B6%E5%AE%9A/</id>
-    <published>2019-11-08T05:25:34.000Z</published>
-    <updated>2020-01-29T10:59:34.340Z</updated>
-    
-    <content type="html"><![CDATA[<p>最近在工作中有做前端工程化的一些实践，现在我就把其中的思想和实践总结出来，供日后参考。</p><h2 id="为什么需要规范化"><a href="#为什么需要规范化" class="headerlink" title="为什么需要规范化"></a>为什么需要规范化</h2><p>面对这个问题，可能有些同学脑子里浮现的是eslint的各种报错，可能是git commit前eslint检查不通过导致失败。</p><p>大家在开发过程中去解决这些问题，会不会觉得很恼火呢？我很恼火，至少当我在想明白这个问题之前，即，为什么需要规范化。</p><p>工作和生活中，很多事情都是trade off的结果，当大家都忍受着麻烦努力做一件事情的时候，很大可能就是，不做这些，会更糟糕。</p><p>简言之，个人觉得前端开发规范化的最重要原因就是<strong>提高团队整体开发效率</strong>。往细说，可以简单分三点。</p><ul><li>降低犯错的概率</li><li>提高团队代码质量</li><li>提高项目可维护性</li></ul><p>提高团队整体开发效率这一件事，值得我们去制定规范，落地规范，配套工具提高规范实践效率，并为之解决工具本身带来的新问题。因此我们不能只是看到规范化给开发带来的困扰，更要看到其本质作用。</p><a id="more"></a><h2 id="规范化涉及的方面"><a href="#规范化涉及的方面" class="headerlink" title="规范化涉及的方面"></a>规范化涉及的方面</h2><p>明确了规范化的意义，现在对我在工程中实践过的规范化内容和相应的工具做一个简单的总结。</p><ul><li>代码格式规范化<ul><li>ESLint</li><li>lint-staged</li><li>husky</li></ul></li><li>commit规范化<ul><li>commitizen</li><li>husky</li><li>commitlint</li><li>conventional-changelog-cli</li></ul></li><li>git流程规范化<ul><li>git-flow</li></ul></li></ul><p>如果对上面的实践展开讲，有很多实践的细节可以说。假设各位读者都有能力根据罗列出来的点去搭建一个开发流程更规范的前端脚手架，那我们应该在搭建脚手架之外做什么思考呢？</p><ol><li>执行</li><li>执行</li><li>执行</li></ol><p>规则都是人定出来的，破坏规则的也可以是人。如果团队成员内心不认可规范化的价值，那么工具或者文档写的再好，都不能起到正面的作用。所以规范制定的过程中，尽可能参考业界规范，并在团队内部达（打）成共识。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;最近在工作中有做前端工程化的一些实践，现在我就把其中的思想和实践总结出来，供日后参考。&lt;/p&gt;
-&lt;h2 id=&quot;为什么需要规范化&quot;&gt;&lt;a href=&quot;#为什么需要规范化&quot; class=&quot;headerlink&quot; title=&quot;为什么需要规范化&quot;&gt;&lt;/a&gt;为什么需要规范化&lt;/h2&gt;&lt;p&gt;面对这个问题，可能有些同学脑子里浮现的是eslint的各种报错，可能是git commit前eslint检查不通过导致失败。&lt;/p&gt;
-&lt;p&gt;大家在开发过程中去解决这些问题，会不会觉得很恼火呢？我很恼火，至少当我在想明白这个问题之前，即，为什么需要规范化。&lt;/p&gt;
-&lt;p&gt;工作和生活中，很多事情都是trade off的结果，当大家都忍受着麻烦努力做一件事情的时候，很大可能就是，不做这些，会更糟糕。&lt;/p&gt;
-&lt;p&gt;简言之，个人觉得前端开发规范化的最重要原因就是&lt;strong&gt;提高团队整体开发效率&lt;/strong&gt;。往细说，可以简单分三点。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;降低犯错的概率&lt;/li&gt;
-&lt;li&gt;提高团队代码质量&lt;/li&gt;
-&lt;li&gt;提高项目可维护性&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;提高团队整体开发效率这一件事，值得我们去制定规范，落地规范，配套工具提高规范实践效率，并为之解决工具本身带来的新问题。因此我们不能只是看到规范化给开发带来的困扰，更要看到其本质作用。&lt;/p&gt;
-    
-    </summary>
-    
-    
-    
-      <category term="前端工程化" scheme="http://yoursite.com/tags/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96/"/>
-    
-      <category term="标准" scheme="http://yoursite.com/tags/%E6%A0%87%E5%87%86/"/>
     
   </entry>
   
