@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-04-15T16:26:17.617Z</updated>
+  <updated>2020-04-29T15:34:08.374Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>记一次压力面</title>
+    <link href="http://yoursite.com/2020/04/29/%E8%AE%B0%E4%B8%80%E6%AC%A1%E5%8E%8B%E5%8A%9B%E9%9D%A2/"/>
+    <id>http://yoursite.com/2020/04/29/%E8%AE%B0%E4%B8%80%E6%AC%A1%E5%8E%8B%E5%8A%9B%E9%9D%A2/</id>
+    <published>2020-04-29T15:06:34.000Z</published>
+    <updated>2020-04-29T15:34:08.374Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近在面试过程中遇到了一次有趣的面试，虽然过程中让我压抑，但是面崩溃之后仔细一想，然后上网一搜, 觉得有可能是有部分压力面的成分。</p><p>在面试官连续追问和对回答的否定下，往往容易陷入自我怀疑而忽略了解决问题本身。我就是在面试中被否定到最后很简单的问题都卡壳无力回答了。这个压力的感觉让我想起曾经做C端业务，发现前端统计报错日志，或者性能优化不到位导致前端性能指标不理想，需要紧急优化的过程。也许问题只是非常简单的问题，但是在压力场景下，如果分心去考虑事态糟糕本身，是很难集中精力去解决眼下的问题的，这个问题我觉得无关简单复杂。</p><p>这个感觉也和我在A股见到一支拉升前洗盘的个股很类似，主力在一个交易日大幅拉升之后，第二天第三天进行一个大幅度股价打压，打压完毕之后，股价回落到低位，之后开始一路拉升。在第一次拉升追涨买入之后，心态如果预期主力继续拉升，当面对当头一棒大幅下压之后，很容易被这个洗盘手法直接清理出局而错过后面真正的行情。但是作为势单力薄的散户本身，是无法准确知道出货和洗盘的区别的，那就只能依赖于核心逻辑的确定性和有用的经验了。</p><p>抛开技术本身，我认为心理素质很大程度上制约发挥的上限。研发这个工作在实际生产中遇到高压也是家常便饭，deadline，hotfix，都不愿遇到的生产事故，等等等等，都考验一个人的心理素质。从另一个方面来讲，心理素质和技术能力也应该是互相辅助提高的一个过程。继续沉淀，永不言弃吧。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;最近在面试过程中遇到了一次有趣的面试，虽然过程中让我压抑，但是面崩溃之后仔细一想，然后上网一搜, 觉得有可能是有部分压力面的成分。&lt;/p&gt;
+&lt;p&gt;在面试官连续追问和对回答的否定下，往往容易陷入自我怀疑而忽略了解决问题本身。我就是在面试中被否定到最后很简单的问题都卡壳无力回答
+      
+    
+    </summary>
+    
+    
+    
+      <category term="面试" scheme="http://yoursite.com/tags/%E9%9D%A2%E8%AF%95/"/>
+    
+  </entry>
   
   <entry>
     <title>删除排序数组中的重复项</title>
@@ -552,39 +577,6 @@
     
     
       <category term="技术杂谈" scheme="http://yoursite.com/tags/%E6%8A%80%E6%9C%AF%E6%9D%82%E8%B0%88/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>多包管理器Lerna实践总结</title>
-    <link href="http://yoursite.com/2019/11/20/%E5%A4%9A%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8Lerna%E5%AE%9E%E8%B7%B5%E6%80%BB%E7%BB%93/"/>
-    <id>http://yoursite.com/2019/11/20/%E5%A4%9A%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8Lerna%E5%AE%9E%E8%B7%B5%E6%80%BB%E7%BB%93/</id>
-    <published>2019-11-19T16:54:12.000Z</published>
-    <updated>2020-03-01T17:39:41.604Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>什么是Lerna？截取github上面的description如下：</p><blockquote><p>A tool for managing JavaScript projects with multiple packages.</p></blockquote><h2 id="monorepo"><a href="#monorepo" class="headerlink" title="monorepo"></a>monorepo</h2><p>最近工作中维护多个项目，均用到Lerna这个多包管理器。通过使用Lerna, 感受了monorepo维护项目的好处。</p><p>对于monorepo的介绍，请<a href="https://trunkbaseddevelopment.com/monorepos/" target="_blank" rel="noopener">点击此处</a></p><p>目前出名的前端开源项目也有很多使用了Lerna去维护。</p><ul><li><a href="https://github.com/facebook/react" target="_blank" rel="noopener">React</a></li><li><a href="https://github.com/babel/babel" target="_blank" rel="noopener">Babel</a></li><li><a href="https://github.com/emberjs/ember.js" target="_blank" rel="noopener">Ember</a><a id="more"></a>其中Babel仓库还专门写了monorepo的优缺点。<br>摘录如下：</li></ul><p><strong>Pros:</strong></p><ul><li>Single lint, build, test and release process.</li><li>Easy to coordinate changes across modules.</li><li>Single place to report issues.</li><li>Easier to setup a development environment.</li><li>Tests across modules are run together which finds bugs that touch multiple modules more easily.</li></ul><p><strong>Cons:</strong></p><ul><li>Codebase looks more intimidating.</li><li>Repo is bigger in size.</li><li><a href="https://github.com/npm/npm/issues/2974" target="_blank" rel="noopener">Can’t <code>npm install</code> modules directly from GitHub</a></li><li>???</li></ul><p>Babel的文档已经把monorepo的好处总结的非常到位了，而monorepo的缺点，也是瑕不掩瑜。</p><p>Codebase looks more intimidating.这一个缺点确实一开始令我头疼，但是意识到monorepo的优点（也就是它解决了其他更严重的问题）之后，我就开始慢慢接受并习惯。</p><h2 id="Lerna做了什么"><a href="#Lerna做了什么" class="headerlink" title="Lerna做了什么"></a>Lerna做了什么</h2><p>聊完monorepo，我们来看看Lerna帮我们做了哪些事情。</p><ul><li>开发过程中：维护项目多个npm包之间的关系<ul><li>减少重复安装依赖</li><li>开发中直接映射依赖包最新代码</li><li>维护复杂的依赖关系，即版本号关系</li></ul></li><li>发布过程中：维护项目多个npm发布包的版本号和自动打tag</li></ul><p>无论是开发过程还是发布包的过程，Lerna都帮我们做了很多手动维护难以完成的工作。对于多个npm包还有版本的维护，如果手动维护，将是一个灾难。当然了，又因为这些包之间的依赖深，如果用multirepo的方式维护，会出现更多难以维护的问题。所以可以开出，Lerna对于多个npm包用monorepo的方式维护，算是提供了非常强力的辅助。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h2&gt;&lt;p&gt;什么是Lerna？截取github上面的description如下：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;A tool for managing JavaScript projects with multiple packages.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&quot;monorepo&quot;&gt;&lt;a href=&quot;#monorepo&quot; class=&quot;headerlink&quot; title=&quot;monorepo&quot;&gt;&lt;/a&gt;monorepo&lt;/h2&gt;&lt;p&gt;最近工作中维护多个项目，均用到Lerna这个多包管理器。通过使用Lerna, 感受了monorepo维护项目的好处。&lt;/p&gt;
-&lt;p&gt;对于monorepo的介绍，请&lt;a href=&quot;https://trunkbaseddevelopment.com/monorepos/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;点击此处&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;目前出名的前端开源项目也有很多使用了Lerna去维护。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/facebook/react&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;React&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/babel/babel&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Babel&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/emberjs/ember.js&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Ember&lt;/a&gt;
-    
-    </summary>
-    
-    
-    
-      <category term="前端工程化" scheme="http://yoursite.com/tags/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96/"/>
-    
-      <category term="Lerna" scheme="http://yoursite.com/tags/Lerna/"/>
     
   </entry>
   
