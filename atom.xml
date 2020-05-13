@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-04-29T15:34:08.374Z</updated>
+  <updated>2020-05-13T15:33:42.970Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>qiankun集成小结</title>
+    <link href="http://yoursite.com/2020/05/13/qiankun%E9%9B%86%E6%88%90%E5%B0%8F%E7%BB%93/"/>
+    <id>http://yoursite.com/2020/05/13/qiankun%E9%9B%86%E6%88%90%E5%B0%8F%E7%BB%93/</id>
+    <published>2020-05-13T15:11:59.000Z</published>
+    <updated>2020-05-13T15:33:42.970Z</updated>
+    
+    <content type="html"><![CDATA[<p>基于项目的功能模块希望独立升级维护和独立部署，我在项目脚手架中集成了 qiankun 微前端框架。</p><p>引进任何一个新技术或者做任何一个技术选型，总是避免不了被人质疑和挑战，尤其是面试和答辩过程。选用基于 single-spa 的 qiankun 微前端框架，而不是用 iframe 来实现，原因总是避免不了解释。</p><p>这里我们看看 qiankun 官方的解释。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">为什么不用 iframe，这几乎是所有微前端方案第一个会被 challenge 的问题。但是大部分微前端方案又不约而同放弃了 iframe 方案，自然是有原因的，并不是为了 &quot;炫技&quot; 或者刻意追求 &quot;特立独行&quot;。</span><br><span class="line">如果不考虑体验问题，iframe 几乎是最完美的微前端解决方案了。</span><br><span class="line">iframe 最大的特性就是提供了浏览器原生的硬隔离方案，不论是样式隔离、js 隔离这类问题统统都能被完美解决。但他的最大问题也在于他的隔离性无法被突破，导致应用间上下文无法被共享，随之带来的开发体验、产品体验的问题。</span><br><span class="line">其实这个问题之前这篇也提到过，这里再单独拿出来回顾一下好了。</span><br><span class="line">1. url 不同步。浏览器刷新 iframe url 状态丢失、后退前进按钮无法使用。</span><br><span class="line">2. UI 不同步，DOM 结构不共享。想象一下屏幕右下角 1&#x2F;4 的 iframe 里来一个带遮罩层的弹框，同时我们要求这个弹框要浏览器居中显示，还要浏览器 resize 时自动居中..</span><br><span class="line">3. 全局上下文完全隔离，内存变量不共享。iframe 内外系统的通信、数据同步等需求，主应用的 cookie 要透传到根域名都不同的子应用中实现免登效果。</span><br><span class="line">4. 慢。每次子应用进入都是一次浏览器上下文重建、资源重新加载的过程。</span><br><span class="line">其中有的问题比较好解决(问题1)，有的问题我们可以睁一只眼闭一只眼(问题4)，但有的问题我们则很难解决(问题3)甚至无法解决(问题2)，而这些无法解决的问题恰恰又会给产品带来非常严重的体验问题， 最终导致我们舍弃了 iframe 方案。</span><br></pre></td></tr></table></figure><p>前端在面临日益臃肿的应用开发中，很容易非前端开发人员被忽略其复杂程度。这个复杂度不仅仅是具体某个页面的复杂度，还包括整个应用的维护复杂度和随着时间的延伸带来的升级问题。而微前端架构就是打破巨石应用最好的锤子。微前端架构的优点如下：</p><ul><li>技术栈无关</li><li>微应用独立部署</li><li>微应用独立升级</li><li>微应用分布式开发</li><li>独立运行时，运行时状态不共享</li></ul><p>天下没有免费的午餐，能解决那么多问题的框架，本身也会有很多细节处理需要我们严肃考虑：</p><ul><li>公共模块如何规划，以减少主应用集成子应用之后依赖的冗余</li><li>localStorage， window 下的全局状态，如何做好微应用之间的隔离</li><li>微应用和主应用之间的通讯机制</li><li>js，css 具体怎么实现隔离</li></ul><p>在实际落地业务的过程中，我会持续完善优化微前端集成的细节优化。勇于尝试新架构去解决旧问题，然后持续对比和改进方案。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;基于项目的功能模块希望独立升级维护和独立部署，我在项目脚手架中集成了 qiankun 微前端框架。&lt;/p&gt;
+&lt;p&gt;引进任何一个新技术或者做任何一个技术选型，总是避免不了被人质疑和挑战，尤其是面试和答辩过程。选用基于 single-spa 的 qiankun 微前端框架，而不
+      
+    
+    </summary>
+    
+    
+    
+      <category term="微前端" scheme="http://yoursite.com/tags/%E5%BE%AE%E5%89%8D%E7%AB%AF/"/>
+    
+  </entry>
   
   <entry>
     <title>记一次压力面</title>
@@ -554,29 +579,6 @@
       <category term="标准" scheme="http://yoursite.com/tags/%E6%A0%87%E5%87%86/"/>
     
       <category term="ESLint" scheme="http://yoursite.com/tags/ESLint/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>聊聊Kindle的使用感受</title>
-    <link href="http://yoursite.com/2019/11/21/%E8%81%8A%E8%81%8AKindle%E7%9A%84%E4%BD%BF%E7%94%A8%E6%84%9F%E5%8F%97/"/>
-    <id>http://yoursite.com/2019/11/21/%E8%81%8A%E8%81%8AKindle%E7%9A%84%E4%BD%BF%E7%94%A8%E6%84%9F%E5%8F%97/</id>
-    <published>2019-11-20T16:15:57.000Z</published>
-    <updated>2020-01-29T10:59:34.353Z</updated>
-    
-    <content type="html"><![CDATA[<p>前几个月，我买入了一台Kindle。买之前因为有比较强烈的阅读需求，所以也没有犹豫太长时间，入手了Kindle Oasis3。</p><p>Kindle这个阅读器很神奇，让我在短短几个月阅读了十多本充电用的书籍，包括技术，投资相关。近一两周因为工作的原因，我暂时搁置Kindle没有继续看。直到今天重新拿起来看了些旧书温习，我对Kindle这种方式阅读书籍有了一些思考。</p><p>纸质书有着最好的阅读体验，但是厚重这一点，就让许多人在繁忙的工作之余望而却步了。退而求其次，选择用手机去看，我个人也容易被其他App吸引，导致没有很好的办法长时间专注去看。当我选择了Kindle之后，觉得找到了另一种阅读的体验，那就是方便又专注。这种感觉让我在面对五颜六色的代码编辑器之余，多了一种感受黄金屋美好的体验。它的方便携带和舒适的阅读体验，让我即使在工作之余，也放下了对阅读大部头的心理压力，因为说实话我感觉当下面对的只是Kindle的一个小屏幕，又或者说这是一个小屏幕上的一页文字。这种轻松方便的感觉反而促进我认真学习，不知不觉看多了很多书。</p><a id="more"></a><p>当我们准备学习一个技能或者看完一本书的时候，如果抱着过高的期望或者过高的要求去做，可能效果会打折扣。以前为了面试或者应付一些考试，我会在短时间内看大量的书，那种为了看完而看完的过程真的太煎熬了，而且效果并没有那么理想。但是令我惊讶的一点是，当我专注去使用Kindle之后，却不知不觉消化了非常多的知识。轻松的心态反而促进了学习的动力。</p><p>工作生活中，太多定性定时的任务压着我们喘不过气来。而提效的关键又偏偏是要轻松面对，专注当下而不是专注于感受压力。就像专注Kindle上面的一页文字一样简单，压力也是可以化解为专注当下的每一项小事。大脑总是在思考着一共有多少事没做，和手里捧着一本厚厚的技术书籍一样，会感受到非常大的焦虑与压力。</p><p>从Kindle阅读这件小事，我思考着工作中也要借鉴这种专注和轻松的心态。举个工作中的例子，面对大量的工作，很显然就是要依赖todolist这些工具，用gtd（get things done)理念，把事情和压力分解。不过话说回来，本质上还是要自己好学，毕竟Kindle之类都是工具，真正要吸收养分，内因不可忽略。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;前几个月，我买入了一台Kindle。买之前因为有比较强烈的阅读需求，所以也没有犹豫太长时间，入手了Kindle Oasis3。&lt;/p&gt;
-&lt;p&gt;Kindle这个阅读器很神奇，让我在短短几个月阅读了十多本充电用的书籍，包括技术，投资相关。近一两周因为工作的原因，我暂时搁置Kindle没有继续看。直到今天重新拿起来看了些旧书温习，我对Kindle这种方式阅读书籍有了一些思考。&lt;/p&gt;
-&lt;p&gt;纸质书有着最好的阅读体验，但是厚重这一点，就让许多人在繁忙的工作之余望而却步了。退而求其次，选择用手机去看，我个人也容易被其他App吸引，导致没有很好的办法长时间专注去看。当我选择了Kindle之后，觉得找到了另一种阅读的体验，那就是方便又专注。这种感觉让我在面对五颜六色的代码编辑器之余，多了一种感受黄金屋美好的体验。它的方便携带和舒适的阅读体验，让我即使在工作之余，也放下了对阅读大部头的心理压力，因为说实话我感觉当下面对的只是Kindle的一个小屏幕，又或者说这是一个小屏幕上的一页文字。这种轻松方便的感觉反而促进我认真学习，不知不觉看多了很多书。&lt;/p&gt;
-    
-    </summary>
-    
-    
-    
-      <category term="技术杂谈" scheme="http://yoursite.com/tags/%E6%8A%80%E6%9C%AF%E6%9D%82%E8%B0%88/"/>
     
   </entry>
   

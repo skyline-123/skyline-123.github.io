@@ -143,7 +143,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">22</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">23</span></a>
 
   </li>
   </ul>
@@ -164,6 +164,101 @@
             
 
   <div class="posts-expand">
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/05/%E4%B8%8D%E8%A6%81%E5%BF%99%E7%A2%8C%E4%BA%8E%E6%89%BE%E5%88%B0%E5%AE%8C%E5%85%A8%E5%90%88%E9%80%82%E7%9A%84%E8%BD%AE%E5%AD%90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cdn.jsdelivr.net/gh/skyline-123/images/img/avatar.png">
+      <meta itemprop="name" content="Skyline">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Skyline 技术笔记">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/05/%E4%B8%8D%E8%A6%81%E5%BF%99%E7%A2%8C%E4%BA%8E%E6%89%BE%E5%88%B0%E5%AE%8C%E5%85%A8%E5%90%88%E9%80%82%E7%9A%84%E8%BD%AE%E5%AD%90/" class="post-title-link" itemprop="url">完全符合需求的轮子</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-03-05 17:30:45 / 修改时间：19:14:32" itemprop="dateCreated datePublished" datetime="2020-03-05T17:30:45+08:00">2020-03-05</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>923</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>找不到完全合适的轮子要怎么办？如果发现一个开源依赖非常靠近你的需求，但是仅仅有一些地方不满足，无法使用，你会怎么选择？先说结论，我们可以大胆fork一份代码，然后根据自己的需求改造之后发布一个增强包给自己使用。</p>
+<h2 id="理由"><a href="#理由" class="headerlink" title="理由"></a>理由</h2><ul>
+<li>工作中难免遇到轮子差一点就能满足需求的情况</li>
+<li>完全重新造轮子成本过高</li>
+<li>修改原来的轮子的成本只是阅读源码和新功能测试</li>
+<li>通过在社区提建议的方式难以快速响应业务需求</li>
+</ul>
+<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><p>之前我做一个cli工具优化的时候，需要使用yeoman的update-notifier包的功能进行依赖升级终端提醒，但是这个包有个缺点，就是只支持默认使用npm官方的registry。但是我的生产环境用到的registry又恰恰是基于cnpm搭建的私有registry。</p>
+<p>很自然，摆在我面前有两个方案</p>
+<ol>
+<li>参考update-notifier思路自己写一个新轮子</li>
+<li>给update-notifier加一个option，支持registry传参</li>
+</ol>
+<p>碰巧我当时发现团队内也有同学遇到这个需求，他是直接手写方法实现了这个需求。只是我知道有update-notifier这个包，基于这个情况一看便知道，肯定是第二个方案成本最低。那为什么会有第一个方案的出现呢？有时候难免在社区轮子不满足需求的情况下，会放弃搜索而选择自己实现，有时候这是一个不错的选择，因为很有可能你的需求是多个依赖东拼西凑才能解决的。而我眼前的需求很清晰，只是增加一个registry参数的问题，那就要果断去用第二个方案解决问题。</p>
+<p>定下方案之后，我付出的时间也很少。只是聚焦于update-notifier的retistry参数如何传递，而不用关心它核心原理（比较版本号并做出升级提示的主流程）。现在看来也是在工作中性价比很高的操作。</p>
+<p>我已经将改动的代码上传到<a href="https://github.com/skyline-123/update-notifier/blob/master/index.js" target="_blank" rel="noopener">github</a>, 其实只要你想，总是可以让工作变得相对而言更轻松。</p>
+<h2 id="归纳"><a href="#归纳" class="headerlink" title="归纳"></a>归纳</h2><p>遇到需求的时候，除了一把梭自己全部实现之外，我按解决问题的顺序排序了如下方案：</p>
+<ol>
+<li>找到合适的轮子，用它</li>
+<li>找到部分合适的轮子，改它</li>
+<li>找不到一个轮子能满足需求，造它</li>
+</ol>
+<p>我这篇文章的核心其实就是第二点，找到部分合适的轮子，改它。也就是上传一个增强包到自己的npm服务端的事情，开心去改造吧，没必要浪费时间去找所谓完美合适的轮子。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
         
   
   
@@ -508,100 +603,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/13/gulp%E7%B3%BB%E5%88%97%E4%B9%8Bundertaker%E6%BA%90%E7%A0%81%E7%AC%94%E8%AE%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://cdn.jsdelivr.net/gh/skyline-123/images/img/avatar.png">
-      <meta itemprop="name" content="Skyline">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Skyline 技术笔记">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/01/13/gulp%E7%B3%BB%E5%88%97%E4%B9%8Bundertaker%E6%BA%90%E7%A0%81%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">gulp系列之undertaker源码笔记</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-01-13 20:32:19" itemprop="dateCreated datePublished" datetime="2020-01-13T20:32:19+08:00">2020-01-13</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-29 18:59:34" itemprop="dateModified" datetime="2020-01-29T18:59:34+08:00">2020-01-29</time>
-              </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>11k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>10 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>undertaker部分的代码，是gulp任务管理部分的核心源码。在讲解gulp本身仓库源码之前，我着重讲讲undertaker。这个库自然也涉及到一些依赖，没关系，这次我们关注undertaker流程本身。</p>
-<p>请泡好🍵或者☕️慢慢看，这篇文章篇幅较长。算是回应某些朋友对我的博客期待吧，他们觉得我一开始写的文章太水了。</p>
-<h2 id="undertaker简介"><a href="#undertaker简介" class="headerlink" title="undertaker简介"></a>undertaker简介</h2><p>undertaker是gulp团队开发出来为解决gulp的任务执行问题的库。</p>
-<blockquote>
-<p>Task registry that allows composition through series/parallel methods.</p>
-</blockquote>
-<p>undertaker提供series和parallel两种方法解决任务流程管理。series是串行执行任务，parallel方法是并行执行任务。串行执行应该比较简单理解，就是按顺序执行，只有前面的任务完成，后面的任务才能执行。那么并行呢？很可能是通过for循环执行所有异步任务，这样就能实现并行，这个类似Promise.all方法。</p>
-<p>我非常赞叹undertaker的设计，可能是我对代码流程管理本身没有很好的思路，看了之后豁然开朗。想想javascript，异步代码从callback，写到promise，写到generator，写到async/await。异步代码的书写随着时间的推移变得越来越友好，但是比如Promise的实现思想，更加值得我们学习和思考。回到undertaker，这个任务管理的框架，其实就是非常友好地解决了处理串行或者并行任务的代码组织问题。通过undertaker书写的代码可读性和可维护性都很强。</p>
-<p>之前写到复杂业务流程的时候，串行或者并行的时候，直接用Promise，总感觉有所欠缺，现在看了undertaker，有一种亲切的感觉，那就是这种实现就是我写流程管理需要的非常好的实践模板。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/01/13/gulp%E7%B3%BB%E5%88%97%E4%B9%8Bundertaker%E6%BA%90%E7%A0%81%E7%AC%94%E8%AE%B0/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -652,13 +653,13 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-count">23</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-count">20</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -709,12 +710,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">43k</span>
+    <span title="站点总字数">44k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">39 分钟</span>
+    <span title="站点阅读时长">40 分钟</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
   </div>

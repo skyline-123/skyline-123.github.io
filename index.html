@@ -143,7 +143,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">22</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">23</span></a>
 
   </li>
   </ul>
@@ -164,6 +164,99 @@
             
 
   <div class="posts-expand">
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/13/qiankun%E9%9B%86%E6%88%90%E5%B0%8F%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cdn.jsdelivr.net/gh/skyline-123/images/img/avatar.png">
+      <meta itemprop="name" content="Skyline">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Skyline 技术笔记">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/13/qiankun%E9%9B%86%E6%88%90%E5%B0%8F%E7%BB%93/" class="post-title-link" itemprop="url">qiankun集成小结</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-05-13 23:11:59 / 修改时间：23:33:42" itemprop="dateCreated datePublished" datetime="2020-05-13T23:11:59+08:00">2020-05-13</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>基于项目的功能模块希望独立升级维护和独立部署，我在项目脚手架中集成了 qiankun 微前端框架。</p>
+<p>引进任何一个新技术或者做任何一个技术选型，总是避免不了被人质疑和挑战，尤其是面试和答辩过程。选用基于 single-spa 的 qiankun 微前端框架，而不是用 iframe 来实现，原因总是避免不了解释。</p>
+<p>这里我们看看 qiankun 官方的解释。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">为什么不用 iframe，这几乎是所有微前端方案第一个会被 challenge 的问题。但是大部分微前端方案又不约而同放弃了 iframe 方案，自然是有原因的，并不是为了 &quot;炫技&quot; 或者刻意追求 &quot;特立独行&quot;。</span><br><span class="line">如果不考虑体验问题，iframe 几乎是最完美的微前端解决方案了。</span><br><span class="line">iframe 最大的特性就是提供了浏览器原生的硬隔离方案，不论是样式隔离、js 隔离这类问题统统都能被完美解决。但他的最大问题也在于他的隔离性无法被突破，导致应用间上下文无法被共享，随之带来的开发体验、产品体验的问题。</span><br><span class="line">其实这个问题之前这篇也提到过，这里再单独拿出来回顾一下好了。</span><br><span class="line">1. url 不同步。浏览器刷新 iframe url 状态丢失、后退前进按钮无法使用。</span><br><span class="line">2. UI 不同步，DOM 结构不共享。想象一下屏幕右下角 1&#x2F;4 的 iframe 里来一个带遮罩层的弹框，同时我们要求这个弹框要浏览器居中显示，还要浏览器 resize 时自动居中..</span><br><span class="line">3. 全局上下文完全隔离，内存变量不共享。iframe 内外系统的通信、数据同步等需求，主应用的 cookie 要透传到根域名都不同的子应用中实现免登效果。</span><br><span class="line">4. 慢。每次子应用进入都是一次浏览器上下文重建、资源重新加载的过程。</span><br><span class="line">其中有的问题比较好解决(问题1)，有的问题我们可以睁一只眼闭一只眼(问题4)，但有的问题我们则很难解决(问题3)甚至无法解决(问题2)，而这些无法解决的问题恰恰又会给产品带来非常严重的体验问题， 最终导致我们舍弃了 iframe 方案。</span><br></pre></td></tr></table></figure>
+
+<p>前端在面临日益臃肿的应用开发中，很容易非前端开发人员被忽略其复杂程度。这个复杂度不仅仅是具体某个页面的复杂度，还包括整个应用的维护复杂度和随着时间的延伸带来的升级问题。而微前端架构就是打破巨石应用最好的锤子。微前端架构的优点如下：</p>
+<ul>
+<li>技术栈无关</li>
+<li>微应用独立部署</li>
+<li>微应用独立升级</li>
+<li>微应用分布式开发</li>
+<li>独立运行时，运行时状态不共享</li>
+</ul>
+<p>天下没有免费的午餐，能解决那么多问题的框架，本身也会有很多细节处理需要我们严肃考虑：</p>
+<ul>
+<li>公共模块如何规划，以减少主应用集成子应用之后依赖的冗余</li>
+<li>localStorage， window 下的全局状态，如何做好微应用之间的隔离</li>
+<li>微应用和主应用之间的通讯机制</li>
+<li>js，css 具体怎么实现隔离</li>
+</ul>
+<p>在实际落地业务的过程中，我会持续完善优化微前端集成的细节优化。勇于尝试新架构去解决旧问题，然后持续对比和改进方案。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
         
   
   
@@ -549,101 +642,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/05/%E4%B8%8D%E8%A6%81%E5%BF%99%E7%A2%8C%E4%BA%8E%E6%89%BE%E5%88%B0%E5%AE%8C%E5%85%A8%E5%90%88%E9%80%82%E7%9A%84%E8%BD%AE%E5%AD%90/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://cdn.jsdelivr.net/gh/skyline-123/images/img/avatar.png">
-      <meta itemprop="name" content="Skyline">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Skyline 技术笔记">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/03/05/%E4%B8%8D%E8%A6%81%E5%BF%99%E7%A2%8C%E4%BA%8E%E6%89%BE%E5%88%B0%E5%AE%8C%E5%85%A8%E5%90%88%E9%80%82%E7%9A%84%E8%BD%AE%E5%AD%90/" class="post-title-link" itemprop="url">完全符合需求的轮子</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-03-05 17:30:45 / 修改时间：19:14:32" itemprop="dateCreated datePublished" datetime="2020-03-05T17:30:45+08:00">2020-03-05</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>923</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>找不到完全合适的轮子要怎么办？如果发现一个开源依赖非常靠近你的需求，但是仅仅有一些地方不满足，无法使用，你会怎么选择？先说结论，我们可以大胆fork一份代码，然后根据自己的需求改造之后发布一个增强包给自己使用。</p>
-<h2 id="理由"><a href="#理由" class="headerlink" title="理由"></a>理由</h2><ul>
-<li>工作中难免遇到轮子差一点就能满足需求的情况</li>
-<li>完全重新造轮子成本过高</li>
-<li>修改原来的轮子的成本只是阅读源码和新功能测试</li>
-<li>通过在社区提建议的方式难以快速响应业务需求</li>
-</ul>
-<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><p>之前我做一个cli工具优化的时候，需要使用yeoman的update-notifier包的功能进行依赖升级终端提醒，但是这个包有个缺点，就是只支持默认使用npm官方的registry。但是我的生产环境用到的registry又恰恰是基于cnpm搭建的私有registry。</p>
-<p>很自然，摆在我面前有两个方案</p>
-<ol>
-<li>参考update-notifier思路自己写一个新轮子</li>
-<li>给update-notifier加一个option，支持registry传参</li>
-</ol>
-<p>碰巧我当时发现团队内也有同学遇到这个需求，他是直接手写方法实现了这个需求。只是我知道有update-notifier这个包，基于这个情况一看便知道，肯定是第二个方案成本最低。那为什么会有第一个方案的出现呢？有时候难免在社区轮子不满足需求的情况下，会放弃搜索而选择自己实现，有时候这是一个不错的选择，因为很有可能你的需求是多个依赖东拼西凑才能解决的。而我眼前的需求很清晰，只是增加一个registry参数的问题，那就要果断去用第二个方案解决问题。</p>
-<p>定下方案之后，我付出的时间也很少。只是聚焦于update-notifier的retistry参数如何传递，而不用关心它核心原理（比较版本号并做出升级提示的主流程）。现在看来也是在工作中性价比很高的操作。</p>
-<p>我已经将改动的代码上传到<a href="https://github.com/skyline-123/update-notifier/blob/master/index.js" target="_blank" rel="noopener">github</a>, 其实只要你想，总是可以让工作变得相对而言更轻松。</p>
-<h2 id="归纳"><a href="#归纳" class="headerlink" title="归纳"></a>归纳</h2><p>遇到需求的时候，除了一把梭自己全部实现之外，我按解决问题的顺序排序了如下方案：</p>
-<ol>
-<li>找到合适的轮子，用它</li>
-<li>找到部分合适的轮子，改它</li>
-<li>找不到一个轮子能满足需求，造它</li>
-</ol>
-<p>我这篇文章的核心其实就是第二点，找到部分合适的轮子，改它。也就是上传一个增强包到自己的npm服务端的事情，开心去改造吧，没必要浪费时间去找所谓完美合适的轮子。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -694,13 +692,13 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-count">23</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-count">20</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -751,12 +749,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">43k</span>
+    <span title="站点总字数">44k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">39 分钟</span>
+    <span title="站点阅读时长">40 分钟</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
   </div>

@@ -51,15 +51,20 @@
   };
 </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Skyline 技术笔记">
-<meta property="og:url" content="http://yoursite.com/tags/%E6%A0%87%E5%87%86/index.html">
+  <meta name="description" content="基于项目的功能模块希望独立升级维护和独立部署，我在项目脚手架中集成了 qiankun 微前端框架。 引进任何一个新技术或者做任何一个技术选型，总是避免不了被人质疑和挑战，尤其是面试和答辩过程。选用基于 single-spa 的 qiankun 微前端框架，而不是用 iframe 来实现，原因总是避免不了解释。 这里我们看看 qiankun 官方的解释。 123456789为什么不用 iframe，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="qiankun集成小结">
+<meta property="og:url" content="http://yoursite.com/2020/05/13/qiankun%E9%9B%86%E6%88%90%E5%B0%8F%E7%BB%93/index.html">
 <meta property="og:site_name" content="Skyline 技术笔记">
+<meta property="og:description" content="基于项目的功能模块希望独立升级维护和独立部署，我在项目脚手架中集成了 qiankun 微前端框架。 引进任何一个新技术或者做任何一个技术选型，总是避免不了被人质疑和挑战，尤其是面试和答辩过程。选用基于 single-spa 的 qiankun 微前端框架，而不是用 iframe 来实现，原因总是避免不了解释。 这里我们看看 qiankun 官方的解释。 123456789为什么不用 iframe，">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-05-13T15:11:59.000Z">
+<meta property="article:modified_time" content="2020-05-13T15:33:42.970Z">
 <meta property="article:author" content="Skyline">
+<meta property="article:tag" content="微前端">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/tags/%E6%A0%87%E5%87%86/">
+<link rel="canonical" href="http://yoursite.com/2020/05/13/qiankun%E9%9B%86%E6%88%90%E5%B0%8F%E7%BB%93/">
 
 
 <script id="page-configurations">
@@ -67,13 +72,13 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: false,
+    isPost: true,
     isPage: false,
     isArchive: false
   };
 </script>
 
-  <title>标签: 标准 | Skyline 技术笔记</title>
+  <title>qiankun集成小结 | Skyline 技术笔记</title>
   
 
 
@@ -163,70 +168,118 @@
           <div class="content">
             
 
+  <div class="posts-expand">
+      
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <h1 class="collection-header">标准
-          <small>标签</small>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/13/qiankun%E9%9B%86%E6%88%90%E5%B0%8F%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cdn.jsdelivr.net/gh/skyline-123/images/img/avatar.png">
+      <meta itemprop="name" content="Skyline">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Skyline 技术笔记">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          qiankun集成小结
         </h1>
-      </div>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-05-13 23:11:59 / 修改时间：23:33:42" itemprop="dateCreated datePublished" datetime="2020-05-13T23:11:59+08:00">2020-05-13</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <h1 class="collection-header">2019</h1>
-    </div>
+        <p>基于项目的功能模块希望独立升级维护和独立部署，我在项目脚手架中集成了 qiankun 微前端框架。</p>
+<p>引进任何一个新技术或者做任何一个技术选型，总是避免不了被人质疑和挑战，尤其是面试和答辩过程。选用基于 single-spa 的 qiankun 微前端框架，而不是用 iframe 来实现，原因总是避免不了解释。</p>
+<p>这里我们看看 qiankun 官方的解释。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">为什么不用 iframe，这几乎是所有微前端方案第一个会被 challenge 的问题。但是大部分微前端方案又不约而同放弃了 iframe 方案，自然是有原因的，并不是为了 &quot;炫技&quot; 或者刻意追求 &quot;特立独行&quot;。</span><br><span class="line">如果不考虑体验问题，iframe 几乎是最完美的微前端解决方案了。</span><br><span class="line">iframe 最大的特性就是提供了浏览器原生的硬隔离方案，不论是样式隔离、js 隔离这类问题统统都能被完美解决。但他的最大问题也在于他的隔离性无法被突破，导致应用间上下文无法被共享，随之带来的开发体验、产品体验的问题。</span><br><span class="line">其实这个问题之前这篇也提到过，这里再单独拿出来回顾一下好了。</span><br><span class="line">1. url 不同步。浏览器刷新 iframe url 状态丢失、后退前进按钮无法使用。</span><br><span class="line">2. UI 不同步，DOM 结构不共享。想象一下屏幕右下角 1&#x2F;4 的 iframe 里来一个带遮罩层的弹框，同时我们要求这个弹框要浏览器居中显示，还要浏览器 resize 时自动居中..</span><br><span class="line">3. 全局上下文完全隔离，内存变量不共享。iframe 内外系统的通信、数据同步等需求，主应用的 cookie 要透传到根域名都不同的子应用中实现免登效果。</span><br><span class="line">4. 慢。每次子应用进入都是一次浏览器上下文重建、资源重新加载的过程。</span><br><span class="line">其中有的问题比较好解决(问题1)，有的问题我们可以睁一只眼闭一只眼(问题4)，但有的问题我们则很难解决(问题3)甚至无法解决(问题2)，而这些无法解决的问题恰恰又会给产品带来非常严重的体验问题， 最终导致我们舍弃了 iframe 方案。</span><br></pre></td></tr></table></figure>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-11-26T14:33:08+08:00"
-              content="2019-11-26">
-          11-26
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2019/11/26/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96%E5%AE%9E%E8%B7%B5%E7%B3%BB%E5%88%97-ESLint%E5%AE%9A%E5%88%B6%E8%A7%84%E5%88%99/" itemprop="url">
-            <span itemprop="name">前端工程化实践系列--ESLint定制规则</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-11-08T13:25:34+08:00"
-              content="2019-11-08">
-          11-08
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2019/11/08/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96%E5%AE%9E%E8%B7%B5%E7%B3%BB%E5%88%97--%E6%A0%87%E5%87%86%E5%8C%96%E5%88%B6%E5%AE%9A/" itemprop="url">
-            <span itemprop="name">前端工程化实践系列--规范化</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
+<p>前端在面临日益臃肿的应用开发中，很容易非前端开发人员被忽略其复杂程度。这个复杂度不仅仅是具体某个页面的复杂度，还包括整个应用的维护复杂度和随着时间的延伸带来的升级问题。而微前端架构就是打破巨石应用最好的锤子。微前端架构的优点如下：</p>
+<ul>
+<li>技术栈无关</li>
+<li>微应用独立部署</li>
+<li>微应用独立升级</li>
+<li>微应用分布式开发</li>
+<li>独立运行时，运行时状态不共享</li>
+</ul>
+<p>天下没有免费的午餐，能解决那么多问题的框架，本身也会有很多细节处理需要我们严肃考虑：</p>
+<ul>
+<li>公共模块如何规划，以减少主应用集成子应用之后依赖的冗余</li>
+<li>localStorage， window 下的全局状态，如何做好微应用之间的隔离</li>
+<li>微应用和主应用之间的通讯机制</li>
+<li>js，css 具体怎么实现隔离</li>
+</ul>
+<p>在实际落地业务的过程中，我会持续完善优化微前端集成的细节优化。勇于尝试新架构去解决旧问题，然后持续对比和改进方案。</p>
 
     </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%BE%AE%E5%89%8D%E7%AB%AF/" rel="tag"># 微前端</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2020/04/29/%E8%AE%B0%E4%B8%80%E6%AC%A1%E5%8E%8B%E5%8A%9B%E9%9D%A2/" rel="next" title="记一次压力面">
+                  <i class="fa fa-chevron-left"></i> 记一次压力面
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
   </div>
-  
-  
-  
-
-  
-
 
 
           </div>
